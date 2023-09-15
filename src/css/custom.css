@@ -1,0 +1,74 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+ @import url('https://fonts.googleapis.com/css?family=Manrope');
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: rgb(236,42,53);
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-font-family-base: 'Manrope'
+  
+}
+.navbar__title,
+.navbar__link {
+  font-weight: 700;
+  font-size: 18px;
+  
+} 
+
+@media screen and (max-width: 996px) {
+  :root {
+    --ifm-font-size-base: 18px;
+  }
+  article header h1 {
+    font-size: 1.5rem !important;
+  }
+  .hero .hero__title {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 997px) {
+  :root {
+    --ifm-font-size-base: 17px;
+  }
+  article header h1 {
+    font-size: 2rem !important;
+  }
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: rgb(236,42,53);
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+.BP_COLOR_PROMPT_TEXT{ color:#96cb59;} 
+.BP_COLOR_INFO_TEXT{ color:#bfa530;} 
+.BP_COLOR_ERROR_TEXT{ color:#bf3030;} 
+.BP_COLOR_NUM_FLOAT_TEXT{ color:#53a6e6;}
+
+.bp-prompt{ color:#96cb59;} 
+.bp-info{ color:#bfa530;} 
+.bp-error{ color:#bf3030;} 
+.bp-float{ color:#53a6e6;}
+
+.bp-pre{
+	color: #FFFFFF;
+}
