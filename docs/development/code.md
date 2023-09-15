@@ -30,7 +30,7 @@ Debugging is supported through a two wire JTAG interface. It's a great way to se
 
 ### Raspberry Pi Pico as debugger
 
-![](./img/Pico.jpg)
+![](./img/pico.jpg)
 
 A $4 [RP2040 Pico board](https://www.raspberrypi.com/products/raspberry-pi-Pico/) can be used as a debugger.
 - Download the [Pico Probe firmware](https://github.com/raspberrypi/Picoprobe/releases)
