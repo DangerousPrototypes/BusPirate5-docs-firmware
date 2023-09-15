@@ -1,0 +1,195 @@
+---
+sidebar_position: 11
+sidebar_label: 'I2C Protocol'
+---
+import DiscourseComments from '@site/src/components/DiscourseComments';
+import BrowserWindow from '@site/src/components/BrowserWindow';
+
+# I2C Protocol Commands
+
+## Overview
+
+-   **Bus:** [I2C](http://en.wikipedia.org/wiki/I2c) (eye-squared-see or
+    eye-two-see)
+-   **Connections:** two pins (SDA/SCL) and ground
+-   **Output type:** open drain/open collector
+-   **Pull-up resistors:** always required (2K - 10K ohms)
+-   **Maximum voltage:** 5volts
+
+I2C is a common 2-wire bus for low speed interfaces, generally 100KHz, 400KHz and sometimes 1MHz.
+
+## Configuration options
+
+<BrowserWindow>
+<span className="bp-info">I2C speed</span><br/>
+ 1KHz to 1000KHz<br/>
+ x. <span className="bp-info">Exit</span><br/>
+<span className="bp-prompt">KHz (</span>400KHz*<span className="bp-prompt">) ></span> <br/>
+<span className="bp-info">Data bits</span><br/>
+ 1. <span className="bp-info">8*</span><br/>
+ 2. <span className="bp-info">10</span><br/>
+ x. <span className="bp-info">Exit</span><br/>
+<span className="bp-prompt">Bits (</span>1<span className="bp-prompt">) ></span> <br/>
+<span className="bp-info">Mode:</span> I2C<br/>
+<span className="bp-prompt">I2C></span> <br/>
+</BrowserWindow>
+
+**Pull-up resistors**
+
+I2C is an open-collector bus, it requires pull-up resistors to hold the
+clock and data lines high and create the data '1'. I2C parts don't
+output high, they only pull low, without pull-up resistors there can
+never be a '1'. This will cause common errors such as the I2C address
+scanner reporting a response at every address. 
+
+Enable the Bus Pirate on-board pull-up resistors with the ```P``` command.
+
+:::tip
+- I2C requires pull-up resistors to hold the clock and data lines high.
+- I2C parts don't output high, they only pull low.
+- Without pull-up resistors there can never be a '1'. 
+- Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
+:::
+
+## Syntax
+
+|Command|Description|
+|-------|-----------|
+| { or [ | Issue I2C start condition. |
+| ] or } | Issue I2C stop condition. |
+| r       | Read one byte, send ACK. (r:1…255 for bulk reads)|
+| 0b      | Write this binary value, check ACK. Format is 0b00000000 for a byte, but partial bytes are also fine: 0b1001.|
+| 0x      | Write this HEX value, check ACK. Format is 0x01. Partial bytes are fine: 0xA. A-F can be lower-case or capital letters. |
+| 0-255   | Write this decimal value, check ACK. Any number not preceded by 0x or 0b is interpreted as a decimal value. |
+| ```space```| Value delimiter. Use a space to separate numbers. No delimiter is required between non-number values: {0xa6 0 0 16 5 0b111 0xaF rrrr}. |
+| \(#\)   | Run macro, (0) for macro list. |
+
+## Macro
+
+|Number| Description                                                                 |
+|-----|-----------------|
+| 0   | Macro menu                                                      |
+| 1   | 7bit address search. Find all connected devices by brute force. |
+
+### I2C address search scanner macro
+
+<BrowserWindow>
+<span className="bp-prompt">I2C></span> (1)
+<span className="bp-info"><br/>
+I2C Bus Scan<br/>
+   0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F<br/>
+00 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
+10 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
+20 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
+30 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
+40 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
+50 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
+60 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
+70 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
+Done.<br/>
+</span><br/>
+<span className="bp-prompt">I2C></span><br/>
+</BrowserWindow>
+
+You can find the [I2C](http://en.wikipedia.org/wiki/I%C2%B2C) address
+for most I2C-compatible chips in the datasheet. But what if you're
+working with an unknown chip, a dated chip with no datasheet or you're
+just too lazy to look it up?
+
+The Bus Pirate has a built-in address scanner that checks every possible I2C address for a
+response. This brute force method is a fast and easy way to see if any
+chips are responding, and to uncover undocumented access addresses.
+
+I2C chips respond to a 7bit address, so up to 128 devices can share the
+same two communication wires. An additional bit of the address
+determines if the operation is a write to the chip (0), or a read from
+the chip (1).
+
+#### Scanner details
+
+Macro 1 in I2C mode runs the address scanner.
+
+-   For I2C write addresses: the BP sends a start, the write address,
+    looks for an ACK, then sends a stop.
+-   For I2C read addresses: the BP sends a start, the read address,
+    looks for an ACK. If there is an ACK, it reads a byte and NACKs it.
+    Finally it sends a stop.
+
+When the I2C chip responds to the read address, it outputs data and will
+miss a stop condition sent immediately after the read address (bus
+contention). If the I2C chip misses the stop condition, the address
+scanner will see ghost addresses until the read ends randomly. By
+reading a byte after any read address that ACKs, we have a chance to
+NACK the read and properly end the I2C transaction.
+
+<!--
+
+## ACK/NACK management
+
+These examples read and write from the RAM of a DS1307 RTC chip.
+```
+I2C> [0xd1 rrrr]
+I2C START CONDITION
+WRITE: 0xD1 GOT ACK: YES**<<<read address** 
+READ: 0×07 ACK **<<<sent ACK*[ 
+READ: 0x06 ACK 
+READ: 0x05 ACK 
+READ: 0x04 NACK **<<<last read before STOP, sent NACK** 
+I2C STOP CONDITION 
+I2C>
+```
+I2C read operations must be ACKed
+or NACKed by the host (the Bus Pirate). The Bus Pirate automates this,
+but you should know a few rules about how it works.
+
+The I2C library doesn't ACK/NACK a read operation until the following
+command. If the next command is a STOP (or START) the Bus Pirate sends a
+NACK bit. On all other commands it sends an ACK bit. The terminal output
+displays the (N)ACK status. 
+```
+I2C> [0xd1 r:5] 
+I2C START CONDITION
+WRITE: 0xD1 GOT ACK: YES 
+BULK READ 0×05 BYTES: 
+0×07 ACK 0×06 ACK 0×05 ACK 0×04 ACK 0×03 NACK 
+I2C STOP CONDITION 
+I2C> 
+```
+Nothing changes for write commands because the slave ACKs to the Bus Pirate during
+writes. Here’s an example using the bulk read command (r:5).
+```
+I2C>[0xd1 r **<<<setup and read one byte** 
+I2C START CONDITION 
+WRITE: 0xD1 GOT ACK: YES 
+READ: 0x07 *(N)ACK PENDING **<<<no ACK sent yet** 
+I2C>r**<<<read another byte** 
+ACK**<<<ACK for previous byte** 
+READ: 0x06 *(N)ACK PENDING**<<<no ACK yet** 
+I2C>] **<<<STOP command** 
+NACK **<<<next command is STOP, so NACK** 
+I2C STOP CONDITION 
+I2C> 
+```
+A consequence of the
+delayed ACK/NACK system is that partial transactions will leave read
+operations incomplete.
+
+Here, we setup a read operation ([0xd1) and read a byte (r). Since the
+Bus Pirate has no way of knowing if the next operation will be another
+read (r) or a stop condition (]), it leaves the ninth bit hanging. The
+warning “*(N)ACK PENDING” alerts you to this state.
+
+Our next command is another read (r), so the Bus Pirate ACKs the
+previous read and gets another byte. Again, it leaves the (N)ACK bit
+pending until the next command.
+
+The final command is STOP (]). The Bus Pirate ends the read with a NACK
+and then sends the stop condition.
+-->
+## Connections
+
+| Bus Pirate | Direction                     | Circuit | Description   |
+|------------|--------------------------|---------|---------------|
+| SDA       | <font size="+2">↔</font> | SDA     | Serial Data   |
+| SCL        | <font size="+2">→</font> | SCL     | Serial Clock  |
+| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |
