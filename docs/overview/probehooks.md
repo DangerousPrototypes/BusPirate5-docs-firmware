@@ -56,7 +56,7 @@ This probe, called an “airplane test hook” in Mandarin, is styled after the 
 
 Once again Cleqee and ETA appear to be the most stable and consistent suppliers. The ETA 3125 is billed as high quality and may be worth the price if you specifically need this type of probe. The Cleqee is a low cost probe without as much refinement. If you specifically need this kind of probe the ETA is the best option. If ETA is too expensive, and it is for us, consider using a good quality box-style hook from above instead of downgrading to the Cleqee P5003.
 
-:::warning
+:::caution
 Unless you’re already familiar with this style, or specifically need a hook with these specs, the box-style probe is probably a better and cheaper option. 
 :::
 

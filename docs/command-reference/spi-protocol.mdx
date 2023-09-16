@@ -14,6 +14,8 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 -   **Output type:** 1.2-5volts
 -   **Maximum voltage:** 5volts
 
+SPI is a common 4 wire full duplex protocol. Seperate connections for data-in and data-out allow communication to and from the controller at the same time. Multiple sub devices can share the bus, but each will need an individual Chip Select (CS) connection. Chip Select is generally active when low.
+
 ## Configuration options
 
 <BrowserWindow>

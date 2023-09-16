@@ -52,7 +52,7 @@ If the Bus Pirate has just restarted you will be prompted to choose the terminal
 - VT100 mode - Supports color and a live view toolbar at the bottom of the terminal. This should be your first choice unless you specifically need the legacy ASCII mode.
 - ASCII mode - Legacy monochrome text only mode.
 
-:::warning
+:::info
 If you choose VT100 mode and see lots of garbage characters in the terminal, check that your terminal emulator has VT100 support and that VT100 support is enabled.
 :::
 
@@ -135,7 +135,14 @@ A simple syntax is used to interact with chips. Syntax characters have
 the same general function in each bus mode, such as ```r``` to read a byte
 of data.
 
-[0x31 r:5]
+<BrowserWindow>
+<span className="bp-prompt">SPI></span> [0x31 r:5]<br/>
+<span className="bp-info">CS Select (0)</span><br/>
+<span className="bp-info"><span className="bp-info">TX:</span></span> 0x<span className="bp-float">31</span><br/>
+<span className="bp-info"><span className="bp-info">RX:</span></span> 0x<span className="bp-float">00</span> 0x<span className="bp-float">00</span> 0x<span className="bp-float">00</span> 0x<span className="bp-float">00</span> 0x<span className="bp-float">00</span><br/>
+<span className="bp-info">CS Deselect (1)</span><br/>
+<span className="bp-prompt">SPI></span> <br/>
+</BrowserWindow>
 
 This example syntax sends a bus start, the value 0x31, and then reads 5
 bytes, followed by bus stop. Up to 255 characters of syntax may be
