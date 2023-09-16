@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="hook-roundpth.svg"
+   inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\hook-round.png"
+   inkscape:export-xdpi="198.75999"
+   inkscape:export-ydpi="198.75999"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="1"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:snap-global="true"
+     inkscape:zoom="1.4274901"
+     inkscape:cx="397.55093"
+     inkscape:cy="676.01171"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Mend"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.6) rotate(180) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round;"
+         id="path5105" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Mstart"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mstart"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.6) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="stroke:context-stroke;fill-rule:evenodd;fill:context-stroke;stroke-width:0.62500000;stroke-linejoin:round"
+         id="path5102" />
+    </marker>
+    <rect
+       x="286.51688"
+       y="604.55762"
+       width="109.98325"
+       height="36.427574"
+       id="rect16941" />
+    <rect
+       x="342.5593"
+       y="649.39155"
+       width="219.9665"
+       height="95.272116"
+       id="rect8042" />
+    <rect
+       x="450.15606"
+       y="485.61471"
+       width="67.540294"
+       height="45.9274"
+       id="rect6155" />
+    <rect
+       x="561.93525"
+       y="621.3707"
+       width="109.80129"
+       height="33.456056"
+       id="rect3755" />
+    <rect
+       x="450.15607"
+       y="485.61472"
+       width="67.540291"
+       height="45.927399"
+       id="rect6155-6" />
+    <rect
+       x="286.51688"
+       y="604.55762"
+       width="109.98325"
+       height="36.427574"
+       id="rect16941-1" />
+    <rect
+       x="561.93524"
+       y="621.37073"
+       width="109.80129"
+       height="33.456055"
+       id="rect3755-4" />
+    <rect
+       x="561.93524"
+       y="621.37073"
+       width="109.80129"
+       height="33.456055"
+       id="rect3755-4-9" />
+    <rect
+       x="450.15607"
+       y="485.61472"
+       width="67.540291"
+       height="45.927399"
+       id="rect6155-6-7" />
+    <rect
+       x="286.51688"
+       y="604.55762"
+       width="109.98325"
+       height="36.427574"
+       id="rect16941-1-1" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.264999;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect51664"
+       width="3.1509302"
+       height="19.924971"
+       x="129.83392"
+       y="221.1478"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-small.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 69.447479,148.6787 0,-7.92781"
+       id="path4891"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-medium.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 168.27411,147.80524 0,-7.04682"
+       id="path4893"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-medium.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 69.607067,142.25166 H 121.36302"
+       id="path4895"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-medium.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 168.18476,142.34101 -34.92679,0"
+       id="path4897"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-medium.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,5.0182255,9.8927669)"
+       id="text6153"
+       style="font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6155)"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-medium.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999"><tspan
+         x="450.15625"
+         y="507.45224"
+         id="tspan2265">57</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 167.55516,149.23252 h 6.48721"
+       id="path16293"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-medium.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 167.49053,170.27501 h 6.48724"
+       id="path16293-5"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-medium.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 170.70609,149.34837 0,20.75905"
+       id="path16430"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-medium.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect16614"
+       width="5.0044131"
+       height="7.2285967"
+       x="169.88403"
+       y="156.12018"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-medium.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,20.617025,-8.5675032)"
+       id="text3753"
+       style="font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3755)"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-medium.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999"><tspan
+         x="561.93555"
+         y="643.2081"
+         id="tspan2267">9.6</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 68.839936,162.25386 h 1.671029 l 9.17429,-0.26212 c 0,0 3.14547,1.70379 4.456083,1.70379 h 50.720712 v 6.02882 h 17.56221 v -1.52047 h 15.1309 c 0,0 0.97718,0.0439 0.97718,-1.69252 v -14.06211 c 0,0 0,-1.22998 -1.22998,-1.22998 h -14.87463 v -2.19897 h -17.60619 v 6.57988 H 83.684908 c 0,0 -2.034576,0.24122 -4.633717,1.66814 -0.03517,0.0193 0.36861,-0.22117 0,0 l -8.158913,-0.0232 0.03645,-2.06858 H 68.80717 v 5.37351 z"
+       id="path28076"
+       sodipodi:nodetypes="cccscccccscscccccscccccc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-medium.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <rect
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.255548;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect29082"
+       width="17.557741"
+       height="20.70405"
+       x="134.86652"
+       y="149.02029"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-medium.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <circle
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path29348"
+       cx="160.14705"
+       cy="159.11331"
+       r="3.5386543"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-medium.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 74.330802,187.50355 v -7.92781"
+       id="path4891-4"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-large.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 168.92409,186.63009 v -7.04682"
+       id="path4893-3"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-large.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 74.346764,181.07651 49.253746,0"
+       id="path4895-0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-large.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 168.91505,181.16586 -33.41959,0"
+       id="path4897-3"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-large.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,7.2557121,48.717613)"
+       id="text6153-0"
+       style="font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6155-6)"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-large.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999"><tspan
+         x="450.15625"
+         y="507.45224"
+         id="tspan2269">55</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 169.79265,186.46987 h 6.48721"
+       id="path16293-52"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-large.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 169.59696,210.42524 h 6.48724"
+       id="path16293-5-4"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-large.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 172.94358,186.66602 0,23.6424"
+       id="path16430-3"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-large.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect16614-1"
+       width="5.0044131"
+       height="7.2285967"
+       x="172.12152"
+       y="194.94502"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-large.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,21.26701,30.257343)"
+       id="text3753-0"
+       style="font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect3755-4)"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-large.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999"><tspan
+         x="561.93555"
+         y="643.2081"
+         id="tspan2271">10</tspan></text>
+    <circle
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path29348-5"
+       cx="162.38454"
+       cy="197.93816"
+       r="3.5386543"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-large.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 74.788174,199.24978 v -8.15534 l 12.881729,3.89232 c 0,0 1.853486,-0.74139 3.058253,-0.83407 1.204767,-0.0927 44.298324,-1.01942 44.298324,-1.01942 l 3.70697,-6.30185 5.56046,2.03884 10.65755,0.0927 0,4.81907 -4.44837,-0.0927 c 0,0 -3.38261,0.3707 -3.28994,3.6143 0.0927,3.2436 3.28994,4.17035 3.28994,4.17035 h 4.26302 l 0,6.67255 h -11.02824 l -5.37512,1.57546 -3.52162,-6.39453 -46.893205,-2.40953 z"
+       id="path34962"
+       sodipodi:nodetypes="cccsccccccscccccccc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-large.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <rect
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect35845"
+       width="11.729983"
+       height="14.547802"
+       x="154.91443"
+       y="190.95628"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-large.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <rect
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.248721;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect35847"
+       width="2.1936297"
+       height="18.283049"
+       x="166.74435"
+       y="188.72824"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-large.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <rect
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.264999;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect47172"
+       width="3.7533097"
+       height="6.7883935"
+       x="86.670853"
+       y="226.59242"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-small.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 126.86836,228.28371 2.96557,-1.67937 v -5.45654 h 3.15093 v 5.59225 h 11.21359 v 8.49424 h -11.21359 v 5.83848 h -3.12941 l -0.0655,-5.64091 -2.92156,-2.05108"
+       id="path47311"
+       sodipodi:nodetypes="cccccccccccc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-small.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 144.19845,227.2643 v -4.91174 l 24.37335,1.94616 v 13.80848 l -24.46602,0.83406 0.0927,-3.70697 v 0"
+       id="path47368"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-small.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 159.67506,230.1372 h -4.44836 v 2.22419 h 4.54104 l 0.001,0.73807 h 4.63255 v -3.72517 h -4.7264 z"
+       id="path47370"
+       sodipodi:nodetypes="ccccccccc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-small.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 126.86836,228.28371 H 90.401202"
+       id="path47917"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-small.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 126.86836,233.38078 H 90.270141"
+       id="path47919"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-small.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 86.744331,222.79775 v -7.92781"
+       id="path4891-4-9"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-small.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 169.29785,221.92429 v -7.04682"
+       id="path4893-3-3"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-small.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 86.632323,216.37071 35.754437,0"
+       id="path4895-0-2"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-small.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 169.2085,216.46006 H 134.28171"
+       id="path4897-3-7"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-small.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,6.0419597,84.011826)"
+       id="text6153-0-0"
+       style="font-size:24px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect6155-6-7)"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-small.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999"><tspan
+         x="450.15625"
+         y="507.45224"
+         id="tspan2273">41</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 144.1674,228.80022 h -7.56879 v 3.70248 h 7.56879"
+       id="path51560"
+       inkscape:export-filename="C:\laragon2\www\buspirate-docs\docs\manufacturing\cables\img\profile-round-small.png"
+       inkscape:export-xdpi="198.75999"
+       inkscape:export-ydpi="198.75999" />
+  </g>
+</svg>
