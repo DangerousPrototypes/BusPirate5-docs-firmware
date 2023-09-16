@@ -393,7 +393,7 @@ Bus Pirate 5 has a single 'Programmable Power Supply Unit' (PPSU) with several h
 - 0-500mA current limit with digital fuse
 - One-way valve to protect the PPSU when an external voltage is applied to the VREF/VOUT pin
 
-Capital ```W``` enables the supplies. You will be prompted for the output voltage and an optional current limit.
+Uppercase ```W``` enables the onboard power supply unit. You will be prompted for the output voltage and an optional current limit.
 
 Check the voltage and current in the live view toolbar if active, or show the power supply voltage report using the ```v``` command.
 
@@ -415,7 +415,11 @@ Lowercase ```w``` disables the PPSU.
 
 ### **v/V** Power supply voltage report 
 
+<BrowserWindow>
+
 ![](./img/cmd-v.png)
+
+</BrowserWindow>
 
 The voltage report shows the current state of all the Bus Pirate pins and peripherals. This is a duplicate of the information shown on the live monitor toolbar.
 
@@ -482,7 +486,11 @@ Divider: 16, Period: 10079, Duty: 3528<br/>
 
 Uppercase ```G``` displays the frequency generation menu. Choose an available pin and enter the period or frequency, including the units (ns, us, ms, Hz, KHz or Mhz). Enter a duty cycle as a percent, don't forget the ```%```. The Bus Pirate will find the closest match and generate a frequency on the pin. 
 
+<BrowserWindow>
+
 ![](./img/cmd-freq.png)
+
+</BrowserWindow>
 
 The frequency generator will be displayed in the live view toolbar and on the LCD with the label ***PWM***.
 
@@ -528,7 +536,11 @@ Not all pins will be available due to the PWM structure of the RP2040, and adjac
 
 ```F``` displays the frequency measurement menu. Choose one of the available pins. 
 
+<BrowserWindow>
+
 ![](./img/cmd-freq.png)
+
+</BrowserWindow>
 
 The frequency will be measured continuously and displayed in the live view toolbar and LCD with the label **FREQ**.
 
