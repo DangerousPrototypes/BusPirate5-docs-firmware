@@ -1,0 +1,85 @@
+<!-- COMMANDS NOT YET IMPLEMENTED IN BP5
+
+### **S** Servo 
+
+`<nl2br>`{=html}1-WIRE\>S Position in degrees (90)\>20 Servo active
+(x)\>100 Servo active (x)\>30 Servo active (x)\> 1-WIRE\>S PWM disabled
+1-WIRE\>`</nl2br>`{=html}
+
+S positions the servo arm to the desired angle, 0-180 degrees. The servo
+value can be updated as needed, press enter or x to exit. Use \'S\' or
+\'g\' again to **disable** the servo.
+
+`<nl2br>`{=html}1-WIRE\>S 90 %:5000 S 180 Servo active DELAY 5000ms
+Servo active 1-WIRE\>`</nl2br>`{=html}
+
+Example of multiple servo positions with delay
+
+Firmware 5.5+
+
+-   [Bus Pirate servo driver
+    documentation](Bus_Pirate_servo_driver_documentation "wikilink")
+
+NOTE1: Most servos draw more current than the Bus Pirate can supply!!
+Use an external power supply instead.
+
+
+### **S** BASIC script engine 
+
+`<nl2br>`{=html}2WIRE\> s 2WIRE(BASIC)\> list
+
+65535 bytes. Ready. 2WIRE(BASIC)\>`</nl2br>`{=html} Simple BASIC scripts
+can automate repetitive and tedious tasks. Firmware v5.0+. [Bus Pirate
+BASIC script reference](Bus_Pirate_BASIC_script_reference "wikilink")
+
+### **<0>** List user macros 
+
+`<nl2br>`{=html}I2C\> \<0\> 1. \<\[0xa1 r:8\]\> 2. \<\> 3. \<\> 4. \<\>
+5. \<\> I2C\>`</nl2br>`{=html} User macro \<0\> lists the currently
+stored use macros.
+
+### **<#>** Run user macro \# 
+
+`<nl2br>`{=html}I2C\> \<1\> I2C\> \[0xa1 r:8\]`</nl2br>`{=html} Enter
+the macro number to recall the command. Press enter to execute.
+
+## Bitwise bus commands
+
+Bitwise commands are only available in certain bus modes.
+
+### **^** Send one clock tick 
+
+`<nl2br>`{=html}2WIRE\> \^ CLOCK TICK 2WIRE\>`</nl2br>`{=html} Send one
+clock tick. \^:1...255 for multiple clock ticks.
+
+### **/ or \\** Toggle clock level high (/) and low (\\) 
+
+`<nl2br>`{=html}2WIRE\> /\\ CLOCK, 1 CLOCK, 0 2WIRE\>`</nl2br>`{=html}
+Set the clock signal high or low. Includes clock delay.
+
+### **- or _** Toggle data state high (-) and low (_) 
+
+`<nl2br>`{=html}2WIRE\> -\_ DATA OUTPUT, 1 DATA OUTPUT, 0
+2WIRE\>`</nl2br>`{=html} Set the data signal high or low. Includes data
+setup delay
+
+### **!** Read one bit with clock 
+
+`<nl2br>`{=html}2WIRE\> ! READ BIT: 0 \*pin is now HiZ
+2WIRE\>`</nl2br>`{=html} Send one clock tick and read one bit from the
+bus.
+
+On a bus with a bi-directional data line (raw2wire, 1-Wire), the data
+pin is left as a high-impedance input after this command.
+
+### **.** Read data pin state (no clock) 
+
+`<nl2br>`{=html}2WIRE\> . 0 \*pin is now HiZ 2WIRE\>`</nl2br>`{=html}
+Make the data pin an input and read, but do not send a clock. This can
+be used as /.\\ to achieve the same thing as the ! command.
+
+On a bus with a bi-directional data line (raw2wire, 1-wire), the data
+pin is left as a high-impedance input after this command.
+
+
+-->
