@@ -9,6 +9,7 @@ sidebar_label: 'Introduction'
 
 ## RP2040
 - Based on Raspberry Pi Foundation RP2040
+- 128Mbit flash storage for lots of features
 - Firmware developed with the Pico C language SDK
 
 ## 8 Buffered IO pins

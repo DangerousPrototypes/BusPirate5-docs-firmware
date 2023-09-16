@@ -1,0 +1,90 @@
+---
+sidebar_position: 1
+sidebar_label: 'Quick Setup'
+---
+import DiscourseComments from '@site/src/components/DiscourseComments';
+import BrowserWindow from '@site/src/components/BrowserWindow';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+
+# Quick Setup
+
+![](./img/quicksetup-1024.jpg)
+
+## Connect Bus Pirate 5
+
+Connect the Bus Pirate to your computer with a USB C cable.
+
+Bus Pirate 5 currently appears as two USB devices:
+- USB CDC class device: an emulated serial port for accessing the user terminal
+- USB Mass Storage Device: a disk drive interface for accessing an SD card inserted in the Bus Pirate
+
+These are common device classes and recent operating systems will not request or require a driver. We're living in the future, woohoo!
+
+## Find the serial port
+
+:::tip
+Your terminal emulation software will probably detect and list all the available serial ports connected to your computer. If there's more than one serial port, you can connect to each and press ```enter``` until you find the Bus Pirate terminal. You can probably skip this step, but if you need to find the port manually follow the instructions below.
+:::
+
+<Tabs groupId="operating-systems" queryString="current-os">
+  <TabItem value="win" label="Windows">
+
+![Windows device manager](./img/serialport-windows.png)
+
+- Press the Windows key or open the start menu
+- Type ```Device Manager```
+- Click on the Device Manager to open it
+- In the Device Manager look for ```Ports (COM & LPT)```, expand it
+- In the example Bus Pirate 5 is connected as COM3
+
+
+  </TabItem>
+  <TabItem value="linux" label="Linux">Help document the Bus Pirate, post your instructions in the forum and we'll add them to the docs.</TabItem>
+  <TabItem value="mac" label="macOS">Help document the Bus Pirate, post your instructions in the forum and we'll add them to the docs.</TabItem>
+  <TabItem value="android" label="Android">Help document the Bus Pirate, post your instructions in the forum and we'll add them to the docs.</TabItem>
+</Tabs>
+
+## Fire up a terminal emulator
+
+A terminal emulator is software that connects to the Bus Pirate serial interface and displays the command line. Bus Pirate 5 supports VT100 for a colorful interface with a live view toolbar. A fallback monochrome ASCII mode is also available. Most terminal emulators support VT100, it's been around since the 1970s.
+
+<Tabs groupId="operating-systems" queryString="current-os">
+  <TabItem value="win" label="Windows">
+
+![TeraTerm setup](./img/teraterm-setup-com.png)
+
+- We're huge fans of [Tera Term](https://ttssh2.osdn.jp/index.html.en) on Windows. Download and install the latest version.
+- Open Tera Term and select ```Setup``` then ```Serial port```.
+- Choose the Bus Pirate port, and configure it for 115200 (speed), 8 bit (data), None (parity), and 1 bit (stop bits). Click ```New setting``` or ```New Open``` to open the port.
+
+![TeraTerm setup](./img/teraterm-setup-term.png)
+
+- Now select ```Setup``` then ```Terminal```.
+- Configure as shown above. Terminal size 80x24, New-line both set to CR, Terminal ID set to VT100. Click ```OK```.
+- To save the settings for next time, choose ```Setup``` then ```Save Settings```.
+
+:::tip
+Seeing duplicate characters when you type? Check that ```local echo``` is unchecked in this menu.
+:::
+
+![TeraTerm setup](./img/teraterm-vt100.png)
+
+- Press ```Enter``` in the terminal. 
+- The Bus Pirate will prompt you to choose VT100 color mode or the fallback ASCII monochrome mode. 
+- We recommend you type ```y``` followed by the ```enter``` key.
+
+![TeraTerm setup](./img/teraterm-done.png)
+
+You should see something like this. Congradulations, you're talking to the Bus Pirate!
+
+
+
+  </TabItem>
+  <TabItem value="linux" label="Linux">Help document the Bus Pirate, post your instructions in the forum and we'll add them to the docs.</TabItem>
+  <TabItem value="mac" label="macOS">Help document the Bus Pirate, post your instructions in the forum and we'll add them to the docs.</TabItem>
+  <TabItem value="android" label="Android">Help document the Bus Pirate, post your instructions in the forum and we'll add them to the docs.</TabItem>
+</Tabs>
+
+<DiscourseComments/>
