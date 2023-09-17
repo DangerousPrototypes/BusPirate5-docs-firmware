@@ -115,7 +115,7 @@ const config = {
             items: [
               {
                 label: 'Dirty PCBs',
-                to: 'https://dirtypcbs.com',
+                to: 'http://dirtypcbs.com/store/designer/details/ian/6618/bus-pirate-5-developers-version-rev8-no-enclosure',
               },
             ],
           },
