@@ -85,4 +85,19 @@
   background-color: #000000;
 }
 
+.toolbar{
+  width:100%;
+  display:flex;
+  justify-content: space-between;
+  background-color: #000000;
+}
+
+.vref{
+  padding: 1rem;
+  line-height: 110%;
+  color: #FFFFFF;
+  background-color: #000000;
+  width:10%;
+  position: relative;
+}
 

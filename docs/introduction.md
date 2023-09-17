@@ -52,7 +52,10 @@ sidebar_label: 'Introduction'
 ## DFU bootloader
 - Updating is as simple as dragging a file onto the disk
 
-# USB C connector
+## USB C connector
 - ...but limited to the USB speeds supported by the RP2040
+
+## FCC compliance statement
+This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) this device may not cause harmful interference, and (2) this device must accept any interference received, including interference that may cause undesired operation.
 
 
