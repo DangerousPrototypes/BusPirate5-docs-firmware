@@ -51,7 +51,7 @@ static char const * const en_us[]={
 ```
 
 - In the source code locate /translation/en-us.h. en-us.h is the base translation file.
-- Make a copy of en-us.h. name it something logical like the [ISO 6391-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code and a region code. For example nl-nl.h for Dutch-Netherlands.
+- Make a copy of en-us.h. Name it something logical like the [ISO 6391-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code and a region code. For example nl-nl.h for Dutch-Netherlands.
 
 ## Name translation array
 ```c {3}
@@ -108,7 +108,7 @@ switch(language)
 }
 ```
 - Locate the switch statement in /translation/base.c. This is the logic for switching the active language.
-- Add a new case to the switch for you translation.  
+- Add a new case to the switch for your translation.  
 - Be sure to use the next available case number so your translation is available from the configuration menu. For example our nl_nl translation becomes case 2.
 
 ### Enumerate the translation

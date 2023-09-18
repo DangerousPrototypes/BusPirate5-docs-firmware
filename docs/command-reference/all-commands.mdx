@@ -49,7 +49,7 @@ VT100 compatible color mode? (Y/n)><br/>
 Press ```enter``` to show the command prompt if your terminal is blank. 
 
 If the Bus Pirate has just restarted you will be prompted to choose the terminal emulation mode.
-- VT100 mode - Supports color and a live view toolbar at the bottom of the terminal. This should be your first choice unless you specifically need the legacy ASCII mode.
+- VT100 mode - Supports color and a live view statusbar at the bottom of the terminal. This should be your first choice unless you specifically need the legacy ASCII mode.
 - ASCII mode - Legacy monochrome text only mode.
 
 :::info
@@ -311,12 +311,12 @@ The current bit order configuration is displayed on the extended information scr
 <span className="bp-prompt">HiZ></span> <br/>
 </BrowserWindow>
 
-The Bus Pirate can display values as [hexadecimal](http://en.wikipedia.org/wiki/Hexadecimal), [decimal](http://en.wikipedia.org/wiki/Decimal), [binary](http://en.wikipedia.org/wiki/Binary_numeral_system), and a raw
+The Bus Pirate can display values as [hexadecimal](http://en.wikipedia.org/wiki/Hexadecimal), [decimal](http://en.wikipedia.org/wiki/Decimal), [binary](http://en.wikipedia.org/wiki/Binary_numeral_system) and a raw
 [ASCII](http://en.wikipedia.org/wiki/ASCII) byte. Change the setting in
 the data display format menu (o). The default display format is Auto.
 
 - Auto display mode attempts to mirror user input formatting. Each value is displayed in the HEX/DEC/BIN format entered.
-- RAW display mode sends data to the terminal as raw bytes without any text conversion. This is useful for taking to ASCII serial interfaces that don't need further conversion.
+- RAW display mode sends data to the terminal as raw bytes without any text conversion. This is useful for talking to ASCII serial interfaces that don't need further conversion.
 
 ### **~** Self-test 
 <BrowserWindow>
@@ -358,7 +358,7 @@ Depending on your serial terminal software you may need to reconnect to the Bus 
 <span className="bp-prompt">HiZ></span> $<br/>
 </BrowserWindow>
 
-Activate the Bus Pirate bootloader for firmware updates. The bootloader appears as a USB flash disk connected to your computer. Drag a **.uf2** firmware file into the disk. After an update the Bus Pirate resets.
+Activate the Bus Pirate bootloader for firmware updates. The bootloader appears as a USB disk drive connected to your computer. Drag a **.uf2** firmware file into the disk. After an update the Bus Pirate resets.
 
 :::tip
 If the firmware update is interrupted and you find yourself locked out of the Bus Pirate terminal don't panic. Use the 2mm HEX key included with Bus Pirate 5 (or a paperclip) to press and hold the bootloader button on the bottom of the board. Plug in the USB cable while holding the button down. The bootloader with connect and you can try the update again. The bootloader is frozen in hardware and cannot be corrupted or overwritten.
@@ -395,7 +395,7 @@ Bus Pirate 5 has a single 'Programmable Power Supply Unit' (PPSU) with several h
 
 Uppercase ```W``` enables the onboard power supply unit. You will be prompted for the output voltage and an optional current limit.
 
-Check the voltage and current in the live view toolbar if active, or show the power supply voltage report using the ```v``` command.
+Check the voltage and current in the live view statusbar if active, or show the power supply voltage report using the ```v``` command.
 
 :::warning
 400mA is the rated maximum of the PPSU, but we added some headroom in the current limit to account for current spikes.
@@ -421,9 +421,9 @@ Lowercase ```w``` disables the PPSU.
 
 </BrowserWindow>
 
-The voltage report shows the current state of all the Bus Pirate pins and peripherals. This is a duplicate of the information shown on the live monitor toolbar.
+The voltage report shows the current state of all the Bus Pirate pins and peripherals. This is a duplicate of the information shown on the live view statusbar.
 
-- The first line is the pin number and probe color. The colors also match the Bus Pirate LCD and the live monitor toolbar.
+- The first line is the pin number and probe color. The colors also match the Bus Pirate LCD and the live view statusbar.
 - The second line is the pin function.
 - The third line shows the voltage measured
  on each pin. 
@@ -492,7 +492,7 @@ Uppercase ```G``` displays the frequency generation menu. Choose an available pi
 
 </BrowserWindow>
 
-The frequency generator will be displayed in the live view toolbar and on the LCD with the label ***PWM***.
+The frequency generator will be displayed in the live view statusbar and on the LCD with the label ***PWM***.
 
 <BrowserWindow>
 <span className="bp-prompt">LED-()></span> g.0<br/>
@@ -542,7 +542,7 @@ Not all pins will be available due to the PWM structure of the RP2040, and adjac
 
 </BrowserWindow>
 
-The frequency will be measured continuously and displayed in the live view toolbar and LCD with the label **FREQ**.
+The frequency will be measured continuously and displayed in the live view statusbar and LCD with the label **FREQ**.
 
 <BrowserWindow>
 <span className="bp-prompt">LED-()></span> f.7<br/>
@@ -815,7 +815,7 @@ Partial write/reads can be combined with the repeat command.
 ## Macros
 
 Macros perform complex actions, like scanning for I2C addresses,
-interrogating a smart card, or probing a JTAG chain. Macros are numbers
+interrogating a smart card or probing a JTAG chain. Macros are numbers
 entered inside ```( )```. Macro ```(0)``` always displays a list of macros available in the current bus mode.
 
 ### **(0)** List mode macros 

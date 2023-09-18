@@ -32,9 +32,9 @@ Debugging is supported through a two wire JTAG interface. It's a great way to se
 
 ![](./img/pico.jpg)
 
-A $4 [RP2040 Pico board](https://www.raspberrypi.com/products/raspberry-pi-Pico/) can be used as a debugger.
+A [RP2040 Pico board](https://www.raspberrypi.com/products/raspberry-pi-Pico/) can be used as a debugger.
 - Download the [Pico Probe firmware](https://github.com/raspberrypi/Picoprobe/releases)
-- Press and hold the boot select button on the Pico board, then plug it the USB cable. The Pico board should appear as a USB disk on your computer.
+- Press and hold the boot select button on the Pico board, then plug in the USB cable. The Pico board should appear as a USB disk on your computer.
 - Drag and drop the Pico Probe firmware into the USB disk. The Pico will reset and two USB connections will appear. One is the debug interface, the other is a USB to serial converter.
 
 #### Windows driver install

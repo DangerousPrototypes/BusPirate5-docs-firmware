@@ -36,7 +36,7 @@ Three connection types exist in the market. We’re most interested in the type 
 |ETA|ETA3122|60VDC/1A|1.13g|PA|![](./img/eta3122.png)|Black, Red|
 |Cleqee, Various|P5013|30VDC/5A|-|PA|![](./img/p5013.png)|Black, White, Red, Yellow, Green, Blue|
 
-This style of probe hook probably has the best cost to hassle ratio, and will work in lots of different situations. It’s a great starter probe that will withstand a small amount of abuse while still remaining useful. If you don’t know what probe to get, this is probably the one.
+This style of probe hook probably has the best cost to hassle ratio and works in lots of different situations. It’s a great starter probe that will withstand a small amount of abuse while still remaining useful. If you don’t know what probe to get, this is probably the one.
 
 The EZ-Hook brand EZXKM was popularized by the Saleae Logic when it was first introduced, though the internet suggests Saleae changed to a different brand at some point. The original EZ-Hook XKM hook is available at Mouser and Digikey for $3-$4 each, significantly cheaper than we can source them in China so you won’t find them in our store.
 
@@ -70,7 +70,7 @@ Unless you’re already familiar with this style, or specifically need a hook wi
 |You Ji Xiong, Various|CSG905|60VDC/2A|-|-|![](./img/csg905.png)|Black, Grey, White, Red, Yellow, Green, Blue|
 
 
-This is a wide-body version of the airplane hook. This is an older style hook intended for through-hole parts and pin header. The most common part number used among similar manufacturers is CSG905.
+This is a wide-body version of the airplane hook. This is an older style hook intended for through-hole parts and pin header. The most common part number used among manufacturers of similar hooks is CSG905.
 
 ETA markets a high quality version, but there are a multitude of similar probes at the low end of the market. The closest we’ve come to a confirmed secondary manufacturer is You Ji Xiong, which has a model without a part number that is slightly cheaper than the ETA 3123.
 
