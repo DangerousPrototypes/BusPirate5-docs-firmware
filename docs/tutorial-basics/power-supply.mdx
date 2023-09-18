@@ -9,6 +9,13 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 
 ![](./img/ppsu-1024.jpg)
 
+Bus Pirate 5 has a single 'Programmable Power Supply Unit' (PPSU) that can power devices from the VOUT/VREF pin of the main connector.
+
+- 1-5volts adjustable output, 400mA max
+- 0-500mA current sense 
+- 0-500mA current limit with digital fuse
+- One-way valve to protect the PPSU when an external voltage is applied to the VREF/VOUT pin
+
 <BrowserWindow>
 <span className="bp-prompt">I2C></span> W<br/>
 <span className="bp-info"><span className="bp-info">Power supply<br/>
@@ -29,12 +36,6 @@ Vreg output: <span className="bp-float">2.1</span></span>V<span className="bp-in
 <span className="bp-prompt">I2C></span> <br/>
 </BrowserWindow>
 
-Bus Pirate 5 has a single 'Programmable Power Supply Unit' (PPSU) with several handy features:
-- 1-5volts adjustable output
-- 0-500mA current sense 
-- 0-500mA current limit with digital fuse
-- One-way valve to protect the PPSU when an external voltage is applied to the VREF/VOUT pin
-
 Type uppercase ```W``` followed by ```enter``` to enable the power supply. 
 
 - Enter the desired output in volts, for example ```2.1``` followed by ```enter```.
@@ -42,6 +43,10 @@ Type uppercase ```W``` followed by ```enter``` to enable the power supply.
 - Enter the desired current limit in milliamps, for example ```50``` followed by ```enter```.
 
 The Bus Pirate will calculate the closest possible values and enable the PPSU.
+
+:::info
+Enter any protocol mode (```m```) to use the power supply. The power supply is always disabled in HiZ safe mode.
+:::
 
 <BrowserWindow>
 
@@ -51,7 +56,15 @@ The Bus Pirate will calculate the closest possible values and enable the PPSU.
 
 Check the voltage and current in the live view statusbar if active, or show the power supply voltage report using the ```v``` command followed by ```enter```.
 
+- The top line indicates the power supply is set at 2.1volts with a 50mA current limit. 
+- The third line shows that 9.2mA is being consumed on VOUT/VREF. Since nothing is connected this is the current leakage, offset error and noise in the RP2040 analog to digital converter.
+- The last line shows that VOUT currently measures 2.1volts, and other pins measure 0 volts.
+
 :::info
+The difference in voltages (2.1, 2.19) is due to some code inconsistencies in float handling. It will be fixed shortly. 
+:::
+
+:::caution
 400mA is the rated maximum of the PPSU, but we added some headroom in the current limit to account for current spikes.
 :::
 
