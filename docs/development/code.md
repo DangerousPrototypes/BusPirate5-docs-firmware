@@ -57,7 +57,7 @@ The Pico Probe firmware is open and the early versions were rather simple. We sh
 
 
 ### Debug Connections
-![](./img/bp5-header.jpg)
+![](./img/bp5-debug.jpg)
 
 |Connection|Pico Probe pin|Bus Pirate pin|
 |-|-|-|

@@ -57,6 +57,19 @@ Bus Pirate 5 is the latest edition of the original universal serial interface th
 ## USB C connector
 - ...but limited to the USB speeds supported by the RP2040
 
+## Join the fun
+### Get Bus Pirate 5
+- [Bus Pirate 5 assembled PCB preview release](http://dirtypcbs.com/store/designer/details/ian/6618/bus-pirate-5-developers-version-rev8-no-enclosure)
+- Bus Pirate Premium Probe Cable (coming soon!)
+- Bus Pirate Premium Auxiliary Cables (coming soon!)
+- Bus Pirate 5 and enclosure (coming soon!)
+
+### Community
+- [Forum](https://forum.buspirate.com)
+- [Blog](https://buspirate.com/) and mailing list
+- Mastodon
+- [Twitter](https://twitter.com/dangerousproto)
+
 ## FCC compliance statement
 This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) this device may not cause harmful interference, and (2) this device must accept any interference received, including interference that may cause undesired operation.
 

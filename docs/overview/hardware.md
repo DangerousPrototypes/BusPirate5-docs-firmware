@@ -79,12 +79,12 @@ This is a general overview of Bus Pirate 5. See the [hardware manual](https://ha
 
 - VT100 terminal emulation supports color and a live statusbar view of the voltage and functions on each pin.
 
-## Join in the fun
+## Join the fun
 ### Get Bus Pirate 5
 - [Bus Pirate 5 assembled PCB preview release](http://dirtypcbs.com/store/designer/details/ian/6618/bus-pirate-5-developers-version-rev8-no-enclosure)
-- Bus Pirate 5 and enclosure (coming soon!)
 - Bus Pirate Premium Probe Cable (coming soon!)
 - Bus Pirate Premium Auxiliary Cables (coming soon!)
+- Bus Pirate 5 and enclosure (coming soon!)
 
 ### Community
 - [Forum](https://forum.buspirate.com)
