@@ -143,6 +143,10 @@ const config = {
                 label: 'Forum',
                 to: 'https://forum.buspirate.com',
               },
+              {
+                label: 'Twitter',
+                to: 'https://twitter.com/dangerousproto',
+              },                  
             ],
           },
           {
