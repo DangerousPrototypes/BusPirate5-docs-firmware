@@ -176,13 +176,23 @@ BIO7 PU-LOW: 0.14V OK<br/></span>
 - Tests the RP2040, pull-up resistors, 4066, IO buffers and the analog connection to the IO pins.
 - If two adjacent pins are stuck, for example by a solder bridge, the self-test will attempt to determine which pins are effected.
 
+### Current override
+<BrowserWindow>
+<span className="bp-info">
+CURRENT OVERRIDE: OK<br/></span>
+</BrowserWindow>
+
+- **CURRENT OVERRIDE** - Tests the pin for overriding the current limit digital fuse. Current limit override is enabled. A very low current limit is set with the pull-ups enabled and the BIO pins grounded. The Bus Pirate checks that the power supply is still on, despite the blown fuse.
+- Tests the PPSU, comparator, transistors, fets, etc.
+
+
 ### Current limit
 <BrowserWindow>
 <span className="bp-info">
 CURRENT LIMIT TEST: OK<br/></span>
 </BrowserWindow>
 
-- **CURRENT LIMIT TEST** - A very low current limit (2ma) is set with the pull-ups enabled and the BIO pins grounded. The Bus Pirate waits up to 2 seconds for the digital fuse to blow.
+- **CURRENT LIMIT TEST** - A very low current limit is set with the pull-ups enabled and the BIO pins grounded. The Bus Pirate waits up to 2 seconds for the digital fuse to blow.
 - Tests the PPSU, comparator, transistors, fets, etc.
 
 ### Just one button
