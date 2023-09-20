@@ -7,7 +7,7 @@ sidebar_label: 'Bus Pirate 5'
 
 ![](./img/bp-rgb-dark.jpg)
 
-Bus Pirate 5 is universal serial interface tool designed by hackers, for hackers. It's crammed full of hardware and firmware features that make probing chips pleasant and easy.
+Bus Pirate 5 is the universal serial interface tool designed by hackers, for hackers. It's crammed full of hardware and firmware features that make probing chips pleasant and easy.
 
 - LCD - A beautiful 240x320 pixel color IPS (all angle viewing) LCD acts as a pin label, while also showing the voltage on each pin and the current consumption of the programmable power supply unit. 
 - 16 RGB LEDs - It's customary to have an indicator LED, so to check that box we added 16 SK6812 RGB LEDs.
@@ -21,7 +21,7 @@ This is a general overview of Bus Pirate 5. See the [hardware manual](https://ha
 ## Main connector
 ![](./img/bp5-connectors.jpg)
 
-- 2.54mm 10 pin connector - A keyed locking connector that works just as well with common jumperwires and 2.54mm 'DuPont' style connectors.
+- 2.54mm 10 pin connector - A keyed locking connector that works just as well with common jumper wires and 2.54mm 'DuPont' style connectors.
 
 
 |Pin|Label|Description|
