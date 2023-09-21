@@ -14,7 +14,9 @@ sidebar_label: 'Cables'
 - 1 Premium Probe Cable
 - 10 Shenzhen starter probe hooks
 
-A keyed and locking probe cable made of premium soft and flexible silicone coated wire connects to the Bus Pirate 10 pin main header. The ends are 2.54mm Dupont connectors that fit many different types of probe hooks as well as our custom milled breadboard adapter pins. Each lead is wrapped with labeled and color coded shrink tube. 10 black Shenzhen starter hooks are included. See the probe hook guide for an overview of common affordable hooks.
+A keyed and locking probe cable made of premium soft and flexible silicone coated wire connects to the Bus Pirate 10 pin main header. The ends are 2.54mm Dupont connectors that fit many different types of probe hooks as well as our custom milled breadboard adapter pins. Each lead is wrapped with labeled and color coded shrink tube. 10 black [Shenzhen starter hooks](overview/probehooks#the-shenzhen-hook) are included. See the [probe hook guide](overview/probehooks) for an overview of common affordable hooks.
+
+-[Available at DirtyPCBs](https://dirtypcbs.com/store/designer/details/ian/6619/bus-pirate-5-probe-cable-kit)
 
 ### Premium Probe Cable
 
@@ -54,6 +56,8 @@ Custom milled pins connect the Bus Pirate DuPont-style 2.54mm female connectors 
 
 A collection of auxiliary cables made from premium soft and flexible silicone coated wire. The star of the collection is a 9 pin 'SH' style cable that fits the auxiliary connection below main Bus Pirate connector. This cable is handy for connecting external equipment like a logic analyzer - without cramming multiple probe hooks onto a single tiny chip lead. This silicone coated wire feels so nice we made a bundle of color coded jumper cables and Y style splitter cables too.
 
+- [Available at DirtyPCBs](https://dirtypcbs.com/store/designer/details/ian/6620/auxilary-cable-kit)
+
 ### Auxiliary Connector Cable
 
 ![](./img/cable-aux.jpg)
@@ -65,6 +69,8 @@ A collection of auxiliary cables made from premium soft and flexible silicone co
 |-|-|-|-|
 |1-8|Grey|IO0 - IO7|Buffered IO pins with voltage measurement and optional 10K pull-up resistors|
 |9|Black|GND|Ground pin|
+
+
 
 ### Y Splitter Cable
 
@@ -88,3 +94,9 @@ A collection of auxiliary cables made from premium soft and flexible silicone co
 
 All of the Bus Pirate cables are made with super soft and flexible premium silicone coated wire. The inner strands are very fine tinned copper. 22AWG has 60 strands 0.08mm thick (bottom), compared to 8-12 strands in common wire (top). The silicone coating has a very nice feel, and is tolerant of high heat and chemicals.
 
+## Join the fun
+### Get Bus Pirate 5
+- [Bus Pirate 5 assembled PCB preview release](https://dirtypcbs.com/store/designer/details/ian/6621/bus-pirate-5-preview-version-pcb-only)
+- [Bus Pirate Premium Probe Cable](https://dirtypcbs.com/store/designer/details/ian/6619/bus-pirate-5-probe-cable-kit)
+- [Bus Pirate Premium Auxiliary Cables](https://dirtypcbs.com/store/designer/details/ian/6620/auxilary-cable-kit)
+- Bus Pirate 5 and enclosure (coming soon!)

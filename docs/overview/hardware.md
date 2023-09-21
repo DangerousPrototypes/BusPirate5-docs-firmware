@@ -79,16 +79,34 @@ This is a general overview of Bus Pirate 5. See the [hardware manual](https://ha
 
 - VT100 terminal emulation supports color and a live statusbar view of the voltage and functions on each pin.
 
+
 ## Join the fun
 ### Get Bus Pirate 5
-- [Bus Pirate 5 assembled PCB preview release](http://dirtypcbs.com/store/designer/details/ian/6618/bus-pirate-5-developers-version-rev8-no-enclosure)
-- Bus Pirate Premium Probe Cable (coming soon!)
-- Bus Pirate Premium Auxiliary Cables (coming soon!)
+- [Bus Pirate 5 assembled PCB preview release](https://dirtypcbs.com/store/designer/details/ian/6621/bus-pirate-5-preview-version-pcb-only)
+- [Bus Pirate Premium Probe Cable](https://dirtypcbs.com/store/designer/details/ian/6619/bus-pirate-5-probe-cable-kit)
+- [Bus Pirate Premium Auxiliary Cables](https://dirtypcbs.com/store/designer/details/ian/6620/auxilary-cable-kit)
 - Bus Pirate 5 and enclosure (coming soon!)
+
+### Files
+- [Bus Pirate 5 hardware repository](https://github.com/DangerousPrototypes/BusPirate5-hardware)
+- [Bus Pirate 5 firmware repository](https://github.com/DangerousPrototypes/BusPirate5-firmware)
 
 ### Community
 - [Forum](https://forum.buspirate.com)
 - [Blog](https://buspirate.com/) and mailing list
-- Mastodon
+- [Mastodon](https://mastodon.social/@buspirate)
+- [BlueSky](https://bsky.app/profile/buspirate.bsky.social)
 - [Twitter](https://twitter.com/dangerousproto)
+
+## Other Documentation
+Bus Pirate 5 documentation is broken into [hardware](https://hardware.buspirate.com/introduction) and [firmware](https://firmware.buspirate.com/introduction) sections so it can be versioned easily with each update. Here's some other fun stuff you might enjoy.
+- [Component selection and sourcing](https://hardware.buspirate.com/components/introduction)
+- [Case/enclosure](https://hardware.buspirate.com/enclosure/fdm-shell)
+- [Cables](https://firmware.buspirate.com/overview/cables)
+- [Milled breadboard pins](https://firmware.buspirate.com/overview/milled-breadboard-pins)
+- [Hardware users guide](https://firmware.buspirate.com/overview/hardware)
+- [Firmware tutorials](https://firmware.buspirate.com/tutorial-basics/quick-setup)
+- [Command reference](https://firmware.buspirate.com/command-reference/all-commands)
+- [Firmware development](https://hardware.buspirate.com/development/code) and [translation](https://hardware.buspirate.com/development/translation)
+- [Manufacturing resources](https://hardware.buspirate.com/category/manufacturing)
 
