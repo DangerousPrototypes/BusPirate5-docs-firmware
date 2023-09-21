@@ -9,7 +9,7 @@ sidebar_label: 'IO Pin Descriptions'
 |Pin|Name      | Description|
 |----|----------|------------|
 |1| **Voltage Out/Voltage Reference** (VOUT/VREF)|1-5volt 400mA onboard power supply output **-or-** external reference voltage to power the buffers.|
-|2-9|**Input/Output** (IO0-IO7)|8 IO pins with 1.2-5volt buffers, analog voltage measurement, frequency generation, frequency measurement*, toggleable 10K pull-up resistor |
+|2-9|**Input/Output** (IO0-IO7)|8 IO pins with 1.65-5volt buffers, analog voltage measurement, frequency generation, frequency measurement*, toggleable 10K pull-up resistor |
 |10|**Ground** (GND)|Ground, connect to ground of test circuit.|
 
 - See *Bus Pirate RP2040 pin map* below for RP2040 PWM module limitations.

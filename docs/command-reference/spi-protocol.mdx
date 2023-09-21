@@ -11,10 +11,10 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 
 -   **Bus:** [SPI](http://en.wikipedia.org/wiki/Serial_Peripheral_Interface_Bus) (serial peripheral interface)
 -   **Connections:** four pins (CDO/CDI/CLK/CS) and ground
--   **Output type:** 1.2-5volts
+-   **Output type:** 1.65-5volts
 -   **Maximum voltage:** 5volts
 
-SPI is a common 4 wire full duplex protocol. Seperate connections for data-in and data-out allow communication to and from the controller at the same time. Multiple sub devices can share the bus, but each will need an individual Chip Select (CS) connection. Chip Select is generally active when low.
+SPI is a common 4 wire full duplex protocol. Separate connections for data-in and data-out allow communication to and from the controller at the same time. Multiple sub devices can share the bus, but each will need an individual Chip Select (CS) connection. Chip Select is generally active when low.
 
 ## Configuration options
 

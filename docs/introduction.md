@@ -15,7 +15,7 @@ Bus Pirate 5 is the latest edition of the original universal serial interface th
 - Firmware developed with the Pico C language SDK
 
 ## 8 Buffered IO pins
-- 1.2-5volt operating range, 3 state
+- 1.65-5volt operating range, 3 state
 - Voltage measurement on every pin
 - Toggleable 10K pull-up resistors
 - 10 pin x 2.54mm main header
@@ -23,7 +23,7 @@ Bus Pirate 5 is the latest edition of the original universal serial interface th
 
 ## Programmable Power Supply Unit
 - Current Sense
-- Programmable 1.2-5.0volt output
+- Programmable 1-5.0volt output
 - Programmable 0-500mA current limit
 - Resettable digital fuse
 - Protection circuit
@@ -51,7 +51,7 @@ Bus Pirate 5 is the latest edition of the original universal serial interface th
 - Color interface
 - Live update toolbar/monitor
 
-## DFU bootloader
+## USB bootloader
 - Updating is as simple as dragging a file onto the disk
 
 ## USB C connector
@@ -67,7 +67,8 @@ Bus Pirate 5 is the latest edition of the original universal serial interface th
 ### Community
 - [Forum](https://forum.buspirate.com)
 - [Blog](https://buspirate.com/) and mailing list
-- Mastodon
+- [Mastodon](https://mastodon.social/@buspirate)
+- [BlueSky](https://bsky.app/profile/buspirate.bsky.social)
 - [Twitter](https://twitter.com/dangerousproto)
 
 ## FCC compliance statement

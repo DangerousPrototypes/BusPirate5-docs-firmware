@@ -400,7 +400,7 @@ Check the voltage and current in the live view statusbar if active, or show the 
 :::warning
 400mA is the rated maximum of the PPSU, but we added some headroom in the current limit to account for current spikes.
 
-The PPSU is capable of 0.8 to 5volts output. However, the maximum working range is limited to 1-5volts because of the Vgs of the P-channel MOSFET used in the one-way valve. Many will be capable of the full range, but some may not. The Bus Pirate 5 IO buffers are only rated to 1.2volts, so in practice this isn't an issue over the specified working range.
+The PPSU is capable of 0.8 to 5volts output. However, the maximum working range is limited to 1-5volts because of the Vgs of the P-channel MOSFET used in the one-way valve. Many will be capable of the full range, but some may not. The Bus Pirate 5 IO buffers are only rated to 1.65volts, so in practice this isn't an issue over the specified working range.
 :::
 
 When the programmed current limit is exceeded the PPSU hardware fuse disables the power supply. The terminal colors invert repeatedly, an alarm bell will sound, an error message is shown and command execution is halted. Use the ```W``` command to restart the PPSU again.

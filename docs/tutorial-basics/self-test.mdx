@@ -73,9 +73,9 @@ PSU ENABLE: OK<br/></span>
 </BrowserWindow>
 
 - **DISABLE IRQ** - The Bus Pirate disables all interrupts during the test.
-- **ADC SUBSYSTEM** - A test of the analog voltage measurement system and the IO expanders. Can the Bus Pirate change between analog inputs, and does the USB voltage measurement make sense? VUSB should be somewhere between 4.75 and 5.25 volts. Components include the RP2040 connections, 595 IO expander chips, 245 level translator, 4067 analog mux, an opamp and various passive component connections.
+- **ADC SUBSYSTEM** - A test of the analog voltage measurement system and the IO expanders. Can the Bus Pirate change between analog inputs, and does the USB voltage measurement make sense? VUSB should be somewhere between 4.75 and 5.25 volts. Components include the RP2040 connections, 595 IO expander chips, 245 level translator, 4067 analog mux, an op-amp and various passive component connections.
 - **SD CARD** - Try to mount an SD card. **If no SD card is inserted this test will fail**. Tests the RP2040 connections and SD card socket.
-- **PSU ENABLE** - Test the programmable power supply unit. Output is set to 3.3volts with a 50mA current limit, after a delay the voltage is measured. Tests opamps, comparator, transistors, FETs and several other components in the PPSU.
+- **PSU ENABLE** - Test the programmable power supply unit. Output is set to 3.3volts with a 50mA current limit, after a delay the voltage is measured. Tests op-amps, comparator, transistors, FETs and several other components in the PPSU.
 
 :::caution
 The test will work without an SD card, but the SD card section of the self-test will fail.
