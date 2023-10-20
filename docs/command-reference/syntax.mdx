@@ -82,7 +82,7 @@ selects (SPI), resets (1-wire), or opens (UART).
 ### **] or }** Bus stop condition
 
 <BrowserWindow>
-<span className="bp-prompt">SPI></span> ]<br/>
+<span className="bp-prompt">SPI></span> >]<br/>
 <span className="bp-info">CS Deselect (1)</span><br/>
 <span className="bp-prompt">SPI></span> <br/>
 </BrowserWindow>
@@ -92,7 +92,7 @@ selects (SPI), resets (1-wire), or opens (UART).
 
 ### **r** Read byte 
 <BrowserWindow>
-<span className="bp-prompt">SPI></span> r<br/>
+<span className="bp-prompt">SPI></span> >r<br/>
 <span className="bp-info"><span className="bp-info">RX:</span></span> 0x<span className="bp-float">00</span><br/>
 <span className="bp-prompt">SPI></span> <br/>
 </BrowserWindow>
@@ -101,10 +101,14 @@ selects (SPI), resets (1-wire), or opens (UART).
 r reads a byte from the bus. Use with the
 repeat command (r:1...255) for bulk reads.
 
+:::tip
+The ```>``` before ```r``` tells the Bus Pirate we want to send data to the bus.
+:::
+
 ### **0b01** Write this binary value 
 
 <BrowserWindow>
-<span className="bp-prompt">SPI></span> 0b01<br/>
+<span className="bp-prompt">SPI></span> >0b01<br/>
 <span className="bp-info"><span className="bp-info">TX:</span></span> 0b<span className="bp-float">0000</span>0001<br/>
 <span className="bp-prompt">SPI></span> <br/>
 </BrowserWindow>
@@ -120,7 +124,7 @@ binary number as 0b and then the bits. Padding 0's are not required,
 ### **0x01** Write this HEX value 
 
 <BrowserWindow>
-<span className="bp-prompt">SPI></span> 0x01<br/>
+<span className="bp-prompt">SPI></span> >0x01<br/>
 <span className="bp-info"><span className="bp-info">TX:</span></span> 0x<span className="bp-float">01</span><br/>
 <span className="bp-prompt">SPI></span> <br/>
 </BrowserWindow>
@@ -137,7 +141,7 @@ uppercase letters.
 ### **0-255** Write this decimal value
 
 <BrowserWindow>
-<span className="bp-prompt">SPI></span> 1<br/>
+<span className="bp-prompt">SPI></span> >1<br/>
 <span className="bp-info"><span className="bp-info">TX:</span></span> 1<br/>
 <span className="bp-prompt">SPI></span><br/>
 </BrowserWindow>
@@ -150,7 +154,7 @@ Any number not preceded by 0x, 0h, or 0b is interpreted as a decimal value and s
 ### **"abc"** Write this ASCII string 
 
 <BrowserWindow>
-<span className="bp-prompt">SPI></span> "abc"<br/>
+<span className="bp-prompt">SPI></span> >"abc"<br/>
 <span className="bp-info"><span className="bp-info">TX:</span></span> 'a' 0x<span className="bp-float">61</span> 'b' 0x<span className="bp-float">62</span> 'c' 0x<span className="bp-float">63</span> <br/>
 </BrowserWindow>
 
@@ -179,13 +183,13 @@ No delimiter is required between non-number commands.
 ### **d/D** Delay 1uS/MS 
 
 <BrowserWindow>
-<span className="bp-prompt">SPI></span> d<br/>
+<span className="bp-prompt">SPI></span> >d<br/>
 <span className="bp-info"><span className="bp-info">Delay:</span></span> <span className="bp-float">1</span>us<br/>
-<span className="bp-prompt">SPI></span> d:10<br/>
+<span className="bp-prompt">SPI></span> >d:10<br/>
 <span className="bp-info"><span className="bp-info">Delay:</span></span> <span className="bp-float">10</span>us<br/>
-<span className="bp-prompt">SPI></span> D<br/>
+<span className="bp-prompt">SPI></span> >D<br/>
 <span className="bp-info"><span className="bp-info">Delay:</span></span> <span className="bp-float">1</span>ms<br/>
-<span className="bp-prompt">SPI></span> D:10<br/>
+<span className="bp-prompt">SPI></span> >D:10<br/>
 <span className="bp-info"><span className="bp-info">Delay:</span></span> <span className="bp-float">10</span>ms<br/>
 <span className="bp-prompt">SPI></span> <br/>
 </BrowserWindow>
@@ -217,7 +221,7 @@ The repeat values can also be HEX/DEC/BIN formatted.
 ### **.** Partial read/write
 
 <BrowserWindow>
-<span className="bp-prompt">SPI></span> 0x5a.4<br/>
+<span className="bp-prompt">SPI></span> >0x5a.4<br/>
 <span className="bp-info"><span className="bp-info">TX:</span></span> 0x<span className="bp-float">0A</span>.4<br/>
 <span className="bp-prompt">SPI></span><br/>
 </BrowserWindow>
@@ -225,7 +229,7 @@ The repeat values can also be HEX/DEC/BIN formatted.
 Write/read partial bytes (where enabled by hardware) using the ```.``` option. ```0x75.4``` will write 0x5 (4 bits) to the bus. 
 
 <BrowserWindow>
-<span className="bp-prompt">SPI></span> r.4<br/>
+<span className="bp-prompt">SPI></span> >r.4<br/>
 <span className="bp-info"><span className="bp-info">RX:</span></span> 0x<span className="bp-float">05</span>.4<br/>
 <span className="bp-prompt">SPI></span><br/>
 </BrowserWindow>
@@ -233,7 +237,7 @@ Write/read partial bytes (where enabled by hardware) using the ```.``` option. `
 Read 4 bits from the bus.
 
 <BrowserWindow>
-<span className="bp-prompt">SPI></span> 0x5432.12<br/>
+<span className="bp-prompt">SPI></span> >0x5432.12<br/>
 <span className="bp-info"><span className="bp-info">TX:</span></span> 0x<span className="bp-float">04</span>32.12<br/>
 <span className="bp-prompt">SPI></span><br/>
 </BrowserWindow>
@@ -241,12 +245,25 @@ Read 4 bits from the bus.
 Write 12 bits of 0x5432 to the bus.
 
 <BrowserWindow>
-<span className="bp-prompt">SPI></span> 0x5a.4:2<br/>
+<span className="bp-prompt">SPI></span> >0x5a.4:2<br/>
 <span className="bp-info"><span className="bp-info">TX:</span></span> 0x<span className="bp-float">0a</span>.4 0x<span className="bp-float">0a</span>.4<br/>
 <span className="bp-prompt">SPI></span> <br/>
 </BrowserWindow>
 
 Partial write/reads can be combined with the repeat command.
+
+### **v** Measure voltage
+
+<BrowserWindow>
+<span className="bp-prompt">SPI></span> > v.1 v.2 v.3<br/>
+<br/>
+<span className="bp-info">Volts on IO1:</span> <span className="bp-float">3.2</span>V<br/>
+<span className="bp-info">Volts on IO2:</span> <span className="bp-float">3.2</span>V<br/>
+<span className="bp-info">Volts on IO3:</span> <span className="bp-float">3.2</span>V<br/>
+<span className="bp-prompt">SPI></span> 
+</BrowserWindow>
+
+```v.x``` measures the voltage on IO pin x.
 
 ### **a/A/@** Auxiliary pin control (low/HIGH/read)
 
@@ -268,6 +285,5 @@ Sometimes it's useful to control a pin directly when executing bus syntax. ```a.
 :::tip
 Syntax a/A/@ use the ```a.X``` notation, the syntax is followed by a **.** and the pin number to control. This is different than the commands a/A/@, which are followed by a space and the pin number to control.
 :::
-
 
 <DiscourseComments/>

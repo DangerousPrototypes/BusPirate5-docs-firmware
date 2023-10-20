@@ -89,46 +89,50 @@ Usually we talk about RGB (red, green, blue) LEDs, but note that the data order 
 
 ### Green
 
-![](./img/led-green.jpg)
-
 <BrowserWindow>
-<span className="bp-prompt">LED-()></span> 0b111111110000000000000000.24<br/>
+<span className="bp-prompt">LED-()></span> [0b111111110000000000000000.24<br/>
+<span className="bp-info">RESET</span><br/>
 <span className="bp-info"><span className="bp-info">TX:</span></span> 0b<span className="bp-float">1111</span>1111<span className="bp-float">0000</span>0000<span className="bp-float">0000</span>0000.24<br/>
 <span className="bp-prompt">LED-()></span> <br/>
 </BrowserWindow>
 
 Let's start by lighting the green die in the LED. The Bus Pirate understands binary, hexadecimal and decimal formatted numbers. We'll use binary entry first so it's clear exactly how the bits control the LED.
 - The data structure table above shows the format for controlling each color in the LED. The first eight bits control green, the next 8 control red and the final 8 control blue.
+- Enter the WS2812 bus reset command ```[```. This command has two purposes. First, it tells the Bus Pirate to process this line as bus syntax. Second, it generates a 50us RESET delay so the LEDs are ready for new data.
 - Type ```0b``` for binary entry followed by eight 1s to set the green die to full brightness: ```0b11111111```. 
 - Add ```00000000``` for red and ```00000000``` for blue to turn those dies off.
 - Finally, add ```.24``` to tell the Bus Pirate we want to send 24 bits in one transfer.
 - The final command is kind of unwieldy: ```0b111111110000000000000000.24```
 - Press ```enter``` to send the command to the LED. The green die should light at full brightness.
 
+![](./img/led-green.jpg)
+
 Now the pattern for working with the SK6812 starts to become clear. We can enter ```0b000000001111111100000000.24``` to light the red die, or ```0b000000000000000011111111.24``` to light the blue die.
 
 <BrowserWindow>
-<span className="bp-prompt">LED-()></span> =0b11111111<br/>
+<span className="bp-prompt">LED-()></span> = 0b11111111<br/>
 <span className="bp-info"> </span>=0x<span className="bp-float">FF</span> =255 =0b<span className="bp-float">1111</span>1111<br/>
-<span className="bp-prompt">LED-()></span> =0b00000000<br/>
+<span className="bp-prompt">LED-()></span> = 0b00000000<br/>
 <span className="bp-info"> </span>=0x<span className="bp-float">00</span> =0 =0b<span className="bp-float">0000</span>0000<br/>
 <span className="bp-prompt">LED-()></span> <br/>
 </BrowserWindow>
 
 Binary entry is handy because you see exactly what each bit is doing, but that's a lot of 1s and 0s to type every time. Let's have a look at hexadecimal numbers - much shorter and less prone to mistyping.
 - The ```=``` command converts between number formats.
-- Type ```=0b11111111``` followed by ```enter```.
+- Type ```= 0b11111111``` followed by ```enter```.
 - The Bus Pirate displays the value in hexadecimal (0xff), decimal (255) and binary (0b11111111).
-- Do the same for our red and blue bits: ```=0b00000000``` followed by ```enter```.
+- Do the same for our red and blue bits: ```= 0b00000000``` followed by ```enter```.
 - The Bus Pirate displays the value in hexadecimal (0x00), decimal (0) and binary (0b00000000).
 
 <BrowserWindow>
-<span className="bp-prompt">LED-()></span> 0xff0000.24<br/>
+<span className="bp-prompt">LED-()></span> [0xff0000.24<br/>
+<span className="bp-info">RESET</span><br/>
 <span className="bp-info"><span className="bp-info">TX:</span></span> 0x<span className="bp-float">FF</span>00<span className="bp-float">00</span>.24<br/>
 <span className="bp-prompt">LED-()></span> <br/>
 </BrowserWindow>
 
 Now let's put it all together and send the same command in hexadecimal.
+- Begin with ```[``` to tell the Bus Pirate to expect bus syntax and send a WS2812 RESET command.
 - Type ```0x``` to tell the Bus Pirate we're writing a hexadecimal number.
 - Type the value ```ff0000.24``` followed by ```enter```.
 - The Bus Pirate sends the command. 
@@ -137,86 +141,91 @@ Now let's put it all together and send the same command in hexadecimal.
 
 ### Red
 
-![](./img/led-red.jpg)
-
 <BrowserWindow>
-<span className="bp-prompt">LED-()></span> 0x00ff00.24<br/>
+<span className="bp-prompt">LED-()></span> [0x00ff00.24<br/>
+<span className="bp-info">RESET</span><br/>
 <span className="bp-info"><span className="bp-info">TX:</span></span> 0x<span className="bp-float">00</span>FF<span className="bp-float">00</span>.24<br/>
 <span className="bp-prompt">LED-()></span> <br/>
 </BrowserWindow>
 
 Red is controlled by the second eight bits of data. 
-- Type ```0x00ff00.24``` followed by ```enter``` to light the red die.
+- Type ```[0x00ff00.24``` followed by ```enter``` to light the red die.
+
+![](./img/led-red.jpg)
 
 ### Blue
 
-![](./img/led-blue.jpg)
-
 <BrowserWindow>
-<span className="bp-prompt">LED-()></span> 0x0000ff.24<br/>
+<span className="bp-prompt">LED-()></span> [0x0000ff.24<br/>
+<span className="bp-info">RESET</span><br/>
 <span className="bp-info"><span className="bp-info">TX:</span></span> 0x<span className="bp-float">00</span>00<span className="bp-float">FF</span>.24<br/>
 <span className="bp-prompt">LED-()></span> <br/>
 </BrowserWindow>
 
 Blue is controlled by the last eight bits of data. 
-- Type ```0x0000ff.24``` followed by ```enter``` to light the blue die.
+- Type ```[0x0000ff.24``` followed by ```enter``` to light the blue die.
+
+![](./img/led-blue.jpg)
 
 ### Purple
 
-![](./img/led-purple.jpg)
-
 <BrowserWindow>
-<span className="bp-prompt">LED-()></span> 0x00ffff.24<br/>
+<span className="bp-prompt">LED-()></span> [0x00ffff.24<br/>
+<span className="bp-info">RESET</span><br/>
 <span className="bp-info"><span className="bp-info">TX:</span></span> 0x<span className="bp-float">00</span>FF<span className="bp-float">FF</span>.24<br/>
 <span className="bp-prompt">LED-()></span> <br/>
 </BrowserWindow>
 
 At this point you may wonder if you can mix colors. Why, yes, you can! Let's try red plus blue.
-- Type ```0x00ffff.24``` followed by ```enter```.
+- Type ```[0x00ffff.24``` followed by ```enter```.
 - The red and blue die light to full brightness.
 - The color changes to purple.
 
+![](./img/led-purple.jpg)
+
 ### White
 
-![](./img/led-white.jpg)
-
 <BrowserWindow>
-<span className="bp-prompt">LED-()></span> 0xffffff.24<br/>
+<span className="bp-prompt">LED-()></span> [0xffffff.24<br/>
+<span className="bp-info">RESET</span><br/>
 <span className="bp-info"><span className="bp-info">TX:</span></span> 0x<span className="bp-float">FF</span>FF<span className="bp-float">FF</span>.24<br/>
 <span className="bp-prompt">LED-()></span> <br/>
 </BrowserWindow>
 
 Through the magic of [additive color](https://en.wikipedia.org/wiki/Additive_color) we can make a whole rainbow of tones and shades. We can also make something approximating white light using all three dies.
-- Type ```0xffffff.24``` followed by ```enter```.
+- Type ```[0xffffff.24``` followed by ```enter```.
 - All three LED dies light to full brightness.
 - The color is a sort of white at the cool (blue) end of the spectrum.
 
+![](./img/led-white.jpg)
+
 ### Brightness
 
-![](./img/led-dim.jpg)
-
 <BrowserWindow>
-<span className="bp-prompt">LED-()></span> =128<br/>
+<span className="bp-prompt">LED-()></span> = 128<br/>
 <span className="bp-info"> </span>=0x<span className="bp-float">80</span> =128 =0b<span className="bp-float">1000</span>0000<br/>
 <span className="bp-prompt">LED-()></span><br/>
 </BrowserWindow>
 
 Up to this point we've used all the LED dies at full brightness (0xff/255/0b11111111), but we can also control the power level by sending smaller values. Let's reduce the power by half.
 - Half of 255 is approximately 128.
-- Type ```=128``` followed by ```enter``` to convert 128 to an easier-to-use hexadecimal number.
+- Type ```= 128``` followed by ```enter``` to convert 128 to an easier-to-use hexadecimal number.
 - 0x80 hexadecimal is the same as 128 in decimal notation.
 
 <BrowserWindow>
-<span className="bp-prompt">LED-()></span> 0x808080.24<br/>
+<span className="bp-prompt">LED-()></span> [0x808080.24<br/>
+<span className="bp-info">RESET</span><br/>
 <span className="bp-info"><span className="bp-info">TX:</span></span> 0x<span className="bp-float">80</span>80<span className="bp-float">80</span>.24<br/>
 <span className="bp-prompt">LED-()></span> <br/>
 </BrowserWindow>
 
 Finally, send a command to set all three dies at half power.
 
-- Type ```0x808080.24``` followed by ```enter```.
+- Type ```[0x808080.24``` followed by ```enter```.
 - All three LED dies are lit at half power and the brightness is reduced.
 - The SK6812 controller chip in the LED uses pulse-width modulation to blink the dies on 50% of the time and off 50% of the time. 
+
+![](./img/led-dim.jpg)
 
 Even though the LED dies are only lit 50% of the time it doesn't appear half as bright. This is because human perception of brightness is non-liner. To make it really dim try sending a smaller value like 0x10: ```0x101010.24``` followed by ```enter```.
 
