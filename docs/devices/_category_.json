@@ -1,0 +1,8 @@
+{
+  "label": "Device Demos",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "description": "Device demonstrations"
+  }
+}
