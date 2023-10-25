@@ -1,10 +1,12 @@
 ---
 sidebar_position: 2
-sidebar_label: 'SI7021, SHT21, HDC1080'
+sidebar_label: 'SI7021, HTU21, SHT21, HDC1080 Humidity & Temperature'
 ---
 import BrowserWindow from '@site/src/components/BrowserWindow';
 
 # SI7021, HTU21, SHT21, HDC1080 Temperature and Humidity Sensor
+
+![](./img/si7021.jpg)
 
 SI7021, HTU21, SHT21 and HDC1080 are nearly identical I2C temperature (-10 to 85C) and humidity (0-80%) sensors.
 
@@ -210,3 +212,26 @@ I2C STOP<br/>
 |0x20|2.0|
 
 - This chip has firmware version 2.0
+
+## Macro
+
+<BrowserWindow>
+<span className="bp-prompt">I2C></span> (2)<br/>
+SI7021/HTU21/SHT21/HDC1080<br/>
+Humidity:<br/>
+&nbsp; [0x80 0xf5] D:23 [0x81 r:2]<br/>
+&nbsp; 72.24% (0xa0 0x3a)<br/>
+Temperature:<br/>
+&nbsp; [0x80 0xe0] [0x81 r:2]<br/>
+&nbsp; 21.46C (0x63 0x84)<br/>
+Serial Number:<br/>
+&nbsp; [0x80 0xfa 0xf0] [0x81 r:4] [0x80 0xfc 0xc9] [0x81 r:4]<br/>
+&nbsp; 0x0000000015ffb5ff<br/>
+Firmware Version:<br/>
+&nbsp; [0x80 0x84 0xb8] [0x81 r]<br/>
+&nbsp; 0x20<br/>
+<span className="bp-prompt">I2C></span> <br/>
+</BrowserWindow>
+
+
+Macro ```(2)``` in I2C mode automates the commands on this page. 
