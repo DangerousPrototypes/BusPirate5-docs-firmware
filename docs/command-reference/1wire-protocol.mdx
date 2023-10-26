@@ -1,0 +1,77 @@
+---
+sidebar_position: 10
+sidebar_label: '1-Wire Protocol'
+---
+import DiscourseComments from '@site/src/components/DiscourseComments';
+import BrowserWindow from '@site/src/components/BrowserWindow';
+
+# 1-Wire Protocol Commands
+
+## Overview
+
+-   **Bus:** [1-Wire](https://en.wikipedia.org/wiki/1-Wire)
+-   **Connections:** one pin (OWD) and ground
+-   **Output type:** open drain/open collector
+-   **Pull-up resistors:** always required (2K - 10K ohms)
+-   **Maximum voltage:** 5volts
+
+1-Wire is a common bus for low speed interfaces.
+
+## Configuration options
+
+- None
+
+**Pull-up resistors**
+
+1-Wire is an open-collector bus, it requires pull-up resistors to hold the
+data line high and create the data '1'. 1-Wire parts don't
+output high, they only pull low, without pull-up resistors there can
+never be a '1'. 
+
+Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
+
+:::tip
+- 1-Wire requires a pull-up resistor to hold the data line high.
+- 1-Wire parts don't output high, they only pull low.
+- Without pull-up resistors there can never be a '1'. 
+- Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
+:::
+
+## Syntax
+
+|Command|Description|
+|-------|-----------|
+| { or [ | Issue 1-Wire reset, detect device presence. |
+| r       | Read one byte. (r:1…255 for bulk reads)|
+| 0b      | Write this binary value. Format is 0b00000000 for a byte, but partial bytes are also fine: 0b1001.|
+| 0x      | Write this HEX value. Format is 0x01. Partial bytes are fine: 0xA. A-F can be lower-case or capital letters. |
+| 0-255   | Write this decimal value. Any number not preceded by 0x or 0b is interpreted as a decimal value. |
+| ```space```| Value delimiter. Use a space to separate numbers. No delimiter is required between non-number values: {0xa6 0 0 16 5 0b111 0xaF rrrr}. |
+| \(#\)   | Run macro, (0) for macro list. |
+
+## Macro
+
+|Number| Description                                                                 |
+|-----|-----------------|
+| 0   | Macro menu                                                      |
+| 1   | 1-Wire ROM search. Find all connected device IDs. |
+
+### 1-Wire ROM search macro
+
+<BrowserWindow>
+<span className="bp-prompt">1-WIRE></span> (1)
+<span className="bp-info"><br/>
+1-Wire ROM search:<br/>
+1: 28 5c aa 13 0a 00 00 19
+</span><br/>
+<span className="bp-prompt">1-WIRE></span><br/>
+</BrowserWindow>
+
+The Bus Pirate can perform a 1-Wire ROM search to detect the ID of every connected 1-Wire device.
+
+## Connections
+
+| Bus Pirate | Direction                     | Circuit | Description   |
+|------------|--------------------------|---------|---------------|
+| OWD       | <font size="+2">↔</font> | OWD     | 1-Wire Data   |
+| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |
