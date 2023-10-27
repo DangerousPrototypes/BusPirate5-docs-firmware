@@ -55,6 +55,7 @@ Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
 |-----|-----------------|
 | 0   | Macro menu                                                      |
 | 1   | 1-Wire ROM search. Find all connected device IDs. |
+| 2   | Read temperature from a single 18B20 sensor.|
 
 ### 1-Wire ROM search macro
 
@@ -67,7 +68,20 @@ Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
 <span className="bp-prompt">1-WIRE></span><br/>
 </BrowserWindow>
 
-The Bus Pirate can perform a 1-Wire ROM search to detect the ID of every connected 1-Wire device.
+Macro ```(1)``` performs a 1-Wire ROM search to detect the ID of every connected 1-Wire device. They type of device is shown if the family ID is known.
+
+### Read 18B20 temperature
+
+<BrowserWindow>
+<span className="bp-prompt">1-WIRE></span> (2)
+<span className="bp-info"><br/>
+RX: 1a 01 00 00 7f ff 06 10 12
+Temperature: 17.625
+</span><br/>
+<span className="bp-prompt">1-WIRE></span><br/>
+</BrowserWindow>
+
+Macro ```(2)``` reads the temperature from a single 18B20 temperature sensor. The macro uses the skip ROM command, so it will only work when the DS18B20 is the only device connected.
 
 ## Connections
 
