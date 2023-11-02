@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 sidebar_label: 'Bus Pirate 5'
+slug: /
 ---
 
 # Bus Pirate 5
