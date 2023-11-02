@@ -1,0 +1,219 @@
+---
+sidebar_position: 10
+sidebar_label: 'Bitbang IO (main mode)'
+---
+import DiscourseComments from '@site/src/components/DiscourseComments';
+import BrowserWindow from '@site/src/components/BrowserWindow';
+
+# Scripting Interface
+
+A second USB UART on Bus Pirate 5 is available for binary access and scripting. BBIO1 is a clone of the Bus Pirate v3 interface to support existing software such as AVRDUDE and FlashROM. This backwards compatible interface is very limited because it mimics the hardware features of a 15 year old PIC chip. An updated binary access mode will come soon.
+
+[Example scripts in Python, Perl,
+etc](http://code.google.com/p/the-bus-pirate/source/browse/#svn/trunk/scripts).
+
+:::info
+Previous Bus Pirates had a fixed pinout and a single ADC probe to measure voltage. BBIO1 supports 5 IO pins: AUX, MOSI,CLK, MISO and CS, as well as a dedicated "ADC PROBE" pin.
+:::
+
+## Overview
+
+Bitbang I/O (BBIO1) is the start mode for binary access to the Bus Pirate hardware. BBIO1 gives access to hardware like the ADC and PWM, and includes a simple way to control pins. Pins are all set to input (HiZ) when entering BBIO1.
+
+-   Send 0x00 to the secondary UART interface (max.) **20 times** to enter BBIO1. Check between each byte to see if ```BBIO1``` is returned. The user terminal will lock, but the status bar will still update if enabled.
+-   Other protocol modes are accessible from BBIO1.
+    0x00 always returns to BBIO1 and prints the version
+    string ```BBIO1```.
+-   Send 0x0F to exit BBIO1.
+
+## Commands
+
+### **0b00000000** Reset
+
+- Response: ```BBIO1```
+
+This command resets all hardware to a safe state and returns the Bus Pirate into BBIO1 from any other protocol mode. 
+
+This command always returns a five byte
+bitbang version string "BBIOx", where x is the current protocol
+version (1).
+
+After entering BBIO1, you can enter other binary protocol modes.
+
+### **0b00000001** Enter binary SPI mode
+
+- Response: ```SPI1```
+- Not yet ported
+
+### **0b00000010** Enter binary I2C mode
+
+- Response: ```I2C1```
+- Not yet ported
+
+### **0b00000011** Enter binary UART mode
+
+- Response: ```ART1```
+- Not yet ported
+
+### **0b00000100** Enter binary 1-Wire mode
+
+- Response: ```1W01```
+- Not yet ported
+
+### **0b00000101** Enter binary raw-wire mode
+- Response: ```RAW1```
+- Not yet ported
+
+### **0b00000110** Enter OpenOCD JTAG mode
+
+- Not yet ported
+
+### **0b00001111** Reset Bus Pirate
+- Response: ```0x01```
+
+    The Bus Pirate responds 0x01. 
+    The hardware and firmware version is printed to the binary mode UART (same as the
+    ```i``` command in the terminal) and unlocks the user terminal interface.
+    
+    Send 0x00 20 times to enter binary mode again.
+
+:::warning
+Bus Pirate 5 will not actually reset. Reset is simulated to maintain compatibility with older hardware and software.
+:::
+
+### **0b0001000x** Bus Pirate self-tests
+
+- Not yet ported
+
+This command was used for production testing.
+
+### **0b00010010** Setup pulse-width modulation
+
+
+- Response: ```0x01```
+- Not yet ported. The values for the PIC PWM will be vastly different than the RP2040, this will need to be addressed somehow
+
+Configure and enable pulse-width modulation output on the AUX pin.
+Requires a 5 byte configuration sequence. Responds 0x01 after a
+**complete sequence** is received.
+
+Equations to calculate the PWM frequency and period are in the
+[PIC24F output compare
+manual](http://ww1.microchip.com/downloads/en/DeviceDoc/39706a.pdf).
+Bit 0 and 1 of the first configuration byte set the prescaler value.
+The Next two bytes set the duty cycle register, high 8bits first.
+The final two bytes set the period register, high 8bits first.
+
+### **0b00010011** Clear/disable PWM
+
+- Response: ```0x01```
+
+Clears the PWM, disables PWM output.
+
+### **0b00010100** Single voltage probe measurement
+
+- Response: 2 byte 10bit ADC value
+
+Take a measurement from the Bus Pirate voltage probe (ADC pin). Returns a 2
+byte 10bit ADC reading, high 8bits come first. 
+
+To determine the actual
+voltage measurement: (ADC/1024)\*3.3volts\*2; or simply
+(ADC/1024)\*6.6.
+
+### **0b00010101** Continuous voltage probe measurement 
+
+- Response: 2 byte 10bit ADC values
+- Send any character to exit
+
+Sends ADC data (2bytes, high 8 first) as fast as UART will allow. A
+new reading is not taken until the previous finishes transmitting to
+the PC, this prevents time distortion from the buffer. Added for the
+[oscilloscope
+script](http://dangerousprototypes.com/forum/index.php?topic=976.0).
+
+:::warning
+Bus Pirate 5 has a native USB interface that does not have the same predictable timing as a hardware UART. It still waits until the transmit buffer is empty to take the next sample, but this is not as consistent.
+:::
+
+### **0b00010110** Frequency measurement on AUX pin
+- Response: 4 byte/1 second frequency count
+- Not yet ported
+
+Measure frequency on AUX pin. Returns 4byte frequency count (1 second), most significant byte first.
+
+### **0b010xxxxx** Configure pins as input(1) or output(0)
+- Response: high/low state of IO pins
+
+Configure pins as an input (1) or output(0). The pins are mapped to
+the lower five bits in this order:
+
+0 - 1 - 0 - AUX - MOSI - CLK - MISO - CS
+
+The Bus pirate responds to each direction update with a byte showing
+the current high (1)/low (0) state of the pins. This is
+useful for open collector I/O modes. The pin states are mapped to
+the lower five bits in this order:
+
+X - X - X - AUX - MOSI - CLK - MISO - CS
+
+X = Don't care
+
+### **0b1xxxxxxx** Set on (1) or off (0)
+
+- Response: high/low state of IO pins
+- There is a 5us settling delay after updates
+
+The lower 7 bits of the command byte control the Bus Pirate pins, pull-up resistors, and power supply. Bitbang works like a [player piano or
+bitmap](http://hackaday.com/2009/09/22/introduction-to-ftdi-bitbang-mode/).
+The Bus Pirate pins map to the bits in the command byte as follows:
+
+- 1 - POWER - PULLUP - AUX - MOSI - CLK - MISO - CS
+
+The Bus pirate responds to each update with a byte in the same
+format that shows the current high (1)/low (0) state of the pins:
+
+- X - POWER - PULLUP - AUX - MOSI - CLK - MISO - CS
+
+X = Don't care
+
+## PWM Computation
+
+:::danger 
+This remains for reference. The old PIC-based Bus Pirate PWM is completely different than the RP2040.
+:::
+
+Here is a [Python Script](http://codepad.org/qtYpZmIF) for computing the
+PWM for Bus Pirate.
+
+For example, setup PWM with Period of 1msec, 50% duty cycle. Using 1:1
+Prescaler.
+
+Modify only the 3 lines:
+
+```python
+Prescaler=1 # 1:1
+PwmPeriod=1e-3  # 0.1msec
+DutyCycleInPercent=.5 # 50%
+```
+
+It will output:
+
+```
+======================
+PwmPeriod: 0.00100000000000000000 sec.
+Tcy: 0.00000006250000000000 sec.
+Prescaler: 1
+PR2: 0x3e7f = 15999
+OCR: 0x1f3f = 7999
+5 Byte Setup:
+1st Byte: 0x00
+2nd Byte: 0x1f
+3rd Byte: 0x3f
+4th Byte: 0x3e
+5th Byte: 0x7f
+```
+
+Use the 5byte setup to set the PWM.
+
+
