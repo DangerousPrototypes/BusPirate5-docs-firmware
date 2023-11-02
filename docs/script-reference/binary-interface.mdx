@@ -26,6 +26,15 @@ Bitbang I/O (BBIO1) is the start mode for binary access to the Bus Pirate hardwa
     string ```BBIO1```.
 -   Send 0x0F to exit BBIO1.
 
+<BrowserWindow>
+<span className="bp-prompt">HiZ></span><br/>
+Scripting mode enabled. Terminal locked.<br/>
+Terminal unlocked.<br/>
+<span className="bp-prompt">HiZ></span><br/>
+</BrowserWindow>
+
+The user terminal will lock and input will be ignored while binary scripting mode is active. The status bar will still update, if enabled. The terminal will unlock after exiting binary mode.
+
 ## Commands
 
 ### **0b00000000** Reset
@@ -141,6 +150,20 @@ Bus Pirate 5 has a native USB interface that does not have the same predictable 
 - Not yet ported
 
 Measure frequency on AUX pin. Returns 4byte frequency count (1 second), most significant byte first.
+
+### **0b00011111** Write debug string to terminal
+- Response: ```0x01``` (after 0x00)
+- **New command, not supported by previous hardware**
+
+<BrowserWindow>
+<span className="bp-prompt">HiZ></span><br/>
+Scripting mode enabled. Terminal locked.<br/>
+Debug info: hello world!<br/>
+</BrowserWindow>
+
+Write characters to the user terminal. This can be used to print debug or status info. Send the command, followed by ANSI text and NULL (0x00) to end. 
+
+Exits on NULL (0x00) and responds ```0x01```.
 
 ### **0b010xxxxx** Configure pins as input(1) or output(0)
 - Response: high/low state of IO pins
