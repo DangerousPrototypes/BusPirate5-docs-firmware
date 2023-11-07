@@ -105,10 +105,15 @@ The address written to the command register points to the register for the next 
 - The command register is accessed by setting bit 7 (CMD) of the command to 1.
 - Because bit 7 controls access to the command register, bit 7 is always 0 for any other commands written to other registers.
 - The lower four bits of the command register are the address of the register to read or write.
+- For the sake of brevity, CLEAR and WORD are set to 1, and BLOCK is set to 0.
 
 ## Start device
 
-TSL2561 starts in power down mode. To start the device, write 0x03 to the control register.
+| bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0 |
+|-------|-------|-------|-------|-------|-------|-------|-------|
+|-|-|-|-|-|-|Power1|Power0|
+
+TSL2561 starts in power down mode. To start the device, write 0x03 (0b11) to the control register.
 
 ### Select CONTROL register
 <BrowserWindow>
@@ -183,11 +188,38 @@ We're going to use the default values. You can skip the configuration step if yo
 
 ### Select TIMING register
 
+<BrowserWindow>
+<span className="bp-prompt">I2C></span> [ 0b01110010 0b11100001]<br/>
+<br/>
+I2C START<br/>
+<span className="bp-info">TX:</span> 0b<span className="bp-float">0111</span>0010 ACK 0b<span className="bp-float">1110</span>0001 ACK <br/>
+I2C STOP<br/>
+<span className="bp-prompt">I2C></span> <br/>
+</BrowserWindow>
+
+Like the control register, first we set the command register to point at the timing register (0x01). 
+- ```[``` Begin with an I2C START
+- ```0b01110010``` I2C write address for the TSL2651 (ADDR pin floating)
+- ```0b11100001``` Write command register. Bit 7 set to 1, timing register address (0x01/0b001) set in bits 3:0
+- ```]``` End with an I2C STOP
+
 ### Write TIMING register
 
-0b00000010
-- Gain (bit 4): set to 0 (1x)
-- Integration time (bits 1:0): set to 10 (402ms)
+<BrowserWindow>
+<span className="bp-prompt">I2C></span> [0b01110010 0b00000010]<br/>
+<br/>
+I2C START<br/>
+<span className="bp-info">TX:</span> 0b<span className="bp-float">0111</span>0010 ACK 0b<span className="bp-float">0000</span>0010 ACK <br/>
+I2C STOP<br/>
+<span className="bp-prompt">I2C></span> <br/>
+</BrowserWindow>
+
+Now configure the gain and integration time. Gain (bit 4): set to 0 (1x). Integration time (bits 1:0): set to 10 (402ms).
+
+- ```[``` Begin with an I2C START
+- ```0b01110010``` I2C write address for the TSL2651 (ADDR pin floating)
+- ```0b00000010``` Write timing register. Bit 7 set to 0, gain (bit 4) set to 0, integration time (bits 1:0) set to 10
+- ```]``` End with an I2C STOP
 
 ## Measure light
 
