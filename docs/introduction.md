@@ -28,7 +28,7 @@ Bus Pirate 5 is the latest edition of the original universal serial interface th
 - Resettable digital fuse
 - Protection circuit
 
-## SD Card
+## Removable Flash Storage Card
 - Save global and mode settings
 - Appears as a USB disk drive
 - Future use for logs, dumps and stand-alone programming

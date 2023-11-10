@@ -15,7 +15,7 @@ Firmware <span className="bp-float">v0.1</span></span> (<span className="bp-floa
 <span className="bp-float">RP2040</span> with <span className="bp-float">264KB</span> RAM, <span className="bp-float">16MB</span> FLASH<br/>
 S/N: <span className="bp-float">2509449B952069E4</span><br/>
 https://DangerousPrototypes.com/<br/>
-SD Card: <span className="bp-float"> 64.06GB</span> (EXFAT File System)<br/>
+Flash Card: <span className="bp-float"> 64.06GB</span> (EXFAT File System)<br/>
 <br/>
 <span className="bp-info">Configuration file:</span> Loaded<br/>
 <span className="bp-info">Available modes:</span> HiZ UART I2C SPI LED DUMMY1<br/>
@@ -56,12 +56,12 @@ If the Bus Pirate has just restarted you will be prompted to choose the terminal
 If you choose VT100 mode and see lots of garbage characters in the terminal, check that your terminal emulator has VT100 support and that VT100 support is enabled.
 :::
 
-If an SD Card is inserted your terminal mode choice will be saved and automatically loaded the next time the Bus Pirate is connected. Just press ```enter``` to start the command prompt.
+If a flash card is inserted your terminal mode choice will be saved and automatically loaded the next time the Bus Pirate is connected. Just press ```enter``` to start the command prompt.
 
 The terminal mode can be changed from the configuration menu. Open the configuration menu with the ```c``` command followed by ```enter```. 
 
 :::tip
-If you're stuck in a terminal mode that's not working, remove the SD card and restart the Bus Pirate. You can also navigate to the Bus Pirate USB disk, delete the bpconfig.bp file and restart the Bus Pirate. You will be prompted to choose VT100 or ASCII mode after restarting. 
+If you're stuck in a terminal mode that's not working, remove the flash card and restart the Bus Pirate. You can also navigate to the Bus Pirate USB disk, delete the bpconfig.bp file and restart the Bus Pirate. You will be prompted to choose VT100 or ASCII mode after restarting. 
 :::
 
 ### Command line
@@ -128,10 +128,10 @@ y/n> y<br/>
 <span className="bp-prompt">I2C></span> <br/>
 </BrowserWindow>
 
-If an SD card is inserted many options will be saved and can be reloaded later.
+If a flash card is inserted many options will be saved and can be reloaded later.
 
 ## Disk Commands
-Several Linux-like disk commands can be used to navigate an SD card inserted in the Bus Pirate.
+Several Linux-like disk commands can be used to navigate a flash card inserted in the Bus Pirate.
 ### **ls** List directory contents
 
 <BrowserWindow>
@@ -148,7 +148,7 @@ Several Linux-like disk commands can be used to navigate an SD card inserted in 
 <span className="bp-prompt">HiZ></span> <br/>
 </BrowserWindow>
 
-List the contents of the current directory on the SD card. Type ```ls``` followed by ```enter```. ``ls`` followed by a directory name lists the contents of that directory.
+List the contents of the current directory on the flash card. Type ```ls``` followed by ```enter```. ``ls`` followed by a directory name lists the contents of that directory.
 
 ### **mkdir** Make directory
 
@@ -158,7 +158,7 @@ List the contents of the current directory on the SD card. Type ```ls``` followe
 <span className="bp-prompt">HiZ></span> <br/>
 </BrowserWindow>
 
-Make directory in the current location on the SD card. Type ```mkdir``` followed by a directory name and then ```enter```.
+Make directory in the current location on the flash card. Type ```mkdir``` followed by a directory name and then ```enter```.
 
 ### **cd** Change directory
 
@@ -188,7 +188,7 @@ Remove file or directory (if empty). Type ```rm``` followed by the name of a fil
 
 <BrowserWindow>
 <span className="bp-prompt">HiZ></span> cat sample.txt<br/>
-Bus Pirate 5 can program and dump EEPROM, flash and other memory chips directly to the SD card! No need for external software on your computer. No need to install toolchains and compile scripts. What you need, where you need it. Bus Pirate 5 is here! --EOM<br/>
+Bus Pirate 5 can program and dump EEPROM, flash and other memory chips directly to the flash card! No need for external software on your computer. No need to install toolchains and compile scripts. What you need, where you need it. Bus Pirate 5 is here! --EOM<br/>
 <br/>
 <span className="bp-prompt">HiZ></span> <br/>
 </BrowserWindow>
@@ -212,7 +212,7 @@ Firmware <span className="bp-float">v8</span></span> (<span className="bp-float"
 <span className="bp-float">RP2040</span> with <span className="bp-float">264KB</span> RAM, <span className="bp-float">16MB</span> FLASH<br/>
 S/N: <span className="bp-float">2509449B952069E4</span><br/>
 https://DangerousPrototypes.com/<br/>
-SD Card: <span className="bp-float"> 64.06GB</span> (EXFAT File System)<br/>
+Flash card: <span className="bp-float"> 64.06GB</span> (FAT32 File System)<br/>
 <br/>
 <span className="bp-info">Configuration file:</span> Loaded<br/>
 <span className="bp-info">Available modes:</span> HiZ UART I2C SPI LED DUMMY1<br/>
@@ -276,7 +276,7 @@ Language <span className="bp-info">set to</span> English<br/>
 <span className="bp-prompt">I2C></span><br/>
 </BrowserWindow>
 
-Type ```c``` followed by ```enter``` to show the configuration menu. If an SD card is inserted settings will be saved and loaded automatically when the Bus Pirate restarts.
+Type ```c``` followed by ```enter``` to show the configuration menu. If a flash card is inserted settings will be saved and loaded automatically when the Bus Pirate restarts.
 
 ### **m** Set bus mode
 
@@ -342,7 +342,7 @@ the data display format menu (o). The default display format is Auto.
 DISABLE IRQ: OK<br/>
 ADC SUBSYSTEM: VUSB  5.08V OK<br/>
 DAC READ/WRITE: OK<br/>
-SD CARD: OK<br/>
+FLASH CARD: OK<br/>
 PSU ENABLE: OK<br/>
 BIO FLOAT TEST (SHOULD BE 0/0.2V)<br/>
 BIO0 FLOAT: 0/0.04V OK<br/>
