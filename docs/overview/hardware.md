@@ -42,15 +42,15 @@ This is a general overview of Bus Pirate 5. See the [hardware manual](https://ha
 |1-8|IO0 - IO7|Buffered IO pins with voltage measurement and optional 10K pull-up resistors|
 |9|GND| Ground pin|
 
-## Flash Card Socket
+## TF Flash Card Socket
 
 ![](./img/bp5-sd.jpg)
 
-- Flash card socket - When plugged into a PC USB port, the flash card appears as a readable and writable disk drive. 
+- TF flash card socket - When plugged into a PC USB port, the TF flash card appears as a readable and writable disk drive. 
 
 ![](./img/json-config.png)
 
-- Flash card storage is used to save global and mode configuration preferences in simple JSON files. 
+- TF flash card storage is used to save global and mode configuration preferences in simple JSON files. 
 
 ## USB C connector
 ![](./img/bp5-usbc.jpg)

@@ -20,13 +20,13 @@ The detailed self-test is primarily useful in three situations:
 ## Setup the self-test
 
 - Disconnect any devices from the Bus Pirate. An external device will interfere with the test and could be damaged by the voltage used on the pins.
-- Insert a flash card. If **a formatted and mountable flash card is not inserted the flash card test will fail**. That doesn't mean it's broken, it just means the test couldn't be completed.
+- Insert a TF flash card. If **a formatted and mountable TF flash card is not inserted the TF flash card test will fail**. That doesn't mean it's broken, it just means the test couldn't be completed.
 
 :::warning
 Disconnect any devices before performing the self-test.
 :::
 :::caution
-The test will work without a flash card, but the flash card section of the self-test will fail.
+The test will work without a TF flash card, but the TF flash card section of the self-test will fail.
 :::
 
 ## Start the self-test
@@ -68,17 +68,17 @@ Let's break down the self-test step by step.
 <span className="bp-info">SELF TEST STARTING<br/>
 DISABLE IRQ: OK<br/>
 ADC SUBSYSTEM: VUSB  5.03V OK<br/>
-FLASH CARD: OK<br/>
+TF FLASH CARD: OK<br/>
 PSU ENABLE: OK<br/></span>
 </BrowserWindow>
 
 - **DISABLE IRQ** - The Bus Pirate disables all interrupts during the test.
 - **ADC SUBSYSTEM** - A test of the analog voltage measurement system and the IO expanders. Can the Bus Pirate change between analog inputs, and does the USB voltage measurement make sense? VUSB should be somewhere between 4.75 and 5.25 volts. Components include the RP2040 connections, 595 IO expander chips, 245 level translator, 4067 analog mux, an op-amp and various passive component connections.
-- **FLASH CARD** - Try to mount a flash card. **If no flash card is inserted this test will fail**. Tests the RP2040 connections and flash card socket.
+- **TF FLASH CARD** - Try to mount a TF flash card. **If no TF flash card is inserted this test will fail**. Tests the RP2040 connections and TF flash card socket.
 - **PSU ENABLE** - Test the programmable power supply unit. Output is set to 3.3volts with a 50mA current limit, after a delay the voltage is measured. Tests op-amps, comparator, transistors, FETs and several other components in the PPSU.
 
 :::caution
-The test will work without a flash card, but the flash card section of the self-test will fail.
+The test will work without a TF flash card, but the TF flash card section of the self-test will fail.
 :::
 
 ### BIO float
@@ -225,14 +225,14 @@ If you're still having a problem, could it be a firmware bug? Please let us know
 
 <BrowserWindow>
 <span className="bp-info">
-FLASH CARD: NOT DETECTED. ERROR!<br/>
+TF FLASH CARD: NOT DETECTED. ERROR!<br/>
 ...<br/>
 ERRORS: 1<br/>
 FAIL! :(</span>
 </BrowserWindow>
 
 :::caution
-The test will work without a flash card, but the flash card section of the self-test will fail.
+The test will work without a TF flash card, but the TF flash card section of the self-test will fail.
 :::
 
 At this point we haven't see any failures in professionally manufactured boards during prototype runs, but we'll update the docs after the first big batch is tested. 
