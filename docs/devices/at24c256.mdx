@@ -1,0 +1,146 @@
+---
+sidebar_position: 2
+sidebar_label: 'AT24C256 EEPROM'
+---
+import BrowserWindow from '@site/src/components/BrowserWindow';
+
+# AT24C256 I2C EEPROM board
+
+![](./img/at24c256-sch-board.png)
+
+The infamous cheap AT24C256 I2C EEPROM board providing easily EEPROM for your projects:
+
+- Cost: ~2$
+- Size: 32768 bytes
+- VCC: 2.7 - 5.5V
+- It includes the I2C pull-ups
+- 1 MHz (5V), 400 kHz (2.7V, 2.5V)
+- 64-byte Page Write Mode (Partial Page Writes Allowed). 
+- I2C address ranges from 0x50 to 0x57 and can be configured using the A jumpers (A0-A2)
+
+:::tip
+After initiating a data write to the EEPROM, you must wait up to 5ms to ensure that the write cycle is complete before starting another
+:::
+
+## Connections
+
+|Bus Pirate|AT24C256 board|Description|
+|-|-|-|
+|SDA|SDA|I2C Data|
+|SCL|SCL|I2C Clock|
+|Vout/Vref|VCC|5volt power supply|
+|GND|GND|Ground|
+
+## Setup
+
+Considering:
+- AT24C256's datasheet max speed
+- AT24C256 board pull-ups are 10k
+- You've purchased a low-quality clone from AliExpress or any other source
+- The length of the Bus pirate cable
+
+We're going to be very conservative and operate at:
+- 5V, 100kHz.
+- Max current: 50ma.
+
+:::tip
+Since the AT24C256 board already includes pull-ups, there's no need to utilize the pull-ups from the Bus Pirate. If you're using the chip alone (socket adapter, breadboard...) you must activate the Bus Pirate's pull-ups (using the 'P' command) and also connect WP, A0, A1, and A2 to GND.
+:::
+
+<BrowserWindow>
+<span className="bp-prompt">HiZ></span> m<br/>
+<br/>
+<span className="bp-info">Mode selection</span><br/>
+ 1. <span className="bp-info">HiZ</span><br/>
+ 2. <span className="bp-info">1-WIRE</span><br/>
+ 3. <span className="bp-info">UART</span><br/>
+ 4. <span className="bp-info">I2C</span><br/>
+ 5. <span className="bp-info">SPI</span><br/>
+ 6. <span className="bp-info">LED</span><br/>
+ x. <span className="bp-info">Exit</span><br/>
+<span className="bp-prompt">Mode ></span> 4<br/>
+<span className="bp-info">I2C speed</span><br/>
+ 1KHz to 1000KHz<br/>
+ x. <span className="bp-info">Exit</span><br/>
+<span className="bp-prompt">KHz (</span>400KHz*<span className="bp-prompt">) ></span> 100<br/>
+<span className="bp-info">Data bits</span><br/>
+ 1. <span className="bp-info">8*</span><br/>
+ 2. <span className="bp-info">10</span><br/>
+ x. <span className="bp-info">Exit</span><br/>
+<span className="bp-prompt">Bits (</span>1<span className="bp-prompt">) ></span> <br/>
+<span className="bp-info">Mode:</span> I2C<br/>
+<span className="bp-prompt">I2C></span> W<br/>
+<span className="bp-info">Power supply<br/>
+Volts (0.80V-5.00V)</span><br/>
+<span className="bp-prompt">x to exit (3.30) ></span> 5<br/>
+<span className="bp-float">5.00</span>V<span className="bp-info"> requested, closest value: <span className="bp-float">5.00</span></span>V<br/>
+Set current limit?<br/>
+y<br/>
+<br/>
+<span className="bp-info">Maximum current (0mA-500mA)</span><br/>
+<span className="bp-prompt">x to exit (100.00) ></span> 50<br/>
+<span className="bp-float">50.0</span>mA<span className="bp-info"> requested, closest value: <span className="bp-float">50.0</span></span>mA<br/>
+<br/>
+<span className="bp-info">Power supply:</span>Enabled<br/>
+<span className="bp-info"><br/>
+Vreg output: <span className="bp-float">4.9</span></span>V<span className="bp-info">, Vref/Vout pin: <span className="bp-float">4.9</span></span>V<span className="bp-info">, Current sense: <span className="bp-float">9.2</span></span>mA<span className="bp-info"><br/>
+</span><br/>
+<span className="bp-prompt">I2C></span> 
+
+</BrowserWindow>
+
+- Use the ```m``` mode command and select **I2C**
+- Configure I2C for **100kHz** and **8bits** of data
+- Enable the onboard power supply with the ```W``` command, and configure it for **5volts** output. 
+- Select a current limit of at least **50mA**.
+
+## Partial write
+
+We'll write three bytes - 0x41, 0x42, 0x43 - to the EEPROM at memory location 0x69.
+
+<BrowserWindow>
+<span className="bp-prompt">I2C></span> [0xA0 0x00 0x69 0x41 0x42 0x43]<br/>
+<br/>
+I2C START<br/>
+<span className="bp-info">TX:</span> 0x<span className="bp-float">A0</span> ACK 0x<span className="bp-float">00</span> ACK 0x<span className="bp-float">69</span> ACK 0x<span className="bp-float">41</span> ACK 0x<span className="bp-float">42</span> ACK 0x<span className="bp-float">43</span> ACK <br/>
+I2C STOP<br/>
+<span className="bp-prompt">I2C></span> 
+</BrowserWindow>
+
+- 0xA0 is the I2C device address.
+- 0x00 0x69 is the memory address where we intend to write.
+- 0x41 0x42 0x43 are the three bytes we want to write.
+
+:::tip
+If the writing process fails, check all connections. A0, A1, A2 jumpers must be connected to GND, and ensure that the WP jumper is also connected to GND.
+:::
+
+### Reading three bytes
+
+We'll read three bytes from the EEPROM at memory location 0x69. To achieve this, two commands are necessary: 
+- First, to indicate the memory address where we want to read from
+- Second, another command to read the bytes from that memory address.
+
+<BrowserWindow>
+<span className="bp-prompt">I2C></span> [0xA0 0x00 0x69]<br/>
+<br/>
+I2C START<br/>
+<span className="bp-info">TX:</span> 0x<span className="bp-float">A0</span> ACK 0x<span className="bp-float">00</span> ACK 0x<span className="bp-float">69</span> ACK <br/>
+I2C STOP<br/>
+<span className="bp-prompt">I2C></span> [0xA1 r:3]<br/>
+<br/>
+I2C START<br/>
+<span className="bp-info">TX:</span> 0x<span className="bp-float">A1</span> ACK <br/>
+<span className="bp-info">RX:</span> 0x<span className="bp-float">41</span> ACK 0x<span className="bp-float">42</span> ACK 0x<span className="bp-float">43</span> NACK <br/>
+I2C STOP<br/>
+<span className="bp-prompt">I2C></span> 
+</BrowserWindow>
+
+- 0xA0 is the I2C device address.
+- 0x00 0x69 is the memory address where we intend to read.
+- 0xA1 is the I2C device address from which we can read the bytes from the EEPROM.
+- Bytes readed: 0x41 0x42 0x43.
+
+:::tip
+If the reading process fails, check all connections. A0, A1, A2 jumpers must be connected to GND.
+:::
