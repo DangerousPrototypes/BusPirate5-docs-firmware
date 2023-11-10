@@ -4,7 +4,7 @@ sidebar_label: 'Bus Pirate 5'
 slug: /
 ---
 
-# Bus Pirate 5
+# Bus Pirate 5 Firmware Guide
 
 ![](./img/bp-rgb-dark.jpg)
 
