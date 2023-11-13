@@ -8,19 +8,15 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 
 ![](./img/at24c256-sch-board.png)
 
-The infamous cheap AT24C256 I2C EEPROM board providing easily EEPROM for your projects:
+The infamous cheap AT24C256 I2C EEPROM board provides 32K bytes of storage for your projects:
 
-- Cost: ~2$
+- Cost: ~$2
 - Size: 32768 bytes
 - VCC: 2.7 - 5.5V
-- It includes the I2C pull-ups
-- 1 MHz (5V), 400 kHz (2.7V, 2.5V)
+- It includes I2C pull-ups
+- Speeds: 1 MHz (5V), 400 kHz (2.7V, 2.5V)
 - 64-byte Page Write Mode (Partial Page Writes Allowed). 
 - I2C address ranges from 0x50 to 0x57 and can be configured using the A jumpers (A0-A2)
-
-:::tip
-After initiating a data write to the EEPROM, you must wait up to 5ms to ensure that the write cycle is complete before starting another
-:::
 
 ## Connections
 
@@ -107,9 +103,15 @@ I2C STOP<br/>
 <span className="bp-prompt">I2C></span> 
 </BrowserWindow>
 
-- 0xA0 is the I2C device address.
-- 0x00 0x69 is the memory address where we intend to write.
-- 0x41 0x42 0x43 are the three bytes we want to write.
+- ```[``` Begin with an I2C START
+- ```0xA0``` is the I2C device address.
+- ```0x00 0x69``` is the memory address where we intend to write. The AT24C256 has a 16bit/2byte address range. 
+- ```0x41 0x42 0x43``` are the three data bytes we want to write.
+- ```]``` End with an I2C STOP
+
+:::info
+After initiating a data write to the EEPROM, you must wait up to 5ms to ensure that the write cycle is complete before starting another. If you enter the write and read commands on separate lines there will be plenty of delay for the write to complete, but if you enter it on a single line be sure to add a 5ms delay between the commands with ```D:5```.
+:::
 
 :::tip
 If the writing process fails, check all connections. A0, A1, A2 jumpers must be connected to GND, and ensure that the WP jumper is also connected to GND.
@@ -117,9 +119,7 @@ If the writing process fails, check all connections. A0, A1, A2 jumpers must be 
 
 ### Reading three bytes
 
-We'll read three bytes from the EEPROM at memory location 0x69. To achieve this, two commands are necessary: 
-- First, to indicate the memory address where we want to read from
-- Second, another command to read the bytes from that memory address.
+We'll read three bytes from the EEPROM at memory location 0x69. To achieve this, two commands are necessary.
 
 <BrowserWindow>
 <span className="bp-prompt">I2C></span> [0xA0 0x00 0x69]<br/>
@@ -127,6 +127,16 @@ We'll read three bytes from the EEPROM at memory location 0x69. To achieve this,
 I2C START<br/>
 <span className="bp-info">TX:</span> 0x<span className="bp-float">A0</span> ACK 0x<span className="bp-float">00</span> ACK 0x<span className="bp-float">69</span> ACK <br/>
 I2C STOP<br/>
+<span className="bp-prompt">I2C></span> <br/>
+</BrowserWindow>
+
+First, use a write command with no data to to indicate the memory address we want to read.
+- ```[``` Begin with an I2C START
+- ```0xA0``` is the I2C device write address.
+- ```0x00 0x69``` is the 16bit/2byte memory address to read.
+- ```]``` End with an I2C STOP
+
+<BrowserWindow>
 <span className="bp-prompt">I2C></span> [0xA1 r:3]<br/>
 <br/>
 I2C START<br/>
@@ -136,10 +146,11 @@ I2C STOP<br/>
 <span className="bp-prompt">I2C></span> 
 </BrowserWindow>
 
-- 0xA0 is the I2C device address.
-- 0x00 0x69 is the memory address where we intend to read.
-- 0xA1 is the I2C device address from which we can read the bytes from the EEPROM.
-- Bytes readed: 0x41 0x42 0x43.
+Second, use the I2C read address to read the bytes from that memory location.
+- ```[``` Begin with an I2C START
+- ```0xA1``` is the I2C device read address to access data at the location we set with the previous command.
+- ```r:3``` reads back three bytes of data. Bytes read: 0x41 0x42 0x43.
+- ```]``` End with an I2C STOP
 
 :::tip
 If the reading process fails, check all connections. A0, A1, A2 jumpers must be connected to GND.
