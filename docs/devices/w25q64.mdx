@@ -4,39 +4,39 @@ sidebar_label: 'W25Q64 FLASH'
 ---
 import BrowserWindow from '@site/src/components/BrowserWindow';
 
-# W25Q64 SPI FLASH board
+# W25Q64 SPI flash board
 
 ![](./img/w25q64-sch-board.png)
 
-A cheap W25Q64 SPI FLASH board:
+A cheap W25Q64 SPI flash board that adds 8 megabytes of storage to your project:
 
-- Cost: ~2$
+- Cost: ~$2
 - Size: 8MB
 - VCC: 2.7 - 3.6V
-- It includes pull-ups: /HOLD & /WP
+- It includes pull-ups on the /HOLD & /WP (write protect) pins
 - 32768 programmable pages of 256-bytes each. Up to 256 bytes can be programmed at a time.
 - Pages can be erased in groups of 16 (4KB sector erase), groups of 128 (32KB block erase), groups of 256 (64KB block erase) or the entire chip (chip erase). 
-- Considering it might be a Chinese clone purchased from Aliexpress or a similar site, here's the maximum speed I recommend: ~10MHz (Standard SPI)
+- Considering it might be a Chinese clone purchased from AliExpress or a similar site, here's the maximum speed I recommend: ~10MHz (Standard SPI)
 
 ## Connections
 
 |Bus Pirate|W25Q64 board|Description|
 |-|-|-|
 |CS|CS|Chip select|
-|DO|DO|MISO Controller Data In|
-|DI|DI|MOSI Controller Data Out|
+|CDI|DO|MISO Controller Data In|
+|CDO|DI|MOSI Controller Data Out|
 |SCLK|CLK|SPI Clock|
 |Vout/Vref|VCC|3.3volt power supply|
 |GND|GND|Ground|
 
 ## Setup
 
-Considering datasheet max speed, you've purchased a low-quality clone from AliExpress or any other source and the length of the Bus pirate cable, we're going to be very conservative and operate at:
+While the chip has an impressive top speed of 104MHz, it's probably unreliable at high speeds because of the length of the Bus Pirate cable and possibly low quality clone board from AliExpress. We're going to be very conservative and operate at:
 - 3V3, 100kHz.
 - Max current: 50ma.
 
 :::tip
-If you're using the chip alone (socket adapter, breadboard...) you must connect /HOLD & /WP to VCC.
+If you're using the chip alone (socket adapter, breadboard...) you must connect /HOLD & /WP to VCC (3.3volts).
 :::
 
 <BrowserWindow>
@@ -98,12 +98,14 @@ Vreg output: <span className="bp-float">3.3</span></span>V<span className="bp-in
 
 - Use the ```m``` mode command and select **SPI**
 - Configure SPI for **100kHz** and **8bits** of data
-- Enable the onboard power supply with the ```W``` command, and configure it for **3v3volts** output. 
+- Enable the onboard power supply with the ```W``` command, and configure it for **3.3volts** output. 
 - Select a current limit of at least **50mA**.
 
-## Write & read 256 bytes
+## Write 256 bytes
 
 We will write 256 ASCII characters 'i' (0x69) at the memory address 0x00. Following this, we will read the content to verify that the bytes have been correctly written.
+
+### Enable writes
 
 <BrowserWindow>
 <span className="bp-prompt">SPI></span> [0x06]<br/>
@@ -114,9 +116,13 @@ CS Disabled<br/>
 <span className="bp-prompt">SPI></span> 
 </BrowserWindow>
 
-Write Enable (06h)
-- The 'Write Enable' command activates the Write Enable Latch (WEL) by setting its corresponding bit in the Status Register to '1'. This WEL bit is a prerequisite for executing several critical operations. It must be set before initiating any of the following instructions: Page Program, Quad Page Program, Sector Erase, Block Erase, Chip Erase, Write Status Register, and Erase/Program Security Registers. This step ensures that the memory device is ready to accept and correctly process these write or erase commands.
+The 'Write Enable' command ```0x06``` must be sent before write and erase commands will be accepted. This prevents accidental erasures or overwrites of your valuable data. This command must be sent before any write, erase or configuration command.
 
+- ```[``` - Start of SPI transaction. Lowers the CS pin to ground.
+- ```0x06``` - Write Enable instruction.
+- ```]``` - End of SPI transaction. Raises the CS pin to 3.3volts.
+
+### Verify write enable
 <BrowserWindow>
 <span className="bp-prompt">SPI></span> [0x05 r:1]<br/>
 <br/>
@@ -127,9 +133,26 @@ CS Disabled<br/>
 <span className="bp-prompt">SPI></span> 
 </BrowserWindow>
 
-Read Status Register (05h) instruction is essential for verifying the effectiveness of the 'Write Enable' instruction [0x06]. A response code of '02' indicates that the Write Enable Latch (WEL) is set to '1'. The WEL is a read-only bit within the status register (S1), which is activated following the execution of a Write Enable Instruction. It's important to note that the WEL status bit reverts to '0' when the device transitions into a write-disabled state. This state is automatically initiated upon power-up or subsequent to the execution of any of these instructions: Write Disable, Page Program, Quad Page Program, Sector Erase, Block Erase, Chip Erase, Write Status Register, Erase Security Register, and Program Security Register.
+|S7|S6|S5|S4|S3|S2|S1|S0|
+|---|---|---|---|---|---|---|---|
+|SRP0|SEC|TB|BP2|BP1|BP0|WEL|BUSY|
 
+Read Status Register ```0x05``` is used to verify the 'Write Enable' instruction ```0x06``` was correctly received. 
+
+- ```[``` - Start of SPI transaction. Lowers the CS pin to ground.
+- ```0x05``` - Read Status Register instruction.
+- ```r:1``` - Read 1 byte.
+- ```]``` - End of SPI transaction. Raises the CS pin to 3.3volts.
+
+Response ```0x02``` indicates that the write enable bit (S1) is set to 1 (0x02=0b00000010).  
+
+### Erase sector
 <BrowserWindow>
+<span className="bp-prompt">SPI></span> [0x06]<br/>
+<br/>
+CS Enabled<br/>
+<span className="bp-info">TX:</span> 0x<span className="bp-float">06</span> <br/>
+CS Disabled<br/>
 <span className="bp-prompt">SPI></span> [0x20 0x00 0x00 0x00]<br/>
 <br/>
 CS Enabled<br/>
@@ -138,11 +161,25 @@ CS Disabled<br/>
 <span className="bp-prompt">SPI></span> 
 </BrowserWindow>
 
-Sector Erase (20h): instruction resets all memory within a specified 4K-byte sector to its erased state, where each bit is set to '1' (FFh). To enable this operation, a 'Write Enable' instruction must be executed first, ensuring that the 'Write Enable Latch' (WEL) bit in the Status Register is set to '1'. This is a prerequisite for the memory device to accept the Sector Erase Instruction. The command '20h' is used, followed by a 24-bit sector address, to specify the target sector for the erase operation.
+Flash works by flipping 1s in the memory to 0. Writing a location twice will simply flip more bits from 1 to 0, but will not flip 0 to 1. The erase sector command ```0x20``` is used to flip all bits in a 4000 byte sector from 0 to 1, after which we can write new data. 
+
+The erase sector command is followed by a three byte address of the location to begin erasing 4000 bytes. It's not possible to begin erasing just anywhere. The 4000 byte sectors are 'aligned' in bocks. The first sector begins at 0, the next at 4000, the next at 8000 and so on. We'll erase the first sector from 0 to 3999.
+
+A write enable command must be sent before the erase sector command will be accepted. 
+
+- ```[``` - Start of SPI transaction. Lowers the CS pin to ground.
+- ```0x06``` - Write Enable instruction.
+- ```]``` - End of SPI transaction. Raises the CS pin to 3.3volts.
+- ```[``` - Start of SPI transaction. Lowers the CS pin to ground.
+- ```0x20``` - Erase Sector instruction.
+- ```0x00 0x00 0x00``` - Address 0x00.
+- ```]``` - End of SPI transaction. Raises the CS pin to 3.3volts.
 
 :::tip
-Each cell can store one bit of information: "0" or "1". In the erased state, all cells in a sector are set to the "1" state. It's important to note that writing to flash memory is not the same as writing to RAM. In flash memory, bits can only be changed from "1" to "0". To change a bit from "0" to "1", you must first erase the entire sector. This is done by setting all bits in the sector to "1". The need to erase before writing: Since bits can only be changed from "1" to "0" during writing, if a sector already contains data (bits in "0"), you cannot simply overwrite it with new data. You must first erase the sector to reset all bits to "1", and then you can write the new data, changing the necessary bits from "1" to "0".
+Flash needs to be erased before it can be rewritten. Flash is erased in sectors, blocks or the entire chip. 
 :::
+
+### Verify erase sector
 
 <BrowserWindow>
 <span className="bp-prompt">SPI></span> [0x03 0x00 0x00 0x00 r:256]<br/>
@@ -186,7 +223,15 @@ CS Disabled<br/>
 <span className="bp-prompt">SPI></span> 
 </BrowserWindow>
 
-Read Data (03h):  reading of one or more data bytes from the memory. '03h' followed by specifying a 24-bit address. Once the address is received, the data byte from the specified memory location is shifted out through the MISO line. Notably, the address automatically increments to the next higher address after each data byte is shifted out. This feature facilitates a continuous data stream, allowing the entire memory to be accessed using a single instruction, provided that the clock continues to run.
+We'll use the read data command ```0x03``` to verify that the sector has been erased to all 1s (0xff). The command is followed by a three byte address of the location to begin reading 256 bytes. We'll read the first 256 bytes from address 0x00.
+
+- ```[``` - Start of SPI transaction. Lowers the CS pin to ground.
+- ```0x03``` - Read Data instruction.
+- ```0x00 0x00 0x00``` - Address 0x00.
+- ```r:256``` - Read 256 bytes.
+- ```]``` - End of SPI transaction. Raises the CS pin to 3.3volts.
+
+### Enable writes and verify
 
 <BrowserWindow>
 <span className="bp-prompt">SPI></span> [0x06]<br/>
@@ -199,7 +244,15 @@ CS Disabled<br/>
 CS Enabled<br/>
 <span className="bp-info">TX:</span> 0x<span className="bp-float">05</span> <br/>
 <span className="bp-info">RX:</span> 0x<span className="bp-float">02</span> <br/>
+<span className="bp-prompt">SPI></span><br/>
 CS Disabled<br/>
+</BrowserWindow>
+
+Use the write enable command ```0x06``` to enable writes. Verify the write enable bit is set to 1 (0x02=0b00000010) using the read status register command ```0x05```.
+
+### Write data
+
+<BrowserWindow>
 <span className="bp-prompt">SPI></span> [0x02 0x00 0x00 0x00 0x69:256]<br/>
 <br/>
 CS Enabled<br/>
@@ -240,9 +293,19 @@ CS Disabled<br/>
 <span className="bp-prompt">SPI></span> 
 </BrowserWindow>
 
-Initially, we re-activate the writing capability using the [0x06] instruction and confirm the success of the previous command with [0x05 r:1].
+Use the page program command ```0x02``` to write 256 bytes of data to address 0x00. The command is followed by a three byte address of the location to begin writing 256 bytes ```0x00 0x00 0x00```. The data to be written ```i``` (0x69) follows the address. 
 
-Page Program (02h): permits the programming of data ranging from one byte to 256 bytes (equivalent to one page) at memory locations that have been previously erased (indicated as FFh). To enable this operation, a 'Write Enable' instruction is necessary to set the Status Register bit WEL to '1', thereby preparing the device to accept the Page Program Instruction. This process starts with the command '02h', followed by a 24-bit address and at least one data byte. For programming an entire 256-byte page, the last byte of the address (the 8 least significant address bits) should be set to 0. If this last address byte is not zero and the number of clock cycles exceeds the remaining page length, the address will wrap back to the start of the page. It's also possible to program less than 256 bytes (a partial page) without affecting other bytes within the same page. However, one crucial condition for partial page programming is that the number of clock cycles does not exceed the page's remaining length. Exceeding 256 bytes in the input causes the addressing to circle back to the page's beginning, potentially overwriting previously sent data.
+- ```[``` - Start of SPI transaction. Lowers the CS pin to ground.
+- ```0x02``` - Page Program instruction.    
+- ```0x00 0x00 0x00``` - Address to begin writing: 0x00.
+- ```0x69:256``` - Write 256 bytes of data. The data to be written is ```i``` (0x69).
+- ```]``` - End of SPI transaction. Raises the CS pin to 3.3volts.
+
+:::warning
+The write enable command ```0x06``` must be send before writing data to the chip. Write up to 256 bytes at a time. If more than 256 bytes are sent, the internal buffer will circle back to the beginning of the page and overwrite previously sent data.
+:::
+
+## Read data
 
 <BrowserWindow>
 <span className="bp-prompt">SPI></span> [0x03 0x00 0x00 0x00 r:256]<br/>
@@ -286,8 +349,14 @@ CS Disabled<br/>
 <span className="bp-prompt">SPI></span> 
 </BrowserWindow>
 
-To confirm the success of our write operations, we employ the 'Read Data' instruction (03h) once more. This step is crucial for verifying that the data we have written to the memory has been correctly and successfully stored.
+To confirm the data was written, we use the 'Read Data' instruction ```0x03``` once again. 
 
-:::tip
-If the writing/reading process fails, check all connections. /HOLD & /WP must be connected to VCC.
+- ```[``` - Start of SPI transaction. Lowers the CS pin to ground.
+- ```0x03``` - Read Data instruction.
+- ```0x00 0x00 0x00``` - Address to begin reading: 0x00.
+- ```r:256``` - Read 256 bytes of data.
+- ```]``` - End of SPI transaction. Raises the CS pin to 3.3volts.
+
+:::info
+If the writing/reading process fails, check all connections. /HOLD & /WP pins must be connected to 3.3 volts.
 :::
