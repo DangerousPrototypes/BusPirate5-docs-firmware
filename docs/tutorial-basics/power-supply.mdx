@@ -9,6 +9,7 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 
 ![](./img/ppsu-1024.jpg)
 
+## Features
 Bus Pirate 5 has a single 'Programmable Power Supply Unit' (PPSU) that can power devices from the VOUT/VREF pin of the main connector.
 
 - 1-5volts adjustable output, 400mA max
@@ -16,6 +17,7 @@ Bus Pirate 5 has a single 'Programmable Power Supply Unit' (PPSU) that can power
 - 0-500mA current limit with digital fuse
 - Backflow prevention to protect the PPSU when an external voltage is applied to the VREF/VOUT pin
 
+## Enable
 <BrowserWindow>
 <span className="bp-prompt">I2C></span> W<br/>
 <span className="bp-info"><span className="bp-info">Power supply<br/>
@@ -48,6 +50,8 @@ The Bus Pirate will calculate the closest possible values and enable the PPSU.
 Enter any protocol mode (```m```) to use the power supply. The power supply is always disabled in HiZ safe mode.
 :::
 
+## Check voltage and current
+
 ![](./img/ppsu-vreport.png)
 
 Check the voltage and current in the live view statusbar if active, or show the power supply voltage report using the ```v``` command followed by ```enter```.
@@ -64,6 +68,8 @@ The difference in voltages (2.1, 2.19) is due to some code inconsistencies in fl
 400mA is the rated maximum of the PPSU, but we added some headroom in the current limit to account for current spikes.
 :::
 
+## Current limit
+
 <BrowserWindow>
 <span className="bp-error">Error:<span className="bp-info"> Current over limit, power supply disabled</span></span><br/>
 <br/>
@@ -72,6 +78,8 @@ The difference in voltages (2.1, 2.19) is due to some code inconsistencies in fl
 
 When the programmed current limit is exceeded the PPSU hardware fuse disables the power supply. The terminal colors invert repeatedly, an alarm bell will sound, an error message is shown and command execution is halted. Use the ```W``` command to restart the PPSU again.
 
+## Disable
+
 <BrowserWindow>
 <span className="bp-prompt">I2C></span>w<br/>
 <span className="bp-info"><span className="bp-info">Power supply: </span></span>Disabled<br/>
@@ -79,5 +87,11 @@ When the programmed current limit is exceeded the PPSU hardware fuse disables th
 </BrowserWindow>
 
 Lowercase ```w``` disables the PPSU.
+
+## Community
+import FooterCommunity from '../../_footer/_footer-community.md'
+
+<FooterCommunity/>
+
 
 <DiscourseComments/>
