@@ -75,16 +75,16 @@ All of the Bus Pirate cables are made with super soft and flexible premium silic
 
 ## Join the fun
 ### Get Bus Pirate 5
-import FooterGet from '../../_footer/_footer-get.md'
+import FooterGet from '../../_common/_footer/_footer-get.md'
 
 <FooterGet/>
 
 ### Community
-import FooterCommunity from '../../_footer/_footer-community.md'
+import FooterCommunity from '../../_common/_footer/_footer-community.md'
 
 <FooterCommunity/>
 
 ### Documentation
-import FooterDocs from '../../_footer/_footer-docs.md' 
+import FooterDocs from '../../_common/_footer/_footer-docs.md' 
 
 <FooterDocs/>

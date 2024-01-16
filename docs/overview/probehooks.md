@@ -5,8 +5,6 @@ sidebar_label: 'Probe Hooks'
 
 # Probes and Hooks
 
-![](./img/probes-1024.jpg)
-
 There’s a bunch of ingenious ways to tap signals in an electronic circuit. Probe hooks have small wire claws that grab onto a chip leg, and a spring that retracts to hold it into place. The right hook depends on what you’ll be connecting, and how much space you have available.
 
 :::tip
@@ -130,16 +128,16 @@ While some hooks may be rated for high voltages and current, the Bus Pirate is n
 
 ## Join the fun
 ### Get Bus Pirate 5
-import FooterGet from '../../_footer/_footer-get.md'
+import FooterGet from '../../_common/_footer/_footer-get.md'
 
 <FooterGet/>
 
 ### Community
-import FooterCommunity from '../../_footer/_footer-community.md'
+import FooterCommunity from '../../_common/_footer/_footer-community.md'
 
 <FooterCommunity/>
 
 ### Documentation
-import FooterDocs from '../../_footer/_footer-docs.md' 
+import FooterDocs from '../../_common/_footer/_footer-docs.md' 
 
 <FooterDocs/>

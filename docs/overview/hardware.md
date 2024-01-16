@@ -32,9 +32,9 @@ VT100 terminal emulation supports color and a live statusbar view of the voltage
 Bus Pirate 5 is the universal serial interface tool designed by hackers, for hackers. It's crammed full of hardware and firmware features to make probing chips pleasant and easy.
 
 ### Get Bus Pirate 5
-import FooterGet from '../../_footer/_footer-get.md'
+import FooterGet from '../../_common/_footer/_footer-get.md' 
 
-<FooterGet/>
+<FooterGet/>  
 
 :::info
 This is the user guide for Bus Pirate 5. See the [hardware documentation](https://hardware.buspirate.com/) for all the technical details.
@@ -119,17 +119,17 @@ A three pin debugging port is exposed on the bottom of the board. See the develo
 <FooterGet/>
 
 ### Files
-import FooterFiles from '../../_footer/_footer-files.md'
+import FooterFiles from '../../_common/_footer/_footer-files.md'
 
 <FooterFiles/>
 
 ### Community
-import FooterCommunity from '../../_footer/_footer-community.md'
+import FooterCommunity from '../../_common/_footer/_footer-community.md'
 
 <FooterCommunity/>
 
 ### Documentation
-import FooterDocs from '../../_footer/_footer-docs.md' 
+import FooterDocs from '../../_common/_footer/_footer-docs.md' 
 
 <FooterDocs/>
 

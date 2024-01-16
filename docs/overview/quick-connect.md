@@ -17,33 +17,32 @@ KF141 is a popular quick connector block with sturdy spring retention clamps. Pr
 
 KF141-R is a right angle connector. Wires clamps are oriented to the front of the connector block. Pin names are silkscreened in bright orange to save time and hassle.
 
-- [Schematic and PCB](https://github.com/DangerousPrototypes/BusPirate5-hardware/tree/main/kf141r-adapter)
-- [Development in the forum](https://forum.buspirate.com/t/kf141-quick-connector-adapter/90?u=ian)
-- Buy
-
 ## KF141-V vertical connector
 
 ![](./img/kf141v.jpg)
 
 KF141-V is a vertical connector. Wires clamps are oriented to the top of the connector block. Pin names are silkscreened in bright orange to save time and hassle.
 
-- [Schematic and PCB](https://github.com/DangerousPrototypes/BusPirate5-hardware/tree/main/kf141v-adapter)
-- [Development in the forum](https://forum.buspirate.com/t/kf141-quick-connector-adapter/90?u=ian)
-- Buy
+## Resources
+
+- [Get one](https://dirtypcbs.com/store/designer/details/ian/6634/bus-pirate-quick-connect-kf141-adapter)!
+- [KF141-Right Angle Adapter Schematic and PCB](https://github.com/DangerousPrototypes/BusPirate5-hardware/tree/main/kf141r-adapter)
+- [KF141-Vertical Adapter Schematic and PCB](https://github.com/DangerousPrototypes/BusPirate5-hardware/tree/main/kf141v-adapter)
+- [KF141 Adapter Hardware Documentation](https://hardware.buspirate.com/cables/kf141-quick-connect)
 
 ## Join the fun
 ### Get Bus Pirate 5
-import FooterGet from '../../_footer/_footer-get.md'
+import FooterGet from '../../_common/_footer/_footer-get.md'
 
 <FooterGet/>
 
 ### Community
-import FooterCommunity from '../../_footer/_footer-community.md'
+import FooterCommunity from '../../_common/_footer/_footer-community.md'
 
 <FooterCommunity/>
 
 ### Documentation
-import FooterDocs from '../../_footer/_footer-docs.md' 
+import FooterDocs from '../../_common/_footer/_footer-docs.md' 
 
 <FooterDocs/>
 
