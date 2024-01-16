@@ -66,7 +66,16 @@ All of the Bus Pirate cables are made with super soft and flexible premium silic
 
 ## Join the fun
 ### Get Bus Pirate 5
-- [Bus Pirate 5 assembled PCB preview release](https://dirtypcbs.com/store/designer/details/ian/6621/bus-pirate-5-preview-version-pcb-only)
-- [Bus Pirate Premium Probe Cable](https://dirtypcbs.com/store/designer/details/ian/6619/bus-pirate-5-probe-cable-kit)
-- [Bus Pirate Premium Auxiliary Cables](https://dirtypcbs.com/store/designer/details/ian/6620/auxilary-cable-kit)
-- Bus Pirate 5 and enclosure (coming soon!)
+import FooterGet from '../../_footer/_footer-get.md'
+
+<FooterGet/>
+
+### Community
+import FooterCommunity from '../../_footer/_footer-community.md'
+
+<FooterCommunity/>
+
+### Documentation
+import FooterDocs from '../../_footer/_footer-docs.md' 
+
+<FooterDocs/>

@@ -59,35 +59,29 @@ Can't get a chip to work? Is it the circuit, code, bad part or a burned out pin?
 ## USB C connector
 - ...but limited to the USB speeds supported by the RP2040
 
-## Other Documentation
-Bus Pirate 5 documentation is broken into [hardware](https://hardware.buspirate.com/introduction) and [firmware](https://firmware.buspirate.com/introduction) sections so it can be versioned easily with each update. Here's some other fun stuff you might enjoy.
-- [Component selection and sourcing](https://hardware.buspirate.com/components/introduction)
-- [Case/enclosure](https://hardware.buspirate.com/enclosure/fdm-shell)
-- [Cables](https://firmware.buspirate.com/overview/cables)
-- [Milled breadboard pins](https://firmware.buspirate.com/overview/milled-breadboard-pins)
-- [Hardware users guide](https://firmware.buspirate.com/overview/hardware)
-- [Firmware tutorials](https://firmware.buspirate.com/tutorial-basics/quick-setup)
-- [Command reference](https://firmware.buspirate.com/command-reference/all-commands)
-- [Firmware development](https://hardware.buspirate.com/development/code) and [translation](https://hardware.buspirate.com/development/translation)
-- [Manufacturing resources](https://hardware.buspirate.com/category/manufacturing)
-
 ## Join the fun
+
 ### Get Bus Pirate 5
-- [Bus Pirate 5 assembled PCB preview release](https://dirtypcbs.com/store/designer/details/ian/6621/bus-pirate-5-preview-version-pcb-only)
-- [Bus Pirate Premium Probe Cable](https://dirtypcbs.com/store/designer/details/ian/6619/bus-pirate-5-probe-cable-kit)
-- [Bus Pirate Premium Auxiliary Cables](https://dirtypcbs.com/store/designer/details/ian/6620/auxilary-cable-kit)
-- Bus Pirate 5 and enclosure (coming soon!)
+import FooterGet from '../_footer/_footer-get.md'
+
+<FooterGet/>
 
 ### Files
-- [Bus Pirate 5 hardware repository](https://github.com/DangerousPrototypes/BusPirate5-hardware)
-- [Bus Pirate 5 firmware repository](https://github.com/DangerousPrototypes/BusPirate5-firmware)
+import FooterFiles from '../_footer/_footer-files.md'
+
+<FooterFiles/>
 
 ### Community
-- [Forum](https://forum.buspirate.com)
-- [Blog](https://buspirate.com/) and mailing list
-- [Mastodon](https://mastodon.social/@buspirate)
-- [BlueSky](https://bsky.app/profile/buspirate.bsky.social)
-- [Twitter](https://twitter.com/dangerousproto)
+import FooterCommunity from '../_footer/_footer-community.md'
+
+<FooterCommunity/>
+
+### Documentation
+import FooterDocs from '../_footer/_footer-docs.md' 
+
+<FooterDocs/>
+
+
 
 ## FCC compliance statement
 This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) this device may not cause harmful interference, and (2) this device must accept any interference received, including interference that may cause undesired operation.

@@ -115,17 +115,13 @@ const config = {
             items: [
               {
                 label: 'Dirty PCBs',
-                to: 'https://dirtypcbs.com/store/designer/details/ian/6621/bus-pirate-5-preview-version-pcb-only',
+                to: 'https://dirtypcbs.com/store/browse/bus-pirate',
               },
             ],
           },
           {
             title: 'Docs',
             items: [
-              {
-                label: 'Introduction',
-                to: 'introduction',
-              },
               {
                 label: 'Hardware',
                 to: 'https://hardware.buspirate.com',
@@ -143,6 +139,14 @@ const config = {
                 label: 'Forum',
                 to: 'https://forum.buspirate.com',
               },
+              {
+                label: 'Mastodon',
+                to: 'https://mastodon.social/@buspirate',
+              },   
+              {
+                label: 'BlueSky',
+                to: 'https://bsky.app/profile/buspirate.bsky.social',
+              },                               
               {
                 label: 'Twitter',
                 to: 'https://twitter.com/dangerousproto',

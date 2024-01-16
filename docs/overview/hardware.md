@@ -8,19 +8,46 @@ slug: /
 
 ![](./img/bp5rev10-lit-black2.jpg)
 
-Bus Pirate 5 is the universal serial interface tool designed by hackers, for hackers. It's crammed full of hardware and firmware features to make probing chips pleasant and easy.
+Bus Pirate 5 is the latest edition of the original universal serial interface trusted by hackers since 2008.
 
-- 8 powerful IO pins - Support multiple protocols from 1.2-5volts. Each with analog voltage measurement
-- 1-5volt output power supply - 0-500mA current limit, current sense, and resettable fuse
-- 1Gbit NAND flash - Stores settings and file. Appears as a USB drive.
+Can't get a chip to work? Is it the circuit, code, bad part or a burned out pin? The Bus Pirate sends commands over common serial protocols so you can get to know a chip before prototyping. Updated with tons of new features and tools, talking to chips and probing interfaces is more fun than ever!
+
+- Raspberry Pi RP2040 with 128Mbit program flash
+- 8 powerful IO pins - Support multiple protocols from 1.2-5volts. Analog voltage measurement and optional 10K pull-ups on all pins
+- 1-5volt output power supply - 0-500mA current limit, current sense, resettable fuse and protection circuit
+- 1Gbit NAND flash - Store settings and files. Appears as a USB drive.
 - LCD - A beautiful 240x320 pixel color IPS (all angle viewing) LCD acts as a pin label, while also showing the voltage on each pin and the current consumption of the programmable power supply unit
-- 16 RGB LEDs - It's customary to have an indicator LED, so to check that box we added 16 SK6812 RGB LEDs.
+- 18 RGB LEDs - It's customary to have an indicator LED, so to check that box we added 16 SK6812 RGB LEDs.
 - Just one button - 16 party LEDs but just one button!
 
+Bus Pirate 5 is the universal serial interface tool designed by hackers, for hackers. It's crammed full of hardware and firmware features to make probing chips pleasant and easy.
+
+### Get Bus Pirate 5
+import FooterGet from '../../_footer/_footer-get.md'
+
+<FooterGet/>
+
 :::info
-This is a general overview of Bus Pirate 5. See the [hardware manual](https://hardware.buspirate.com/) for technical details.
+This is the user guide for Bus Pirate 5. See the [hardware documentation](https://hardware.buspirate.com/) for all the technical details.
 :::
 
+## VT100 
+
+![](./img/teraterm-done.png)
+
+VT100 terminal emulation supports color and a live statusbar view of the voltage and functions on each pin.
+
+## LCD
+
+    320 x 240 pixel IPS all direction display
+    Pin labels
+    Live voltage measurements
+    Live current consumption
+
+## 18 RGB LEDs
+
+    Introduction demo
+    Party mode
 
 ## Main connector
 ![](./img/bp5-connectors.jpg)
@@ -54,16 +81,21 @@ This is a general overview of Bus Pirate 5. See the [hardware manual](https://ha
 
 Flash storage is used to save global and mode configuration preferences in simple JSON files. 
 
+## Just one button
+
+    Escape from modes
+    User input for production programming, remote hacking, whatever
+
 ## USB C connector
 ![](./img/bp5-usbc.jpg)
 
 Modern USB C connector. Only RP2040 supported USB modes are available.
 
-## Bootloader button
+## USB Bootloader
 
 ![](./img/bp5-back.jpg)
 
-Normally the ```$``` key in the Bus Pirate terminal enters bootloader mode for firmware upgrades. You can also use the button on the bottom to activate the bootloader manually.
+Updating is as simple as dragging a file onto the disk. Normally the ```$``` key in the Bus Pirate terminal enters bootloader mode for firmware upgrades. You can also use the button on the bottom to activate the bootloader manually. 
 
 ## JTAG debug header
 ![](./img/bp5-debug.jpg)
@@ -76,40 +108,33 @@ A three pin debugging port is exposed on the bottom of the board. See the develo
 |2|SWDIO|JTAG Data IO|
 |3|SWCLK|JTAG Clock (closest to the edge of the PCB/case)|
 
-## VT100 
-
-![](./img/teraterm-done.png)
-
-VT100 terminal emulation supports color and a live statusbar view of the voltage and functions on each pin.
-
-
 ## Join the fun
+
 ### Get Bus Pirate 5
-- [Bus Pirate 5 assembled PCB preview release](https://dirtypcbs.com/store/designer/details/ian/6621/bus-pirate-5-preview-version-pcb-only)
-- [Bus Pirate Premium Probe Cable](https://dirtypcbs.com/store/designer/details/ian/6619/bus-pirate-5-probe-cable-kit)
-- [Bus Pirate Premium Auxiliary Cables](https://dirtypcbs.com/store/designer/details/ian/6620/auxilary-cable-kit)
-- Bus Pirate 5 and enclosure (coming soon!)
+
+<FooterGet/>
 
 ### Files
-- [Bus Pirate 5 hardware repository](https://github.com/DangerousPrototypes/BusPirate5-hardware)
-- [Bus Pirate 5 firmware repository](https://github.com/DangerousPrototypes/BusPirate5-firmware)
+import FooterFiles from '../../_footer/_footer-files.md'
+
+<FooterFiles/>
 
 ### Community
-- [Forum](https://forum.buspirate.com)
-- [Blog](https://buspirate.com/) and mailing list
-- [Mastodon](https://mastodon.social/@buspirate)
-- [BlueSky](https://bsky.app/profile/buspirate.bsky.social)
-- [Twitter](https://twitter.com/dangerousproto)
+import FooterCommunity from '../../_footer/_footer-community.md'
 
-## Other Documentation
-Bus Pirate 5 documentation is broken into [hardware](https://hardware.buspirate.com/introduction) and [firmware](https://firmware.buspirate.com/introduction) sections so it can be versioned easily with each update. Here's some other fun stuff you might enjoy.
-- [Component selection and sourcing](https://hardware.buspirate.com/components/introduction)
-- [Case/enclosure](https://hardware.buspirate.com/enclosure/fdm-shell)
-- [Cables](https://firmware.buspirate.com/overview/cables)
-- [Milled breadboard pins](https://firmware.buspirate.com/overview/milled-breadboard-pins)
-- [Hardware users guide](https://firmware.buspirate.com/overview/hardware)
-- [Firmware tutorials](https://firmware.buspirate.com/tutorial-basics/quick-setup)
-- [Command reference](https://firmware.buspirate.com/command-reference/all-commands)
-- [Firmware development](https://hardware.buspirate.com/development/code) and [translation](https://hardware.buspirate.com/development/translation)
-- [Manufacturing resources](https://hardware.buspirate.com/category/manufacturing)
+<FooterCommunity/>
+
+### Documentation
+import FooterDocs from '../../_footer/_footer-docs.md' 
+
+<FooterDocs/>
+
+## FCC compliance statement
+This device complies with part 15 of the FCC Rules. Operation is subject to the following two conditions: (1) this device may not cause harmful interference, and (2) this device must accept any interference received, including interference that may cause undesired operation.
+
+## CE compliance
+The Bus Pirate has been lab tested to comply with European CE requirements.
+
+
+
 

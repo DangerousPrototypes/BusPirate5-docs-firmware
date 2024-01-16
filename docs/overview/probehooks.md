@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 50
 sidebar_label: 'Probe Hooks'
 ---
 
@@ -126,3 +126,20 @@ An even larger round hook, primarily useful for higher current applications. We'
 Drawing, rating, and dimensions taken from datasheets and hand measurements. We sometimes used averages from various similar parts found in the market. These are not guaranteed values. 
 
 While some hooks may be rated for high voltages and current, the Bus Pirate is not. Do not use the Bus Pirate with >5 volts DC or high current sources. Never expose the Bus Pirate to AC voltages.
+:::
+
+## Join the fun
+### Get Bus Pirate 5
+import FooterGet from '../../_footer/_footer-get.md'
+
+<FooterGet/>
+
+### Community
+import FooterCommunity from '../../_footer/_footer-community.md'
+
+<FooterCommunity/>
+
+### Documentation
+import FooterDocs from '../../_footer/_footer-docs.md' 
+
+<FooterDocs/>
