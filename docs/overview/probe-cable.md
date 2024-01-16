@@ -4,7 +4,7 @@ sidebar_label: 'Probe Cable Kit'
 ---
 # Probe Cable Set
 
-![](./img/cable-p.jpg)
+![](./img/cable-p-milled-pins.jpg) 
 
 - 1 [Premium Probe Cable](https://hardware.buspirate.com/cables/#probe-cable)
 - 10 [Shenzhen starter probe hooks](/overview/probehooks#the-shenzhen-hook)
