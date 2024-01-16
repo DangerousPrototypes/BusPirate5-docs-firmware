@@ -26,7 +26,7 @@ VT100 terminal emulation supports color and a live statusbar view of the voltage
 - 1Gbit NAND flash - Store settings and files. Appears as a USB drive.
 - LCD - A beautiful 240x320 pixel color IPS (all angle viewing) LCD acts as a pin label, while also showing the voltage on each pin and the current consumption of the programmable power supply unit
 - 18 RGB LEDs - It's customary to have an indicator LED, so to check that box we added 16 SK6812 RGB LEDs.
-- Just one button - 16 party LEDs but just one button!
+- Just one button - 18 party LEDs but just one button!
 - 1-Wire, I2C, SPI, UART, MIDI, serial LEDs supported, more to come!
 
 Bus Pirate 5 is the universal serial interface tool designed by hackers, for hackers. It's crammed full of hardware and firmware features to make probing chips pleasant and easy.
@@ -40,18 +40,13 @@ import FooterGet from '../../_common/_footer/_footer-get.md'
 This is the user guide for Bus Pirate 5. See the [hardware documentation](https://hardware.buspirate.com/) for all the technical details.
 :::
 
-
 ## LCD
 
-    320 x 240 pixel IPS all direction display
-    Pin labels
-    Live voltage measurements
-    Live current consumption
+A beautiful 240x320 pixel color IPS (all angle viewing) LCD acts as a pin label, while also showing the voltage on each pin and the current consumption of the programmable power supply unit
 
 ## 18 RGB LEDs
 
-    Introduction demo
-    Party mode
+It's customary to have an indicator LED, so to check that box we added 18 programmable SK6812 RGB LEDs.
 
 ## Main connector
 ![](./img/bp5-connectors.jpg)
@@ -87,8 +82,7 @@ Flash storage is used to save global and mode configuration preferences in simpl
 
 ## Just one button
 
-    Escape from modes
-    User input for production programming, remote hacking, whatever
+18 party LEDs but just one button! This is due to the low pin count of the RP2040. The button is used to escape modes, production programming and user defined functions.
 
 ## USB C connector
 ![](./img/bp5-usbc.jpg)
@@ -99,7 +93,9 @@ Modern USB C connector. Only RP2040 supported USB modes are available.
 
 ![](./img/bp5-back.jpg)
 
-Updating is as simple as dragging a file onto the disk. Normally the ```$``` key in the Bus Pirate terminal enters bootloader mode for firmware upgrades. You can also use the button on the bottom to activate the bootloader manually. 
+Updating is as simple as dragging a file onto the disk. 
+
+Normally the ```$``` key in the Bus Pirate terminal enters bootloader mode for firmware upgrades. You can also use the button on the bottom to activate the bootloader manually. 
 
 ## JTAG debug header
 ![](./img/bp5-debug.jpg)
