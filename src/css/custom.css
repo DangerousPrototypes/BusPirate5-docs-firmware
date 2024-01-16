@@ -72,3 +72,14 @@
 .bp-pre{
 	color: #FFFFFF;
 }
+
+.bp-buy{
+  background-color: rgb(236, 42, 53);
+  border-radius: '5px';
+  color: '#fff';
+  padding: '0.1rem';
+}
+
+.bp-buy:hover{
+ background-color: rgb(255, 163, 168);
+}

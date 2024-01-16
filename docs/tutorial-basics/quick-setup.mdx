@@ -16,9 +16,10 @@ import TabItem from '@theme/TabItem';
 
 Connect the Bus Pirate to your computer with a USB C cable.
 
-Bus Pirate 5 currently appears as two USB devices:
-- USB CDC class device: an emulated serial port for accessing the user terminal
-- USB Mass Storage Device: a disk drive interface for accessing a TF flash card inserted in the Bus Pirate
+Bus Pirate 5 currently appears as three USB devices:
+- USB CDC class device 0: an emulated serial port for accessing the user terminal
+- USB CDC class device 1: an emulated serial port for accessing the binary scripting interface
+- USB Mass Storage Device: a disk drive interface for accessing onboard storage
 
 These are common device classes and recent operating systems will not request or require a driver. We're living in the future, woohoo!
 

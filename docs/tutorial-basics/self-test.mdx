@@ -11,22 +11,17 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 
 Every Bus Pirate is lovingly tested by our crack team before it ships, but problems can always occur in transit or over time. The Bus Pirate firmware has a self-test that will help determine if your Bus Pirate is in good working order. 
 
-
 The detailed self-test is primarily useful in three situations:
 - For prototype testing. We may have done a poor job solder paste stenciling or the Neoden 4 did its flick and chase thing. 
-- Manufacturing testing. We need to make sure no failed components are on the board before we ship.
+- Production testing. We need to make sure no failed components are on the board before we ship.
 - Disaster assessment. Something went wrong while hacking and now a pin doesn't work.
 
 ## Setup the self-test
 
 - Disconnect any devices from the Bus Pirate. An external device will interfere with the test and could be damaged by the voltage used on the pins.
-- Insert a TF flash card. If **a formatted and mountable TF flash card is not inserted the TF flash card test will fail**. That doesn't mean it's broken, it just means the test couldn't be completed.
 
 :::warning
 Disconnect any devices before performing the self-test.
-:::
-:::caution
-The test will work without a TF flash card, but the TF flash card section of the self-test will fail.
 :::
 
 ## Start the self-test
@@ -60,25 +55,45 @@ Ensure the Bus Pirate is in HiZ mode before starting the self-test.
 
 Let's break down the self-test step by step.
 
+### Verify NAND flash
+
+<BrowserWindow>
+<span className="bp-prompt">HiZ></span> ~<br/>
+No file system!<br/>
+Format the Bus Pirate NAND flash?<br/>
+ALL DATA WILL BE DESTROYED!<br/>
+ y/n> y<br/>
+Format succeeded!<br/> 
+Storage mounted: 0.10 GB FAT16<br/>
+FORMAT NAND FLASH: OK<br/>
+</BrowserWindow>
+
+First the Bus Pirate checks the connection and health of the onboard NAND flash storage.
+- If the NAND flash is blank or corrupted, you will be prompted to format the chip
+
+:::danger
+You should not normally see this message. Formatting is performed during production testing. Answering yes will destroy all data on the NAND flash. Please [post a bug report in the forum](https://forum.buspirate.com/) if you see this message.
+:::
+
 ### System tests
 
 <BrowserWindow>
 <br/>
-<span className="bp-prompt">HiZ></span> ~<br/>
+
 <span className="bp-info">SELF TEST STARTING<br/>
 DISABLE IRQ: OK<br/>
 ADC SUBSYSTEM: VUSB  5.03V OK<br/>
-TF FLASH CARD: OK<br/>
+FLASH STORAGE: OK<br/>
 PSU ENABLE: OK<br/></span>
 </BrowserWindow>
 
 - **DISABLE IRQ** - The Bus Pirate disables all interrupts during the test.
 - **ADC SUBSYSTEM** - A test of the analog voltage measurement system and the IO expanders. Can the Bus Pirate change between analog inputs, and does the USB voltage measurement make sense? VUSB should be somewhere between 4.75 and 5.25 volts. Components include the RP2040 connections, 595 IO expander chips, 245 level translator, 4067 analog mux, an op-amp and various passive component connections.
-- **TF FLASH CARD** - Try to mount a TF flash card. **If no TF flash card is inserted this test will fail**. Tests the RP2040 connections and TF flash card socket.
+- **FLASH STORAGE** - Try to mount the onboard storage. 
 - **PSU ENABLE** - Test the programmable power supply unit. Output is set to 3.3volts with a 50mA current limit, after a delay the voltage is measured. Tests op-amps, comparator, transistors, FETs and several other components in the PPSU.
 
 :::caution
-The test will work without a TF flash card, but the TF flash card section of the self-test will fail.
+Prototype boards (REV8 and below) use a TF flash card for storage. If a formatted flash card isn't installed the flash storage section of the self-test will fail.
 :::
 
 ### BIO float
@@ -225,18 +240,12 @@ If you're still having a problem, could it be a firmware bug? Please let us know
 
 <BrowserWindow>
 <span className="bp-info">
-TF FLASH CARD: NOT DETECTED. ERROR!<br/>
+PSU ENABLE: CODE 3. ERROR!<br/>
 ...<br/>
 ERRORS: 1<br/>
 FAIL! :(</span>
 </BrowserWindow>
 
-:::caution
-The test will work without a TF flash card, but the TF flash card section of the self-test will fail.
-:::
-
-At this point we haven't see any failures in professionally manufactured boards during prototype runs, but we'll update the docs after the first big batch is tested. 
-
-If your self-test reports errors, we are eager to know. Please post the full self-test results in the forum and we'll have a look.
+If your self-test reports errors, we are eager to know. Please [post the full self-test results in the forum](https://forum.buspirate.com/) and we'll have a look.
 
 <DiscourseComments/>

@@ -6,11 +6,14 @@ slug: /
 
 # Bus Pirate 5 Firmware Guide
 
-![](./img/bp-rgb-dark.jpg)
+![](./img/bp5rev10-lit-black2.jpg)
 
-Bus Pirate 5 is the universal serial interface tool designed by hackers, for hackers. It's crammed full of hardware and firmware features that make probing chips pleasant and easy.
+Bus Pirate 5 is the universal serial interface tool designed by hackers, for hackers. It's crammed full of hardware and firmware features to make probing chips pleasant and easy.
 
-- LCD - A beautiful 240x320 pixel color IPS (all angle viewing) LCD acts as a pin label, while also showing the voltage on each pin and the current consumption of the programmable power supply unit. 
+- 8 powerful IO pins - Support multiple protocols from 1.2-5volts. Each with analog voltage measurement
+- 1-5volt output power supply - 0-500mA current limit, current sense, and resettable fuse
+- 1Gbit NAND flash - Stores settings and file. Appears as a USB drive.
+- LCD - A beautiful 240x320 pixel color IPS (all angle viewing) LCD acts as a pin label, while also showing the voltage on each pin and the current consumption of the programmable power supply unit
 - 16 RGB LEDs - It's customary to have an indicator LED, so to check that box we added 16 SK6812 RGB LEDs.
 - Just one button - 16 party LEDs but just one button!
 
@@ -22,51 +25,50 @@ This is a general overview of Bus Pirate 5. See the [hardware manual](https://ha
 ## Main connector
 ![](./img/bp5-connectors.jpg)
 
-- 2.54mm 10 pin connector - A keyed locking connector that works just as well with common jumper wires and 2.54mm 'DuPont' style connectors.
-
+2.54mm 10 pin connector - A keyed locking connector that works just as well with common jumper wires and 2.54mm 'DuPont' style connectors.
 
 |Pin|Label|Description|
 |-|-|-|
 |1|VOUT/VREF|Pin supplies 1-5volts up to 400mA with current limit and resetable fuse (VOUT) **OR** connects an external voltage source to the Bus Pirate IO interface|
-|2-9|IO0 - IO7|Buffered IO pins with voltage measurement and optional 10K pull-up resistors|
+|2-9|IO0 - IO7|Buffered IO pins 1.2-5volt output with voltage measurement and optional 10K pull-up resistors|
 |10|GND| Ground pin|
 
 ## Auxiliary connector
 
 ![](./img/bp5-aux.jpg)
 
-- 1mm 9 pin connector - Intended as a tap point for a logic analyzer. No more trying to balance two or three probes on a single pin, just tap the bus activity from this secondary header.
+1mm 9 pin connector - Intended as a tap point for a logic analyzer. No more trying to balance two or three probes on a single pin, just tap the bus activity from this secondary header.
 
 |Pin|Label|Description|
 |-|-|-|
 |1-8|IO0 - IO7|Buffered IO pins with voltage measurement and optional 10K pull-up resistors|
 |9|GND| Ground pin|
 
-## TF Flash Card Socket
+## 1Gbit NAND flash
 
-![](./img/bp5-sd.jpg)
+![](./img/bp5rev10-nand.jpg)
 
-- TF flash card socket - When plugged into a PC USB port, the TF flash card appears as a readable and writable disk drive. 
+1Gbit (~100MB usable) NAND flash - Appears as a readable and writable disk drive when plugged into a USB port. 
 
 ![](./img/json-config.png)
 
-- TF flash card storage is used to save global and mode configuration preferences in simple JSON files. 
+Flash storage is used to save global and mode configuration preferences in simple JSON files. 
 
 ## USB C connector
 ![](./img/bp5-usbc.jpg)
 
-- Modern USB C connector. Only RP2040 supported USB modes are available.
+Modern USB C connector. Only RP2040 supported USB modes are available.
 
 ## Bootloader button
 
 ![](./img/bp5-back.jpg)
 
-- Normally you just hit the ```$``` key in the Bus Pirate terminal to enter bootloader mode for firmware upgrades. You can also use the button on the bottom to activate the bootloader manually.
+Normally the ```$``` key in the Bus Pirate terminal enters bootloader mode for firmware upgrades. You can also use the button on the bottom to activate the bootloader manually.
 
 ## JTAG debug header
 ![](./img/bp5-debug.jpg)
 
-- A three pin debugging port is exposed on the bottom of the board. See the development section for more info on developing for the Bus Pirate.
+A three pin debugging port is exposed on the bottom of the board. See the development section for more info on developing for the Bus Pirate.
 
 |Pin|Label|Description|
 |-|-|-|
@@ -78,7 +80,7 @@ This is a general overview of Bus Pirate 5. See the [hardware manual](https://ha
 
 ![](./img/teraterm-done.png)
 
-- VT100 terminal emulation supports color and a live statusbar view of the voltage and functions on each pin.
+VT100 terminal emulation supports color and a live statusbar view of the voltage and functions on each pin.
 
 
 ## Join the fun
