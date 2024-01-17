@@ -6,7 +6,7 @@ slug: /
 
 # Bus Pirate 5 Firmware Guide
 
-![](./img/bp5rev10-lit-black2.jpg)
+![](./img/bp5rev10-cover-angle.jpg)
 
 Bus Pirate 5 is the latest edition of the original universal serial interface trusted by hackers since 2008.
 
@@ -40,13 +40,11 @@ import FooterGet from '../../_common/_footer/_footer-get.md'
 This is the user guide for Bus Pirate 5. See the [hardware documentation](https://hardware.buspirate.com/) for all the technical details.
 :::
 
-## LCD
+## Color IPS LCD
+
+![](./img/bp5rev10-cover-2.jpg)
 
 A beautiful 240x320 pixel color IPS (all angle viewing) LCD acts as a pin label, while also showing the voltage on each pin and the current consumption of the programmable power supply unit
-
-## 18 RGB LEDs
-
-It's customary to have an indicator LED, so to check that box we added 18 programmable SK6812 RGB LEDs.
 
 ## Main connector
 ![](./img/bp5-connectors.jpg)
@@ -81,6 +79,8 @@ It's customary to have an indicator LED, so to check that box we added 18 progra
 Flash storage is used to save global and mode configuration preferences in simple JSON files. 
 
 ## Just one button
+
+![](./img/bp5-onebutton.jpg)
 
 18 party LEDs but just one button! This is due to the low pin count of the RP2040. The button is used to escape modes, production programming and user defined functions.
 

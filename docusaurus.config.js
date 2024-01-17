@@ -146,7 +146,11 @@ const config = {
               {
                 label: 'BlueSky',
                 to: 'https://bsky.app/profile/buspirate.bsky.social',
-              },                               
+              },  
+              {
+                label: 'Instagram',
+                to: 'https://www.instagram.com/dangerousprototypes/',
+              },                                                
               {
                 label: 'Twitter',
                 to: 'https://twitter.com/dangerousproto',
