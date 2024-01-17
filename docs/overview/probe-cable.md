@@ -8,11 +8,13 @@ sidebar_label: 'Probe Cable Kit'
 
 - 1 [Premium Probe Cable](https://hardware.buspirate.com/cables/#probe-cable)
 - 10 [Shenzhen starter probe hooks](/overview/probehooks#the-shenzhen-hook)
-- 10 [Custom milled breadboard pins](/overview/milled-breadboard-pins)
+- 10 [Custom milled breadboard pins](https://hardware.buspirate.com/cables/milled-pins)
 
-A keyed and locking probe cable made of premium soft and flexible silicone coated wire connects to the Bus Pirate 10 pin main header. The ends are 2.54mm Dupont connectors that fit many different types of probe hooks as well as our custom milled breadboard adapter pins. Each lead is wrapped with labeled and color coded shrink tube. 10 black [Shenzhen starter hooks](/overview/probehooks#the-shenzhen-hook) and [10 custom milled breadboard pins](/overview/milled-breadboard-pins) are included. See the [probe hook guide](/overview/probehooks) for an overview of common affordable hooks.
+A keyed and locking probe cable made of premium soft and flexible silicone coated wire connects to the Bus Pirate 10 pin main header. The ends are 2.54mm Dupont connectors that fit many different types of probe hooks as well as our custom milled breadboard adapter pins. Each lead is wrapped with labeled and color coded shrink tube. 10 black [Shenzhen starter hooks](/overview/probehooks#the-shenzhen-hook) and [10 custom milled breadboard pins](https://hardware.buspirate.com/cables/milled-pins) are included. See the [probe hook guide](/overview/probehooks) for an overview of common affordable hooks.
 
-- [Available at DirtyPCBs](https://dirtypcbs.com/store/designer/details/ian/6619/bus-pirate-5-probe-cable-kit)
+import FooterCart from '/_common/_footer/_footer-cart.md'
+
+<FooterCart/>
 
 ## Premium Probe Cable
 
@@ -40,7 +42,9 @@ Resources
 
 ![](./img/cable-hooks.jpg)
 
-10 Shenzhen hooks - cheap and black. Oh so fashionable! 
+10 [Shenzhen Hook test probes](/overview/probehooks#the-shenzhen-hook) to tap surface mount chip leads. Cheap and black. Oh so fashionable! 
+
+This inexpensive hook has been everywhere for as long as the Bus Pirate has been around. For what you pay, which is almost nothing, these are really acceptable hooks. Some people use them (gently) for years, but the metal grabbers are delicate and eventually deform to the point where they no longer hold securely.
 
 Resources:
 
@@ -62,10 +66,9 @@ Resources:
 
 ![](./img/cable-wire.jpg)
 
-All of the Bus Pirate cables are made with super soft and flexible premium silicone coated wire. The inner strands are very fine tinned copper. 22AWG has 60 strands 0.08mm thick (bottom), compared to 8-12 strands in common wire (top). The silicone coating has a very nice feel, and is tolerant of high heat and chemicals.
+All [Bus Pirate cables](https://hardware.buspirate.com/cables/) are made with super soft and flexible premium silicone coated wire. The inner strands are very fine tinned copper. 22AWG has 60 strands 0.08mm thick (bottom), compared to 8-12 strands in common wire (top). The silicone coating has a very nice feel, tolerates  high heat and chemicals.
 
-## Join the fun
-### Get Bus Pirate 5
+## Get Bus Pirate 5
 import FooterGet from '../../_common/_footer/_footer-get.md'
 
 <FooterGet/>

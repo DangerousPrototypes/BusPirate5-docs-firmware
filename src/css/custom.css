@@ -73,13 +73,32 @@
 	color: #FFFFFF;
 }
 
-.bp-buy{
-  background-color: rgb(236, 42, 53);
-  border-radius: '5px';
-  color: '#fff';
-  padding: '0.1rem';
+.btn {
+  background-color: rgb(236,42,53);
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight:bolder;
+  margin: 0px 0px;
+  opacity: 0.8;
+  transition: 0.3s;
+
+
 }
 
-.bp-buy:hover{
- background-color: rgb(255, 163, 168);
+.btn:hover {
+  cursor: pointer;
+  opacity: 1;   
+  color: white; 
+  text-decoration: none;
+}
+
+.btn-cart{
+  fill:white;
+  width:35px;
+  margin-right:10px;
+  vertical-align:bottom;
 }

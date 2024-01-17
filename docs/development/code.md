@@ -93,6 +93,20 @@ Hardware:
 
  Updates pushed to the main branch of the Bus Pirate git repo are automatically compiled, zipped, and posted with change notes in the forum. The RP2040 toolchain is installed on a simple Linux build server [following these instructions](https://lindevs.com/set-up-raspberry-pi-Pico-sdk-on-ubuntu).
 
+## Resources
+
+### Files
+import FooterFiles from '/_common/_footer/_footer-files.md'
+
+<FooterFiles/>
+
+### Community
+import FooterCommunity from '/_common/_footer/_footer-community.md'
+
+<FooterCommunity/>
+
+
+
 
 
 

@@ -18,6 +18,10 @@ A cheap W25Q64 SPI flash board that adds 8 megabytes of storage to your project:
 - Pages can be erased in groups of 16 (4KB sector erase), groups of 128 (32KB block erase), groups of 256 (64KB block erase) or the entire chip (chip erase). 
 - Considering it might be a Chinese clone purchased from AliExpress or a similar site, here's the maximum speed I recommend: ~10MHz (Standard SPI)
 
+import FooterCart from '/_common/_footer/_footer-cart.md'
+
+<FooterCart/>
+
 ## Connections
 
 |Bus Pirate|W25Q64 board|Description|
@@ -361,8 +365,7 @@ To confirm the data was written, we use the 'Read Data' instruction ```0x03``` o
 If the writing/reading process fails, check all connections. /HOLD & /WP pins must be connected to 3.3 volts.
 :::
 
-## Join the fun
-### Get Bus Pirate 5
+## Get Bus Pirate 5
 import FooterGet from '../../_common/_footer/_footer-get.md'
 
 <FooterGet/>

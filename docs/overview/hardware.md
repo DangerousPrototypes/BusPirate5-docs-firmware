@@ -8,9 +8,13 @@ slug: /
 
 ![](./img/bp5rev10-cover-angle.jpg)
 
-Bus Pirate 5 is the latest edition of the original universal serial interface trusted by hackers since 2008.
+Bus Pirate 5 is the latest edition of the universal serial interface trusted by hackers since 2008.
 
-Can't get a chip to work? Is it the circuit, code, bad part or a burned out pin? The Bus Pirate sends commands over common serial protocols (1-Wire, I2C, SPI, UART, MIDI, serial LEDs, etc!) so you can get to know a chip before prototyping. Updated with tons of new features and tools, talking to chips and probing interfaces is more fun than ever!
+Can't get a chip to work? Is it the circuit, code, bad part or a burned out pin? The Bus Pirate sends commands over common serial protocols (1-Wire, I2C, SPI, UART, MIDI, serial LEDs, etc) so you can get to know a chip before prototyping. Updated with tons of new features, talking to chips and probing interfaces is more fun than ever!
+
+import FooterCart from '/_common/_footer/_footer-cart.md'
+
+<FooterCart/>
 
 ## VT100 terminal interface
 
@@ -32,7 +36,7 @@ VT100 terminal emulation supports color and a live statusbar view of the voltage
 Bus Pirate 5 is the universal serial interface tool designed by hackers, for hackers. It's crammed full of hardware and firmware features to make probing chips pleasant and easy.
 
 ### Get Bus Pirate 5
-import FooterGet from '../../_common/_footer/_footer-get.md' 
+import FooterGet from '/_common/_footer/_footer-get.md' 
 
 <FooterGet/>  
 
@@ -108,24 +112,22 @@ A three pin debugging port is exposed on the bottom of the board. See the develo
 |2|SWDIO|JTAG Data IO|
 |3|SWCLK|JTAG Clock (closest to the edge of the PCB/case)|
 
-## Join the fun
-
-### Get Bus Pirate 5
+## Get Bus Pirate 5
 
 <FooterGet/>
 
 ### Files
-import FooterFiles from '../../_common/_footer/_footer-files.md'
+import FooterFiles from '/_common/_footer/_footer-files.md'
 
 <FooterFiles/>
 
 ### Community
-import FooterCommunity from '../../_common/_footer/_footer-community.md'
+import FooterCommunity from '/_common/_footer/_footer-community.md'
 
 <FooterCommunity/>
 
 ### Documentation
-import FooterDocs from '../../_common/_footer/_footer-docs.md' 
+import FooterDocs from '/_common/_footer/_footer-docs.md' 
 
 <FooterDocs/>
 
