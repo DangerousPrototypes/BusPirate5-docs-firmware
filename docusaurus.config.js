@@ -90,8 +90,8 @@ const config = {
             position: 'left',
           },     
           {
-            to: 'https://buspirate.com/about',
-            label: 'About',
+            to: 'https://buspirate.com/get',
+            label: 'Get',
             position: 'left',
           },                  
           /*{to: '/blog', label: 'Blog', position: 'left'},*/
