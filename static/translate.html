@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bus Pirate 5 Translation Editor</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .container div {
+    margin-bottom: 10px;
+  }
+  .container input[type="text"],
+  .container select,
+  .container button {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  .container button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .container button:hover {
+    background-color: #45a049;
+  }
+  .container a {
+    color: blue;
+    text-decoration: none;
+  }
+  .container a:hover {
+    text-decoration: underline;
+  }    
+
+  .container .translationTag {
+    max-width: 30%;
+    display: inline-block;
+  }
+  .container .translationText {
+    max-width:70%;
+  }
+    .highlight {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>Source URL:     
+      <input type="text" id="sourceUrl" value="https://api.github.com/repos/DangerousPrototypes/BusPirate5-firmware/contents/translation"> 
+      <input type="button" id="refreshFileList" value="Refresh File List">
+    </div>
+    <div>Load Translation File: 
+      <select id="fileDropdown">
+        <option value="">Select a file</option>
+      </select> 
+      <a href="#" id="currentTranslationFileUrl" style="display:none">Download Current Selection</a>
+    </div>
+    <div>
+      To start a new translation choose en-us.json. When you're done editing, click download and post the file in <a href="https://forum.buspirate.com">the forum</a>.
+    </div>
+    <div>Export Current Work:      
+      <button onclick="downloadJSON()">Download JSON</button>
+    </div>
+    <div id="container"></div>
+  </div>
+
+  <script>
+
+    function getInputsAndCreateJSON() {
+      const container = document.getElementById('container');
+      const divs = container.querySelectorAll('div');
+      const jsonArray={};
+
+      divs.forEach(div => {
+        jsonArray[div.getElementsByClassName('translationTag')[0].value]=div.getElementsByClassName('translationText')[0].value;
+      });
+
+      //console.log(JSON.stringify(jsonArray, null, 2));
+      return jsonArray;
+    }    
+
+    function downloadJSON() {
+        const jsonArray=getInputsAndCreateJSON();
+        
+      // Convert JSON data to string
+      const jsonString = JSON.stringify(jsonArray, null, 2);
+
+      // Create a Blob from the JSON string
+      const blob = new Blob([jsonString], { type: 'application/json' });
+
+      // Create a URL for the Blob
+      const url = URL.createObjectURL(blob);
+
+      // Create a link element with download attribute
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'translation.json';
+
+      // Append the link to the document body and trigger the download
+      document.body.appendChild(link);
+      link.click();
+
+      // Cleanup
+      URL.revokeObjectURL(url);
+      document.body.removeChild(link);
+    }    
+
+    const fileDropdown = document.getElementById('fileDropdown');
+    const fileContentElement = document.getElementById('fileContent');
+    const fileListSourceUrl=document.getElementById('sourceUrl');
+    const currentTranslationFileUrl=document.getElementById('currentTranslationFileUrl');
+
+    loadTranslationFilesFromUrl(fileListSourceUrl.value);
+
+    const fileRefreshButton=document.getElementById('refreshFileList');
+
+    fileRefreshButton.addEventListener('click', function(){
+        loadTranslationFilesFromUrl(fileListSourceUrl.value);
+    });
+
+
+    // Function to fetch JSON data and display it
+    async function fetchAndDisplayJSON(url) {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        // Container to hold the rows of text inputs
+        const container = document.getElementById('container');
+        container.innerHTML="";
+
+        /*
+        const row = document.createElement('div');  
+        const span = document.createElement('span'); 
+        span.className="translationTag";
+        span.innerHTML="Tags";
+        row.appendChild(span);
+        const span1 = document.createElement('span'); 
+        span1.className="translationText";
+        span1.innerHTML="Translation Text";
+        row.appendChild(span1);        
+        container.appendChild(row);
+        */
+
+        // Iterate over each object in the JSON and display it in text input boxes
+          Object.entries(data).forEach(([key, value]) => {
+            const row = document.createElement('div');            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className='translationTag';
+            input.value = key;
+            input.readOnly = true; // Make the inputs read-only
+            row.appendChild(input);            
+            const input2 = document.createElement('input');
+            input2.type = 'text';
+            input2.className='translationText';
+            input2.value = value;
+            input2.readOnly = false;
+            row.appendChild(input2);
+            container.appendChild(row);
+          });
+
+      } catch (error) {
+        console.error('Error fetching or parsing JSON:', error);
+      }
+    }    
+
+    // Event listener for file selection
+    fileDropdown.addEventListener('change', function() {
+        const container = document.getElementById('container');
+        container.innerHTML="";         
+      const selectedFile = fileDropdown.value;
+      if (selectedFile) {
+        currentTranslationFileUrl.href=selectedFile;
+        currentTranslationFileUrl.style.display='block';
+        fetchAndDisplayJSON(selectedFile);
+      } else {       
+        currentTranslationFileUrl.href='';
+        currentTranslationFileUrl.style.display='none';        
+        fileContentElement.textContent = ''; // Clear content if no file is selected
+      }
+    });
+
+    function loadTranslationFilesFromUrl(url)
+    {
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            //console.log(data);
+            fileDropdown.innerHTML='';
+            const option = document.createElement('option');
+            option.text = 'Select a file';
+            fileDropdown.appendChild(option);
+
+            data.forEach(item => {
+            if(item.name.split('.').pop()=='json')
+            {
+                const option = document.createElement('option');
+                option.value = item.download_url;
+                option.text = item.name;
+                fileDropdown.appendChild(option);
+            }
+            });
+        })
+        .catch(error => console.error('Error fetching directory contents:', error));
+    }
+
+
+
+    function highlightSpecialCharacters(element) {
+      const specialCharacters = ["\\t", "\\r", "\\n"];
+      const regex = new RegExp(specialCharacters.join('|'), 'g');
+      const html = element.innerHTML.replace(/\\n|\\r|\\t/g, '<span class="highlight">$&</span>');
+      console.log(html);
+      element.innerHTML = html;
+    }
+
+
+/*    const textInput = document.getElementById('textInput');
+    textInput.addEventListener('input', function(event) {
+      highlightSpecialCharacters(textInput);
+    });
+*/
+
+
+
+  </script>
+</body>
+</html>
