@@ -1,0 +1,294 @@
+---
+sidebar_position: 50
+sidebar_label: 'Oscilloscope'
+---
+import DiscourseComments from '@site/src/components/DiscourseComments';
+import BrowserWindow from '@site/src/components/BrowserWindow';
+
+# Scope Mode
+
+![](./img/scope-cover.jpg)
+
+The Bus Pirate display can be used as a low speed (500KSPS) oscilloscope with 128K capture buffer. Analog signals can be captured on any IO pin.
+
+## Start the scope
+
+<BrowserWindow>
+<span className="bp-prompt">HiZ></span> d<br/>
+<span className="bp-info">Display selection<br/>
+ 1. Default<br/>
+ 2. Scope<br/>
+ x. Exit<br/></span>
+<span className="bp-prompt">Display ></span> 2<br/>
+<span className="bp-info">Display:</span> Scope
+</BrowserWindow>
+
+The ```d``` command selects the LCD display mode. 
+- Choose ```scope``` to load the oscilloscope on the Bus Pirate LCD
+- You should see an oscilloscope show up on the Bus Pirate screen
+- It's rotated 90 degrees from the normal orientation so we can show longer waveforms
+
+## Display overview
+
+![](./img/scope1a.jpg)
+
+A brief description of the display:
+
+* The red 'T' is the trigger position
+* The text '1V x 100uS' in the top right is the scale (voltage X time), the size of 1 yellow square on the screen. The default scale is "1V x 100uS" - 1 volt by 100 microseconds
+* The text '0mS' in the top left is the offset (in time) of the left hand vertical yellow line
+* The text '0V' in the bottom left is the offset (in volts) of the bottom yellow line
+* The text 'PIN0' in the bottom right tells you which input pin is being sampled
+
+By default the screen displays 0V-5V in the vertical direction and 0uS to 640uS horizontally.
+The data on the screen is a window into a larger display buffer. After taking a trace you can move around 
+inside the buffer to explore different sections of the data.
+
+## Controls
+
+<BrowserWindow>
+<span className="bp-prompt">LED-()></span> sr 2n  <br/>
+</BrowserWindow>
+
+Controls are done from the command line, just like other Bus Pirate functions. There are 5 commands that can be entered:
+
+* **sr {pin} {mode}** - Scope Run, optional capture {pin} (0-7) and/or {mode} ("o n a" Once, Normal, Auto)
+* **ss** - Scope Stop
+* **x** - Edit timebase (x axis)
+* **y** - Edit voltage (y access)
+* **t** - Edit trigger
+
+All of these commands enter a more interactive UI where you can type single characters to navigate the captured data.
+You can skip back out to the normal UI by typing ```ENTER```.
+
+### Edit trigger
+
+<BrowserWindow>
+<span className="bp-prompt">LED-()></span> t<br/>
+Trigger: +-*b ^vT BME xy rsona> <br/>
+</BrowserWindow>
+
+In trigger mode you will see a red crosshair that shows the time and voltage that the trigger occurs at,
+there's also red test that describes it. If the crosshair is off the screen you'll see a red arrow
+pointing at where it's located.
+
+![](./img/scope2a.jpg)
+
+### Interactive commands
+
+<BrowserWindow>
+<span className="bp-prompt">LED-()></span> x<br/>
+Timebase: +- ^vT ty rsona> +-<br/>
+<span className="bp-prompt">LED-()></span> y<br/>
+Voltage scale: +- ^vT tx rsona> +-<br/>
+</BrowserWindow>
+
+Interactive commands control various settings in the x/y/t prompts. Some of these are different in different modes:
+
+|Command|Description|
+|-|-|
+|**<\>^v** | Arrows move you around in the sample buffer. In edit trigger mode move the trigger voltage and time around|
+|**+-**| Changes the time scale in x mode - where possible we over sample (up to 10 samples per pixel) so you can often zoom in 10x and continue to get more (after that it's interpolating) - 100uS/div is exactly 1 sample/pixel|
+|**+-**| Changes the voltage scale in y modes - the hardware can sample 0-5V in 12 bits, the display is sampling/scaling within that|
+|**+-b***| In trigger mode sets the edge to sample. **+/-** are positive/negative going edges. **b** means both edges. ***** means no edges (the trigger is turned off, you need to manually stop the scope or run it in auto mode)|
+|**r**|Starts the scope in the mode it was run in last time (pressing the button if the scope is stopped does the same thing)|
+|**s**| Stops the scope (pressing the button if the scope is running also stops it)|
+|**o**| Starts the scope in 'one time' mode (waits for one trigger and the stops)|
+|**n**| Starts the scope in 'normal' mode - the scope waits for a trigger, displays the trace and then starts again|
+|**a**| Starts the scope in 'auto mode' - the scope waits for a trigger, but every second it just displays what it's seeing (use this for measuring voltages)|
+|**BME**| In trigger mode Beginning/Middle/End moves the trigger to the beginning/middle/end of the buffer (if you change the y time scale you might want to set this again)|
+|**T**| Moves the y offset to the trigger|
+
+## Quick Tutorial
+
+Here's a quick start tutorial using only the Bus Pirate hardware. We're going to work on pin # 2, initially wagging it up and down and then setting up a clock.
+
+### Setup
+
+<BrowserWindow>
+<span className="bp-prompt">HiZ></span> m<br/>
+<br/>
+<span className="bp-info">Mode selection</span><br/>
+ 1. <span className="bp-info">HiZ</span><br/>
+ 2. <span className="bp-info">1-WIRE</span><br/>
+ 3. <span className="bp-info">UART</span><br/>
+ 4. <span className="bp-info">I2C</span><br/>
+ 5. <span className="bp-info">SPI</span><br/>
+ 6. <span className="bp-info">LED</span><br/>
+ x. <span className="bp-info">Exit</span><br/>
+<span className="bp-prompt">Mode ></span> 6<br/>
+<br/>
+<span className="bp-info">LED type</span><br/>
+ 1. <span className="bp-info">WS2812/SK6812/'NeoPixel' (single wire interface)*</span><br/>
+ 2. <span className="bp-info">APA102/SK9822 (clock and data interface)</span><br/>
+ 3. <span className="bp-info">Onboard LEDs (16 SK6812s)</span><br/>
+ x. <span className="bp-info">Exit</span><br/>
+<span className="bp-prompt">Type (</span>1<span className="bp-prompt">) ></span> 3<br/>
+<span className="bp-info">Mode:</span> LED<br/>
+<span className="bp-prompt">LED-()></span> W<br/>
+<span className="bp-info">Power supply<br/>
+Volts (0.80V-5.00V)</span><br/>
+<span className="bp-prompt">x to exit (3.30) ></span> <br/>
+<span className="bp-float">3.30</span>V<span className="bp-info"> requested, closest value: <span className="bp-float">3.30</span></span>V<br/>
+Set current limit?<br/>
+n <br/>
+<br/>
+<span className="bp-info">Power supply:</span>Enabled<br/>
+<span className="bp-info"><br/>
+Vreg output: <span className="bp-float">3.3</span></span>V<span className="bp-info">, Vref/Vout pin: <span className="bp-float">3.3</span></span>V<span className="bp-info">, Current sense: <span className="bp-float">2.4</span></span>mA<span className="bp-info"><br/>
+</span><br/>
+<span className="bp-prompt">LED-()></span> <br/>
+</BrowserWindow>
+
+Enter LED mode and enable a 3.3volt power supply:
+- Enter a mode with the ```m``` command, select LED mode with onboard LEDs
+- Set the I/O power supply to 3.3volts using the 'w' command (w ```enter``` ```enter``` n ```enter```)
+
+### Enable Scope
+
+<BrowserWindow>
+<span className="bp-prompt">LED></span> d<br/>
+<span className="bp-info">Display selection<br/>
+ 1. Default<br/>
+ 2. Scope<br/>
+ x. Exit<br/></span>
+<span className="bp-prompt">Display ></span> 2<br/>
+<span className="bp-info">Display:</span> Scope
+</BrowserWindow>
+
+The ```d``` command selects the LCD display mode. 
+- Type ```d``` and ```enter``` to configure the display mode
+- Choose ```scope``` to load the oscilloscope on the Bus Pirate LCD
+- You should see an oscilloscope on the Bus Pirate screen
+
+![](./img/scope1a.jpg)
+
+### Triggers
+
+<BrowserWindow>
+<span className="bp-prompt">LED-()></span> t<br/>
+Trigger: +-*b ^vT BME xy rsona> b<br/>
+<span className="bp-prompt">LED-()></span> sr 2n  <br/>
+</BrowserWindow>
+
+Set the trigger to 'both' edges and begin the scope capture on pin 2:
+- Type ```t``` and ```enter``` to get into trigger mode. 
+- Press ```b``` to set triggers on both the rising and falling edges, then ```enter``` to exit
+- ```sr 2n``` then ```enter``` to start the scope on pin 2 in normal mode
+
+![](./img/scope2a.jpg)
+
+### Capture
+
+<BrowserWindow>
+<span className="bp-prompt">LED-()></span> P<br/>
+<span className="bp-info">Pull-up resistors:</span> Enabled (10K ohms @ <span className="bp-float">3.3</span>V)<br/>
+<span className="bp-prompt">LED-()></span> p<br/>
+<span className="bp-info">Pull-up resistors:</span> Disabled<br/>
+<span className="bp-prompt">LED-()></span>
+</BrowserWindow>
+
+Now we'll use the pull-up resistors to trigger the scope:
+- ```P``` and ```enter``` to turn **on** the pull-up resistors. You should see a trace with a rising edge
+- ```p``` and ```enter``` to turn **off** the pull-up resistors. You should see an exponential decay curve
+
+![](./img/scope3a.jpg) ![](./img/scope4a.jpg)
+
+### Edge triggers
+
+<BrowserWindow>
+<span className="bp-prompt">LED-()></span> P<br/>
+<span className="bp-info">Pull-up resistors:</span> Enabled (10K ohms @ <span className="bp-float">3.3</span>V)<br/>
+<span className="bp-prompt">LED-()></span> t<br/>
+Trigger: +-*b ^vT BME xy rsona> +<br/>
+<span className="bp-prompt">LED-()></span> p<br/>
+<span className="bp-info">Pull-up resistors:</span> Disabled<br/>
+<span className="bp-prompt">LED-()></span> P<br/>
+<span className="bp-info">Pull-up resistors:</span> Enabled (10K ohms @ <span className="bp-float">3.3</span>V)<br/>
+<span className="bp-prompt">LED-()></span> 
+</BrowserWindow>
+
+The scope can be triggered by the rising or falling edge of a signal, or both:
+- ```P``` and ```enter``` to turn **on** the pull-up resistors again. 
+- ```t``` and ```enter``` to configure the trigger. Type ```+``` to trigger only on rising edges, then ```enter``` to leave trigger mode
+- ```p``` and ```enter``` to turn **off** the pull-up resistors. This time the scope doesn't capture because the signal is a falling edge
+- ```P``` and ```enter``` to turn **on** the pull-up resistors again. The scope is triggered by the rising edge.
+
+### Navigation
+
+<BrowserWindow>
+<span className="bp-prompt">LED-()></span> G 2<br/>
+<span className="bp-info">Generate frequency</span><br/>
+<span className="bp-info">Choose available pin:</span><br/>
+ 2. IO<span className="bp-float">2</span><br/>
+ 3. IO<span className="bp-float">3</span><br/>
+ 4. IO<span className="bp-float">4</span><br/>
+ 5. IO<span className="bp-float">5</span><br/>
+ 6. IO<span className="bp-float">6</span><br/>
+ 7. IO<span className="bp-float">7</span><br/>
+ x. <span className="bp-info">Exit</span><br/>
+<span className="bp-prompt"> ></span> 2<br/>
+<span className="bp-prompt">Period or frequency (ns, us, ms, Hz, KHz or Mhz) ></span> 1ms<br/>
+<span className="bp-info">Frequency:</span> <span className="bp-float">1.000</span>ms = <span className="bp-float">1000</span>Hz (<span className="bp-float">1000.00</span>Hz)<br/>
+<span className="bp-info">Period:</span> <span className="bp-float">1000000</span>ns (<span className="bp-float">1.00</span>ms)<br/>
+<br/>
+<span className="bp-info">Actual frequency:</span> <span className="bp-float">1000</span>Hz (<span className="bp-float">1.00</span>KHz)<br/>
+<span className="bp-info">Actual period:</span> <span className="bp-float">999998</span>ns (<span className="bp-float">1000.00</span>us)<br/>
+<br/>
+<span className="bp-prompt">Duty cycle (%) ></span> 33%<br/>
+<span className="bp-info">Duty cycle:</span> <span className="bp-float">33.00</span>% = <span className="bp-float">329999</span>ns (<span className="bp-float">330.00</span>us)<br/>
+<span className="bp-info">Actual duty cycle:</span> <span className="bp-float">330000</span>ns (<span className="bp-float">330.00</span>us)<br/>
+Divider: 31, Period: 64515, Duty: 21290<br/>
+<br/>
+<span className="bp-info">Generate frequency:</span> Enabled on IO<span className="bp-float">2</span><br/>
+<br/>
+<span className="bp-prompt">LED-()></span> 
+</BrowserWindow>
+
+The capture buffer is large. We can zoom and pan to navigate the data:
+- Generate a frequency on pin 2 (G 2 ```enter``` 1ms ```enter``` 33% ```enter```)
+
+#### Time scale
+
+<BrowserWindow>
+<span className="bp-prompt">LED-()></span> x<br/>
+Timebase: +- ^vT ty rsona> +-<br/>
+</BrowserWindow>
+
+- ```x``` and ```enter``` to scale the X axis (time). 
+- You should see a bunch of square waves, try ```+``` and ```-``` to change the scale, and the left and right arrows to move around. Freeze a trace with ```o```
+
+![](./img/scope5a.jpg) 
+
+#### Voltage scale
+
+<BrowserWindow>
+<span className="bp-prompt">LED-()></span> y<br/>
+Voltage scale: +- ^vT tx rsona> +-<br/>
+</BrowserWindow>
+
+- ```y``` and ```enter``` to scale the Y axis (volts).
+- Change the voltage scale with ```+``` and ```-```, and use the up down arrows to move the display
+
+![](./img/scope6a.jpg)
+
+## Limitations and bugs
+
+We're very much limited by the hardware:
+
+* 500k samples per second is the maximum speed of the RP2040 ADC
+* 12 bits 
+* Tiny display
+* No way to make a dual scope (we might be able to have a digital trigger in the future)
+
+There are bugs
+
+* At the moment integration with the rest of the BP software is poor - in particular the analog subsystem
+gets locked out when the scope is grabbing samples
+* We're losing samples some times (I think) might be someone else with a hefty ISR
+* The scope does trigger processing from an ISR (might have to always do that)
+* Periodically on long slow traces someone else seems to come in and grab the analog hardware
+
+This code is experimental. Feel free to play with it, don't expect
+it to work well, any feedback is happily received - Paul taniwha@gmail.com
+

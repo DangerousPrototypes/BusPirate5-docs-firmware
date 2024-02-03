@@ -340,6 +340,21 @@ the data display format menu (o). The default display format is Auto.
 - Auto display mode attempts to mirror user input formatting. Each value is displayed in the HEX/DEC/BIN format entered.
 - RAW display mode sends data to the terminal as raw bytes without any text conversion. This is useful for talking to ASCII serial interfaces that don't need further conversion.
 
+### **d** Display mode
+<BrowserWindow>
+<span className="bp-prompt">HiZ></span> d<br/>
+<span className="bp-info">Display selection<br/>
+ 1. Default<br/>
+ 2. Scope<br/>
+ x. Exit<br/></span>
+<span className="bp-prompt">Display ></span> 2<br/>
+<span className="bp-info">Display:</span> Scope
+</BrowserWindow>
+
+```d``` selects the LCD display mode.
+1. Default: Pin labels and voltage
+2. Scope: Oscilloscope mode
+
 ### **~** Self-test 
 <BrowserWindow>
 <span className="bp-prompt">HiZ></span> ~<br/>
