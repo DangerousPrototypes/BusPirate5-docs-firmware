@@ -9,7 +9,8 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 
 ![](./img/scope-cover.jpg)
 
-The Bus Pirate display can be used as a low speed (500KSPS) oscilloscope with 128K capture buffer. Analog signals can be captured on any IO pin.
+The Bus Pirate can support an oscilloscope display mode - it's limited by the underlying
+RP2040 chip to 0.5Msps so it's suitable for analog audio, not for high speed digital signals greater than 500KHz. Analog signals can be captured on any IO pin.
 
 ## Start the scope
 
@@ -32,23 +33,19 @@ The ```d``` command selects the LCD display mode.
 
 ![](./img/scope1a.jpg)
 
-A brief description of the display:
+The display is small, to make the scope more useful we have a much larger capture buffer than the actual display and software scales the captured data to fit. The actual resolution is 0.5M samples per second. In the 100uS/div range that's one sample per pixel, any faster (50uS/div and below and samples are interpolated on the screen). If possible we try and capture up to 10 samples per pixel at whatever the current resolution is so that you can zoom into captured data at least 10 times (3 steps) before we start interpolating.
 
-* The red 'T' is the trigger position
 * The text '1V x 100uS' in the top right is the scale (voltage X time), the size of 1 yellow square on the screen. The default scale is "1V x 100uS" - 1 volt by 100 microseconds
 * The text '0mS' in the top left is the offset (in time) of the left hand vertical yellow line
 * The text '0V' in the bottom left is the offset (in volts) of the bottom yellow line
 * The text 'PIN0' in the bottom right tells you which input pin is being sampled
+* If the trigger point for the current trace is visible on the display then a small red arrow will appear at the trigger point at the top of the display
 
 By default the screen displays 0V-5V in the vertical direction and 0uS to 640uS horizontally.
 The data on the screen is a window into a larger display buffer. After taking a trace you can move around 
 inside the buffer to explore different sections of the data.
 
-## Controls
-
-<BrowserWindow>
-<span className="bp-prompt">LED-()></span> sr 2n  <br/>
-</BrowserWindow>
+## Commands
 
 Controls are done from the command line, just like other Bus Pirate functions. There are 5 commands that can be entered:
 
@@ -58,24 +55,38 @@ Controls are done from the command line, just like other Bus Pirate functions. T
 * **y** - Edit voltage (y access)
 * **t** - Edit trigger
 
-All of these commands enter a more interactive UI where you can type single characters to navigate the captured data.
-You can skip back out to the normal UI by typing ```ENTER```.
+All of these commands enter a more interactive UI where you can type single characters to navigate the captured data. You can skip back out to the normal UI by typing ```ENTER```.
 
-### Edit trigger
+
+### Scope Run
 
 <BrowserWindow>
-<span className="bp-prompt">LED-()></span> t<br/>
-Trigger: +-*b ^vT BME xy rsona> <br/>
+<span className="bp-prompt">LED-()></span> sr 2n  <br/>
 </BrowserWindow>
 
-In trigger mode you will see a red crosshair that shows the time and voltage that the trigger occurs at,
-there's also red test that describes it. If the crosshair is off the screen you'll see a red arrow
-pointing at where it's located.
+```sr {pin} {mode}``` ('scope run') starts the oscilloscope, you can specify additional parameters if you don't specify any it will use the previous settings. 
 
-![](./img/scope2a.jpg)
+```{pin}``` is a single digit 0-7 to specify which Bus Pirate pin to capture.
 
-### Interactive commands
+```{mode}``` is 'o' 'n' or 'a' to specify which mode you want the display to work in:
+- ```o``` ('once') will wait for a single trigger and stop
+- ```n``` ('normal') will wait for a trigger, display the waveform and restart looking for the next trigger
+- ```a``` ('auto') will wait for a trigger or a timeout (a second or so) whichever comes first and then restart, use this one to measure voltages
 
+### Scope Stop
+
+```ss``` ('scope stop') stops the scope 
+
+### Scope Parameters
+In addition there are 3 commands than can be used to alter parameters - these replace the knobs you'd find on a normal oscilloscope:
+
+- ```x``` ('x axis' - timebase)
+- ```y``` ('y axis' - voltage)
+- ```t``` ('trigger' - trigger voltage and position)
+
+These commands work a bit differently from normal Bus Pirate commands, you can use them two ways, either type the command along with some parameters and hit ```enter```, or just type the command and ```enter``` and you will pop into an interactive mode where you can type parameters to change things interactively on the display, typing ```enter``` again will return you to the main BusPirate prompt.
+
+#### X/Y navigation
 <BrowserWindow>
 <span className="bp-prompt">LED-()></span> x<br/>
 Timebase: +- ^vT ty rsona> +-<br/>
@@ -83,21 +94,46 @@ Timebase: +- ^vT ty rsona> +-<br/>
 Voltage scale: +- ^vT tx rsona> +-<br/>
 </BrowserWindow>
 
-Interactive commands control various settings in the x/y/t prompts. Some of these are different in different modes:
+Interactive parameters in x and y modes are:
 
-|Command|Description|
-|-|-|
-|**<\>^v** | Arrows move you around in the sample buffer. In edit trigger mode move the trigger voltage and time around|
-|**+-**| Changes the time scale in x mode - where possible we over sample (up to 10 samples per pixel) so you can often zoom in 10x and continue to get more (after that it's interpolating) - 100uS/div is exactly 1 sample/pixel|
-|**+-**| Changes the voltage scale in y modes - the hardware can sample 0-5V in 12 bits, the display is sampling/scaling within that|
-|**+-b***| In trigger mode sets the edge to sample. **+/-** are positive/negative going edges. **b** means both edges. ***** means no edges (the trigger is turned off, you need to manually stop the scope or run it in auto mode)|
-|**r**|Starts the scope in the mode it was run in last time (pressing the button if the scope is stopped does the same thing)|
-|**s**| Stops the scope (pressing the button if the scope is running also stops it)|
-|**o**| Starts the scope in 'one time' mode (waits for one trigger and the stops)|
-|**n**| Starts the scope in 'normal' mode - the scope waits for a trigger, displays the trace and then starts again|
-|**a**| Starts the scope in 'auto mode' - the scope waits for a trigger, but every second it just displays what it's seeing (use this for measuring voltages)|
-|**BME**| In trigger mode Beginning/Middle/End moves the trigger to the beginning/middle/end of the buffer (if you change the y time scale you might want to set this again)|
-|**T**| Moves the y offset to the trigger|
+- ```+```/```-``` in x mode increases or decreases the timebase scale - it changes the displayed scale but not the underlying data until the next time data is collected.
+- ```+```/```-``` in y mode increases or decreases the voltage sensitivity (change the displayed scale)
+- ```^```/```v```/```<```/```>``` or the equivalent arrow keys in x or y modes moves the display around within the currently collected data
+
+#### Triggers
+
+<BrowserWindow>
+<span className="bp-prompt">LED-()></span> t<br/>
+Trigger: +-*b ^vT BME xy rsona> <br/>
+</BrowserWindow>
+
+In Trigger mode
+- ```+```/```-```/```b```/```n``` changes which edge triggers a data capture (positive going, negative going, both edges or no edges respectively)
+- ```^```/```v``` or the equivalent arrow keys changes the voltage at which the trigger occurs
+- ```<```/```>``` or the equivalent arrow keys moves the next trigger point around (chooses where in the next set of collected data the trigger will be)
+- ```B```/```M```/```E``` moves the trigger point to the beginning/middle/end of the sample buffer
+
+In trigger mode you will see a red crosshair that shows the time and voltage that the trigger occurs at,
+there's also red test that describes it. If the crosshair is off the screen you'll see a red arrow
+pointing at where it's located.
+
+![](./img/scope2a.jpg)
+
+In all 3 modes you can type:
+- ```T``` moves the x display point to show the current trigger point
+- ```r``` start run (like ```sr```)
+- ```s``` stop the scope (like ```ss```)
+- ```o``` start the scope in once mode (like ```sr o```)
+- ```n``` start the scope in normal mode (like ```sr n```)
+- ```a``` start the scope in auto mode (like ```sr a```)
+- ```t``` switch to trigger mode
+- ```x``` switch to x/timebase mode
+- ```y``` switch to y/voltage mode
+- ```enter``` leaves interactive mode
+
+Note: commands that require a shift like + can also use their unshifted equivalents (= for +).
+
+The general idea is that you switch into scope display mode with "d", start the scope running with something like "sr 2n" to sample from pin 2, use "t" to set up a trigger use "x" to get into interactive mode and +/- to set up timebase and the arrow keys to look at the result
 
 ## Quick Tutorial
 
@@ -176,6 +212,8 @@ Set the trigger to 'both' edges and begin the scope capture on pin 2:
 - Press ```b``` to set triggers on both the rising and falling edges, then ```enter``` to exit
 - ```sr 2n``` then ```enter``` to start the scope on pin 2 in normal mode
 
+The default trigger point is ~2.4volts.
+
 ![](./img/scope2a.jpg)
 
 ### Capture
@@ -190,7 +228,7 @@ Set the trigger to 'both' edges and begin the scope capture on pin 2:
 
 Now we'll use the pull-up resistors to trigger the scope:
 - ```P``` and ```enter``` to turn **on** the pull-up resistors. You should see a trace with a rising edge
-- ```p``` and ```enter``` to turn **off** the pull-up resistors. You should see an exponential decay curve
+- ```p``` and ```enter``` to turn **off** the pull-up resistors. You should see a nice exponential decay curve on the scope as pin 2's capacitance discharges
 
 ![](./img/scope3a.jpg) ![](./img/scope4a.jpg)
 
@@ -245,7 +283,7 @@ Divider: 31, Period: 64515, Duty: 21290<br/>
 <span className="bp-prompt">LED-()></span> 
 </BrowserWindow>
 
-The capture buffer is large. We can zoom and pan to navigate the data:
+Next let's try something more involved, let's set up a square wave on pin 2.
 - Generate a frequency on pin 2 (G 2 ```enter``` 1ms ```enter``` 33% ```enter```)
 
 #### Time scale
@@ -255,10 +293,14 @@ The capture buffer is large. We can zoom and pan to navigate the data:
 Timebase: +- ^vT ty rsona> +-<br/>
 </BrowserWindow>
 
+You should see the display showing a square wave. The capture buffer is large. We can zoom and pan to navigate the data:
 - ```x``` and ```enter``` to scale the X axis (time). 
 - You should see a bunch of square waves, try ```+``` and ```-``` to change the scale, and the left and right arrows to move around. Freeze a trace with ```o```
 
 ![](./img/scope5a.jpg) 
+
+Note you are now in interactive mode - try the ```-``` command a few times and see that you can zoom out from the current display and the ```+``` zooms in, ```<``` and ```>``` let you more right and left within the display.
+
 
 #### Voltage scale
 
@@ -267,10 +309,16 @@ Timebase: +- ^vT ty rsona> +-<br/>
 Voltage scale: +- ^vT tx rsona> +-<br/>
 </BrowserWindow>
 
+
+Type ```y``` on the command line **or** in the x or t interactive mode type. Now you are in 'voltage mode'. ```+``` will zoom in vertically and ```^```/```v``` will let you scroll up and down.
 - ```y``` and ```enter``` to scale the Y axis (volts).
 - Change the voltage scale with ```+``` and ```-```, and use the up down arrows to move the display
 
 ![](./img/scope6a.jpg)
+
+Scroll back to the beginning and use ```-``` zoom out to 1v/div. Now type ```t``` to go into trigger  mode - you'll see a red crosshair showing the trigger voltage and time, and their actual values in red at the top right, you can edit them using the arrow keys, you can also change the trigger type using +-bn - try typing ```-``` and seeing how the display changes. 
+
+Let's move the trigger point to the middle of the capture buffer - type ```M``` and notice how the red vertical line is replaced by a small red arrow pointing right, you can type ```T``` to center the display on the new trigger point. ```BT``` will put it back.
 
 ## Limitations and bugs
 
@@ -280,15 +328,3 @@ We're very much limited by the hardware:
 * 12 bits 
 * Tiny display
 * No way to make a dual scope (we might be able to have a digital trigger in the future)
-
-There are bugs
-
-* At the moment integration with the rest of the BP software is poor - in particular the analog subsystem
-gets locked out when the scope is grabbing samples
-* We're losing samples some times (I think) might be someone else with a hefty ISR
-* The scope does trigger processing from an ISR (might have to always do that)
-* Periodically on long slow traces someone else seems to come in and grab the analog hardware
-
-This code is experimental. Feel free to play with it, don't expect
-it to work well, any feedback is happily received - Paul taniwha@gmail.com
-
