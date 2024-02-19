@@ -93,7 +93,12 @@ const config = {
             to: 'https://buspirate.com/get',
             label: 'Get',
             position: 'left',
-          },                  
+          },   
+          {
+            to: 'https://buspirate.com/contact',
+            label: 'Contact',
+            position: 'left',
+          },                          
           /*{to: '/blog', label: 'Blog', position: 'left'},*/
           {
             href: 'https://github.com/DangerousPrototypes',
