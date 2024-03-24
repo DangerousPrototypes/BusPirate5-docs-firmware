@@ -20,9 +20,9 @@ sidebar_label: 'IO Pin Descriptions'
 
 | Pin | Description (Bus Pirate is the controller)|
 |------------------------------|------------|
-| **Controller Data Out** (CDO/SDO/SDA/TX) | Primary data pin, it's used for bi-directional data transfer in protocols like I2C and 1-Wire, and as data-out from the Bus Pirate in uni-directional protocols like SPI and asynchronous serial (UART). | 
+| **Master Out Sub In** (MOSI/SDO/SDA/TX) | Primary data pin, it's used for bi-directional data transfer in protocols like I2C and 1-Wire, and as data-out from the Bus Pirate in uni-directional protocols like SPI and asynchronous serial (UART). | 
 | **Serial Clock** (SCLK/SCL)| Always a clock-out signal from the Bus Pirate.|
-| **Controller Data In** (CDI/RX) | Used with protocols that have a dedicated data-input, such as SPI and UART.|
+| **Master In Sub Out** (MISO/RX) | Used with protocols that have a dedicated data-input, such as SPI and UART.|
 | **Chip select** (CS)           | An output used to activate the serial interface in SPI-like protocols. *```[``` and ```]``` control a dedicated CS pin, but you can use ```a.X``` and ```A.X``` to take manual control of any available pin*.|
 | **Auxiliary** (AUX) | Used as an output or input from the Bus Pirate terminal interface with the A, a, and @ commands. It's useful for protocols that require an additional signal, such as a reset.   |
 | **Voltage Out/Voltage Reference** (VOUT/VREF)|1-5volt, 400mA onboard power supply output **-or-** external reference voltage to power the buffers.|
@@ -37,8 +37,8 @@ sidebar_label: 'IO Pin Descriptions'
 |IO2|GPIO10|5A|Yes|No|Yes, freq tied to IO3| | | | |
 |IO3|GPIO11|5B|Yes|Yes|Yes, freq tied to IO2| | | | |
 |IO4|GPIO12|6A|Yes|No|Yes, freq tied to IO5|TX| |SCLK| |
-|IO5|GPIO13|6B|Yes|Yes|Yes, freq tied to IO4|RX| |CDO| |
-|IO6|GPIO14|7A|Yes|No|Yes, freq tied to IO7 | | |CDI| |
+|IO5|GPIO13|6B|Yes|Yes|Yes, freq tied to IO4|RX| |MOSI| |
+|IO6|GPIO14|7A|Yes|No|Yes, freq tied to IO7 | | |MISO| |
 |IO7|GPIO15|7B|Yes|Yes|Yes, freq tied to IO6| | |CS| |
 
 - RP2040 PWM units consist of a "slice" that drives two adjacent pairs of pins. The duty cycle is independent, but the frequency is shared.
