@@ -22,6 +22,12 @@ See the [firmware update tutorial](tutorial-basics/firmware-update) for detailed
 The file copies, the Bus Pirate resets, and you're good to go!
 :::
 
+:::danger
+Bus Pirate blinking red? Recent firmware detects the hardware revision at startup. It will blink red if there is a mismatch.
+
+[Enter the bootloader manually](tutorial-basics/firmware-update#manually) (plug in the USB cable while pressing the button on the bottom side) and try the other file.
+:::
+
 ## Links
 
 <FooterFiles/>
