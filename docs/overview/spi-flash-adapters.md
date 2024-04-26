@@ -5,7 +5,7 @@ sidebar_label: 'SPI Flash Adapters'
 
 # SPI Flash Adapters
 
-![](./img/kf141r-render.png)![](./img/kf141r-pcb-2.jpg)   
+![](./img/flash-all.jpg)   
 
 Bus Pirate 5 has a "flash" command to read and write 8 pin SPI flash chips. Soldering chips on breakouts for testing got a bit wasteful, so we whipped up some simple socket adapters that fit the Bus Pirate header.
 
