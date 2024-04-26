@@ -5,7 +5,7 @@ sidebar_label: 'IO Pin Descriptions'
 
 # IO Pin Descriptions
 
-![](./img/bp5rev10-ioheader.jpg)
+![](./img/bp5-promo-12.jpg)
 
 ## Main connector pinout
 |Pin|Name      | Description|

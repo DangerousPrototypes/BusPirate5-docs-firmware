@@ -17,13 +17,13 @@ import FooterCart from '/_common/_footer/_footer-cart.md'
 
 ## KF141-R right angle connector
 
-![](./img/kf141r.jpg)
+![](./img/bp5-promo-8.jpg)
 
 KF141-R is a right angle connector. Wires clamps are oriented to the front of the connector block. Pin names are silkscreened in bright orange to save time and hassle.
 
 ## KF141-V vertical connector
 
-![](./img/kf141v.jpg)
+![](./img/bp5-promo-7.jpg)
 
 KF141-V is a vertical connector. Wires clamps are oriented to the top of the connector block. Pin names are silkscreened in bright orange to save time and hassle.
 

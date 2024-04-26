@@ -178,3 +178,147 @@ SPI>
 | CS         | <font size="+2">→</font> | CS      | Chip Select          |
 | CLK        | <font size="+2">→</font> | CLK     | Clock signal         |
 | GND        | <font size="+2">⏚</font> | GND     | Signal Ground        |
+
+## Commands
+
+Bus Pirate 5 has global commands available everywhere, and mode commands specific to the currently selected mode. Type ```help``` to see all commands in every mode, or ```help mode``` for the currently available mode commands.
+
+### flash 
+
+The ```flash``` command can read, write, and erase common SPI flash memory chips directly in the Bus Pirate terminal. The [Serial Flash Universal Driver](https://github.com/armink/SFUD) at the heart of the flash command attempts to identify the flash chip and select the appropriate settings. Most modern flash chips contain SFDP tables that describe the chip capabilities. If a chip doesn't have SFDP tables, the driver has a database of common chips on which to fall back .
+
+#### Help
+<BrowserWindow>
+<span className="bp-prompt">SPI></span> flash -h<br/>
+usage:<br/>
+<span className="bp-info">flash [init|probe|erase|write|read|verify|test]<br/>
+	[-f(ile)] [-e(rase)] [-v(verify)] [-h(elp)]</span><br/>
+<span className="bp-info">Initialize and probe: flash probe</span><br/>
+<span className="bp-info">Erase and program, with verify: flash write -f example.bin -e -v</span><br/>
+<span className="bp-info">Read to file: flash read -f example.bin</span><br/>
+<span className="bp-info">Verify with file: flash verify -f example.bin</span><br/>
+<span className="bp-info">Test chip (full erase/write/verify): flash test</span><br/>
+<span className="bp-info">Force dump: flash read -o -b bytes -f file</span><br/>
+<br/>
+<span className="bp-info">read, write and erase flash chips using SFDP info if available</span><br/>
+<span className="bp-prompt">init</span>	<span className="bp-info">Reset and initialize flash chip. Default if no options given. flash</span><br/>
+<span className="bp-prompt">probe</span> <span className="bp-info">Probe flash chip for ID and SFDP info. flash probe</span><br/>
+<span className="bp-prompt">erase</span>	<span className="bp-info">Erase flash chip. flash erase [-v(erify)]</span><br/>
+<span className="bp-prompt">write</span>	<span className="bp-info">Write file to flash chip. flash write -f file [-e(rase)] [-v(erify)]</span><br/>
+<span className="bp-prompt">read</span>	<span className="bp-info">Read flash chip to file. flash read -f file</span><br/>
+<span className="bp-prompt">verify</span>	<span className="bp-info">Verify flash chip against file. flash verify -f file</span><br/>
+<span className="bp-prompt">test</span>	<span className="bp-info">Erase and write full chip with dummy data, verify. flash test</span><br/>
+<span className="bp-prompt">-f</span>	<span className="bp-info">File flag. File to write, read or verify. flash verify -f file</span><br/>
+<span className="bp-prompt">-e</span>	<span className="bp-info">Erase flag. Add erase before write. flash write -f file -e</span><br/>
+<span className="bp-prompt">-v</span>	<span className="bp-info">Verify flag. Add verify after write or erase. flash write -f file -v</span><br/>
+</BrowserWindow>
+
+ 
+:::tip
+Use ```flash -h``` to see the latest options and features.
+:::
+
+Most Bus Pirate commands have help and usage examples. Add the ```-h``` flag to any command to see the available options and examples.
+
+#### Options and flags
+
+| Option | Description |
+|---------|-------------|
+| ```flash init``` | Reset and initialize flash chip. Default if no options given. |
+| ```flash probe``` | Probe flash chip for ID and SFDP info. |
+| ```flash erase``` | Erase flash chip. |
+| ```flash write``` | Write file to flash chip. Specify file with -f flag. Use -e flag to erase before write|
+| ```flash read``` | Read flash chip to file. Specify file with -f flag|
+| ```flash verify``` | Verify flash chip against file. Specify file with -f flag |
+| ```flash test``` | Erase and write full chip with dummy data, verify. |
+
+| Flag | Description |
+|------|-------------|
+| ```-f``` | File flag. File to write, read or verify. |
+| ```-e``` | Erase flag. Add erase before write. |
+| ```-v``` | Verify flag. Add verify after write or erase. |
+
+#### Initialize and identify a flash chip
+
+<BrowserWindow>
+<span className="bp-prompt">SPI></span> flash init<br/>
+Probing:<br/>
+		Device ID	Manuf ID	Type ID		Capacity ID<br/>
+RESID (0xAB)	0x13<br/>
+REMSID (0x90)	0x13		0xef<br/>
+RDID (0x9F)			0xef		0x40		0x14<br/>
+<br/>
+Initializing SPI flash...<br/>
+Flash device manufacturer ID 0xEF, type ID 0x40, capacity ID 0x14<br/>
+SFDP V1.5, 0 parameter headers<br/>
+		Type		Ver.	Length	Address<br/>
+Table 0		JEDEC (0x00)	1.5	64B	0x000080<br/>
+JEDEC basic flash parameter table info:<br/>
+MSB-LSB  3    2    1    0<br/>
+[0001] 0xFF 0xF1 0x20 0xE5<br/>
+...<br/>
+[0009] 0x00 0x00 0xD8 0x10<br/>
+4 KB Erase is supported throughout the device (instruction 0x20)<br/>
+Write granularity is 64 bytes or larger<br/>
+Flash status register is non-volatile<br/>
+3-Byte only addressing<br/>
+Capacity is 1048576 Bytes<br/>
+Flash device supports 4KB block erase (instruction 0x20)<br/>
+Flash device supports 32KB block erase (instruction 0x52)<br/>
+Flash device supports 64KB block erase (instruction 0xD8)<br/>
+Found a Winbond  flash chip (1048576 bytes)<br/>
+Flash device reset success<br/>
+</BrowserWindow>
+
+```flash```, ```flash init```, and ```flash probe``` provide various levels of details about a flash chip. The flash command tries three common methods to identify a flash chip (RESID, REMSID, RDID), then attempts to read the SFDP tables.  
+
+#### Read a flash chip
+
+<BrowserWindow>
+<span className="bp-prompt">SPI></span> flash read -f example.bin<br/>
+Reading 1048576 bytes from flash to example.bin<br/>
+[-------C o o o o o]
+</BrowserWindow>
+
+Read the contents of a flash chip to a file with the ```flash read``` command. The file name is specified with the ```-f``` flag.
+
+#### Write a flash chip
+
+<BrowserWindow>
+<span className="bp-prompt">SPI></span> flash write -f example.bin -e -v<br/>
+Erasing 1048576 bytes<br/>
+[-----------------C]<br/>
+Writing 1048576 bytes from example.bin to flash<br/>
+[-----------------C]<br/>
+Verifying 1048576 bytes from example.bin to flash<br/>
+[-------c o o o o]
+</BrowserWindow>
+
+Write a file to a flash chip with the ```flash write``` command. The file name is specified with the ```-f``` flag. Use the ```-e``` flag to erase the chip before writing, and the ```-v``` flag to verify the write.
+
+#### Verify a flash chip
+
+<BrowserWindow>
+<span className="bp-prompt">SPI></span> flash verify -f example.bin<br/>
+Verifying 1048576 bytes from example.bin to flash<br/>
+[-------c o o o o]
+</BrowserWindow>
+
+Verify the contents of a flash chip against a file with the ```flash verify``` command. The file name is specified with the ```-f``` flag.
+
+#### Test a flash chip
+
+<BrowserWindow>
+<span className="bp-prompt">SPI></span> flash test<br/>
+Erasing 1048576 bytes<br/>
+[-----------------C]<br/>
+Writing 1048576 bytes to flash<br/>
+[-----------------C]<br/>
+Verifying 1048576 bytes<br/>
+[-------c o o o o]
+</BrowserWindow>
+
+The ```flash test``` command erases the chip, writes dummy data, and verifies the write. This is a way to test a chip.
+
+
+

@@ -4,7 +4,7 @@ sidebar_label: 'Auxiliary Cable Kit'
 ---
 # Auxiliary Cable Kit
 
-![](./img/cable-a.jpg)
+![](./img/bp5-promo-13.jpg)
 
 A collection of auxiliary cables made from premium soft and flexible silicone coated wire.
 
@@ -22,7 +22,7 @@ import FooterCart from '/_common/_footer/_footer-cart.md'
 
 ### Auxiliary Connector Cable
 
-![](./img/cable-aux-rev1-white.jpg)
+![](./img/bp5-promo-1.jpg)
 
 A 9 pin cable connects the Bus Pirate auxiliary connector to external tools like logic analyzers, oscilloscopes etc. 
 
@@ -44,7 +44,7 @@ The first version of the auxiliary cable has all back crimp housings. The second
 
 ### Y Splitter Cable
 
-![](./img/cable-y.jpg)
+![](./img/bp5-promo-2.jpg)
 
 A high quality splitter cable to make multiple connections to a single pin. Connect power and ground to multiple devices, or share a 1-Wire, I2C or SPI bus between several chips.
 
@@ -58,7 +58,7 @@ Resources:
 
 ### Jumper Cable
 
-![](./img/cable-jumpers.jpg)
+![](./img/bp5-promo-3.jpg)
 
 A high quality jumper wire to quickly connect your latest breakout board.
 

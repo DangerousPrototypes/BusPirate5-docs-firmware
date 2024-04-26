@@ -4,7 +4,7 @@ sidebar_label: 'Probe Cable Kit'
 ---
 # Probe Cable Set
 
-![](./img/cable-p-milled-pins.jpg) 
+![](./img/bp5-promo-11.jpg) 
 
 - 1 [Premium Probe Cable](https://hardware.buspirate.com/cables/#probe-cable)
 - 10 [Shenzhen starter probe hooks](/overview/probehooks#the-shenzhen-hook)
@@ -18,7 +18,7 @@ import FooterCart from '/_common/_footer/_footer-cart.md'
 
 ## Premium Probe Cable
 
-![](./img/cable-probe.jpg)
+![](./img/bp5-promo-6.jpg)
 
 A high quality probe cable to connect the Bus Pirate to test hooks, milled breadboard pins and pin header.
 
@@ -40,7 +40,7 @@ Resources
 
 ## Starter Hooks
 
-![](./img/cable-hooks.jpg)
+![](./img/bp5-promo-5.jpg)
 
 10 [Shenzhen Hook test probes](/overview/probehooks#the-shenzhen-hook) to tap surface mount chip leads. Cheap and black. Oh so fashionable! 
 
@@ -52,7 +52,7 @@ Resources:
 
 ## Milled Breadboard Pins
 
-![](./img/pin-milled-v1.jpg)
+![](./img/bp5-promo-4.jpg)
 
 There had to be a better way to connect a probe cable to a breadboard or pin header. Something better than probe hooks precariously clipped to the end of jumper wires...
 
