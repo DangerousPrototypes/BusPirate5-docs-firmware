@@ -39,6 +39,8 @@ Removing a chip:
 
 Lead-less WSON 5x6/6x8 flash chips are becoming more common, but are a bit more expensive than SOP8 chips. The sockets are **significantly** more expensive than other sizes. We're doing small batches, so our cost is pretty high. If you need something more affordable, look for a WSON8 to DIP8 adapter on your favorite China stuff shopping site and use it with the DIP8 adapter below.
 
+![](./img/wson-use.jpg)
+
 Inserting a chip:
 - Push the retaining clip forward to unlock, then lift up to open the socket.
 - Place the chip in the socket with the chip pin 1 marker (dot, stripe, etc) aligned with the socket pin 1 marker.

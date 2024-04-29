@@ -21,7 +21,7 @@ Treat probe hooks as consumables. They will wear out and need to be replaced fro
 
 This inexpensive hook has been everywhere for as long as the Bus Pirate has been around. It’s not really clear who the original or primary manufacturer was. Our current theory is that the housing and crimps are produced separately, and third party cable manufacturers assemble them with the proper tooling. 
 
-For what you pay, which is almost nothing, these are really acceptable hooks. Some people use them (gently) for years, but the metal grabbers are delicate and eventually deform to the point where they no longer hold securely. While this happens will all hooks, it happens a lot faster with these.
+For what you pay, which is almost nothing, these are really acceptable hooks. Some people use them (gently) for years, but the metal grabbers are delicate and eventually deform to the point where they no longer hold securely. While this happens with all hooks, it happens a lot faster with these.
 
 Three connection types exist in the market. We’re most interested in the type with a tooled crimp offset to one side of the housing that connects to a 2.54mm DuPont-style connector. The other two styles, solderable and a pre-soldered center pin, won’t connect securely to a DuPont-style connector and have a slightly different, less useful hook shape.
 
