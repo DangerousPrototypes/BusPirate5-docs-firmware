@@ -23,6 +23,8 @@ import FooterCart from '/_common/_footer/_footer-cart.md'
 
 SOP8 150mil and 208mil are the most common and inexpensive flash packages at the moment. After [looking at a number of sockets](https://forum.buspirate.com/t/spi-flash-adapter-socket-reviews/400?u=ian) we decided these bad boys, favorites of the mobile phone repair market, were the way to go. Easy to insert and remove a chip, but a bit bulky with delicate pins. The cost is in the pins, 16 pins cost double that of an 8 pins socket.
 
+![](./img/sop8-use.jpg)
+
 Inserting a chip:
 - Press down gently on the top of the socket. The spring fingers will retract.
 - Place or drop the chip into the socket with the chip pin 1 marker (dot, stripe, etc) aligned with the socket pin 1 marker.
@@ -56,6 +58,8 @@ Removing a chip:
 ![](./img/flash-dip8.jpg)
 
 New through hole DIP flash chips are getting rare, but they’re everywhere in vintage computers. These 16P aquamarine ZIF sockets are the universal programming solution. Pull up the little lever, drop in a chip, and push the level down to lock the chip in place. 
+
+![](./img/dip8-use.jpg)
 
 Inserting a chip:
 - Pull up the lever to open the socket.
