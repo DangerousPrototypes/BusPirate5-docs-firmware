@@ -51,7 +51,7 @@ From a terminal, run:
 ls -lh /dev/*usb*
 ```
 
-You should see four "tty.usbmodem" devices.
+You should see four "usbmodem" devices.
 ```
   crw-rw-rw-  1 root  wheel  0x9000007 May  9 18:59 /dev/cu.usbmodem1234567890121
   crw-rw-rw-  1 root  wheel  0x9000009 May  9 18:59 /dev/cu.usbmodem1234567890123
@@ -134,8 +134,14 @@ There are two commands that come preinstalled that you can use to connect to the
   - `cu`
   - [GNU Screen](https://www.gnu.org/software/screen/)
 
- A third popular option is to use [Homebrew](https://brew.sh/) to install Minicom.
+ A third popular option is to use [Homebrew](https://brew.sh/) to install [Minicom](https://formulae.brew.sh/formula/minicom).
 
+
+Neither Terminal nor GNU Screen support full color mode, so the text will be gray when you first connect. After connecting, you can
+switch BP to `ANSI-256 color`, which is located under "Configuration options" `c`, "ANSI color mode" `2`. Once you do that,
+it will look more like the screenshots in this documentation.
+
+Of the options presented here, only iTerm2 + cu supports full color mode at the moment, although support is being added to Screen.
 
  ### cu
 
@@ -154,11 +160,9 @@ To exit `cu`, type `~.`. The `~` is only recongized at the start of a line, so y
 
 ### GNU Screen
 
-For some reason, at least by default on Macs, Bus Pirate's colors don't render correctly in Screen.
-
 Connect to the serial port like this:
 ```
-screen /dev/tty.usbmodem1234567890121
+screen /dev/cu.usbmodem1234567890121
 ```
 
 Screen uses Control-A as its meta key. Use `^a ^\` to exit. `^a ?` for help.
@@ -171,9 +175,9 @@ It has many more features beyond the scope of this documentation.
 
 Unlike the others, minicom does not come preintalled. If you have Homebrew installed, you can install it with `brew install minicom`.
 
-You can connect with minicom with `minicom -D /dev/tty.usbmodem1234567890121`.
+You can connect with minicom with `minicom -D /dev/cu.usbmodem1234567890121`.
 
-The "meta" key for minicom seems to default to Escape. To exit, press `Enter` `Esc` `q`.
+The "meta" key for minicom defaults to Escape. To exit, hold `Esc` and press `q`. `Esc`+`z` for help.
 
 
   </TabItem>
