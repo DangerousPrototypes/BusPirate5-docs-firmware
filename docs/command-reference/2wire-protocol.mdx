@@ -1,0 +1,244 @@
+---
+sidebar_position: 12
+sidebar_label: '2-Wire Protocol'
+---
+import DiscourseComments from '@site/src/components/DiscourseComments';
+import BrowserWindow from '@site/src/components/BrowserWindow';
+
+# 2-Wire Protocol Commands
+
+## Overview
+
+-   **Bus:** 2 wire bus with bidirectional data (SDA) line and a clock (SCL) line
+-   **Connections:** two pins (SDA/SCL) and ground. An additional pin is reserved for RESET, and is controlled by the ```{```/```}``` commands.
+-   **Output type:** open drain/open collector
+-   **Pull-up resistors:** always required (2K - 10K ohms)
+-   **Maximum voltage:** 5volts
+
+2-wire is a generic 8bit protocol mode with a bidirectional data line (SDA) and a clock line (SCL). 2-wire can be used to interface with SLE4442 smart cards, half-duple SPI devices and other 2 wire busses that don't use a full I2C implementation.
+
+## Configuration options
+
+<BrowserWindow>
+<span className="bp-info">2WIRE speed</span><br/>
+ 1kHz to 1000kHz<br/>
+ x. <span className="bp-info">Exit</span><br/>
+<span className="bp-prompt">kHz (</span>400kHz*<span className="bp-prompt">) ></span> 20<br/>
+<span className="bp-info">Mode:</span> 2WIRE<br/>
+<span className="bp-prompt">2WIRE></span> <br/>
+</BrowserWindow>
+
+**Pull-up resistors**
+
+2-Wire is an open-collector bus, it requires pull-up resistors to hold the
+clock and data lines high and create the data '1'. In 2-Wire mode, the Bus Pirate doesn't
+output high, it only pulls low. Without pull-up resistors there can
+never be a '1'. 
+
+Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
+
+:::tip
+- 2-Wire requires pull-up resistors to hold the clock and data lines high.
+- Without pull-up resistors there can never be a '1'. 
+- Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
+:::
+
+## Syntax
+
+|Command|Description|
+|-------|-----------|
+| [ | Issue I2C-style start condition. Some devices don't follow the I2C standard, but still use a similar START condition. |
+| ] | Issue I2C-style stop condition. Some devices don't follow the I2C standard, but still use a similar STOP condition.|
+| { | RST/reset pin **high** |
+| } | RST/reset pin **low** |
+| r       | Read one byte, send ACK. (r:1…255 for bulk reads)|
+| 0b      | Write this binary value, check ACK. Format is 0b00000000 for a byte, but partial bytes are also fine: 0b1001.|
+| 0x      | Write this HEX value, check ACK. Format is 0x01. Partial bytes are fine: 0xA. A-F can be lower-case or capital letters. |
+| 0-255   | Write this decimal value, check ACK. Any number not preceded by 0x or 0b is interpreted as a decimal value. |
+| ```space```| Value delimiter. Use a space to separate numbers. No delimiter is required between non-number values: {0xa6 0 0 16 5 0b111 0xaF rrrr}. |
+
+
+## Connections
+
+| Bus Pirate | Direction                     | Circuit | Description   |
+|------------|--------------------------|---------|---------------|
+| SDA       | <font size="+2">↔</font> | SDA     | Serial Data   |
+| SCL        | <font size="+2">→</font> | SCL     | Serial Clock  |
+| RST        | <font size="+2">→</font> | RST     | Reset signal for some devices  |
+| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |
+
+
+## Commands
+
+Bus Pirate 5 has global commands available everywhere, and mode commands specific to the currently selected mode. Type ```help``` to see all commands in every mode, or ```help mode``` for the currently available mode commands.
+
+## sle4442
+
+The sle4442 command in the Bus Pirate's 2-WIRE mode automates the process of reading, writing and unlocking a [SLE4442 smart card](devices/sle4442).
+
+#### Help
+
+<BrowserWindow>
+<span className="bp-prompt">2WIRE></span> sle4442 -h<br/>
+usage:<br/>
+<span className="bp-info">sle4442 [init|dump|unlock|write|erase|psc]<br/>
+	[-a &#x003c;address&#x003e;] [-v &#x003c;value&#x003e;] [-p &#x003c;current psc&#x003e;] [-n &#x003c;new psc&#x003e;] [-h(elp)]</span><br/>
+<span className="bp-info">Initialize and probe: sle4442 init</span><br/>
+<span className="bp-info">Dump contents: sle4442 dump</span><br/>
+<span className="bp-info">Unlock card: sle4442 unlock -p 0xffffff</span><br/>
+<span className="bp-info">Write a value: sle4442 write -a 0xff -v 0x55</span><br/>
+<span className="bp-info">Erase memory: sle4442 erase</span><br/>
+<span className="bp-info">Update PSC: sle4442 psc -p 0xffffff -n 0x000000</span><br/>
+<br/>
+<span className="bp-info">SLE4442 smart card interface</span><br/>
+<span className="bp-prompt">init</span>	<span className="bp-info">Initialize card with ISO7816-3 ATR. Default action</span><br/>
+<span className="bp-prompt">dump</span>	<span className="bp-info">Display main, security and protect memory</span><br/>
+<span className="bp-prompt">unlock</span>	<span className="bp-info">Unlock card with Programmable Security Code (PSC)</span><br/>
+<span className="bp-prompt">write</span>	<span className="bp-info">Write data to card (requires unlock)</span><br/>
+<span className="bp-prompt">erase</span>	<span className="bp-info">Erase data from range 0x32-0x255 (requires unlock)</span><br/>
+<span className="bp-prompt">psc</span>	<span className="bp-info">Change Programmable Security Code (PSC)</span><br/>
+<span className="bp-prompt">-a</span>	<span className="bp-info">Write address flag</span><br/>
+<span className="bp-prompt">-v</span>	<span className="bp-info">Write value flag</span><br/>
+<span className="bp-prompt">-p</span>	<span className="bp-info">Current Programmable Security Code (PSC) flag</span><br/>
+<span className="bp-prompt">-n</span>	<span className="bp-info">New Programmable Security Code (PSC) flag</span><br/>
+<br/>
+<span className="bp-prompt">2WIRE></span> <br/>
+</BrowserWindow> 
+ 
+
+:::tip
+Use sle4442 -h to see the latest options and features.
+:::
+
+Most Bus Pirate commands have help and usage examples. Add the -h flag to any command to see the available options and examples.
+
+#### Options and flags
+
+|Option|Description|
+|------|-----------|
+|sle4442 init|Initialize and probe the card Answer To Reset|
+|sle4442 dump|Display main, security and protect memory|
+|sle4442 unlock|Unlock card with Programmable Security Code (PSC)|
+|sle4442 write|Write data to card (requires unlock)|
+|sle4442 erase|Erase data from range 0x32-0x255 (requires unlock)|
+|sle4442 psc|Change Programmable Security Code (PSC)|
+
+|Flag|Description|
+|------|-----------|
+|-a|Write address flag|
+|-v|Write value flag|
+|-p|Current Programmable Security Code (PSC) flag|
+|-n|New Programmable Security Code (PSC) flag|
+
+#### Reset SLE4442 card, decode ATR response
+<BrowserWindow>
+<span className="bp-prompt">2WIRE></span> sle4442 init<br/>
+--SLE44xx decoder--<br/>
+ATR: 0xa2 0x13 0x10 0x91<br/>
+Protocol Type: S 10<br/>
+Structure Identifier: General Purpose (Structure 1)<br/>
+Read: Read to end<br/>
+Data Units: 256<br/>
+Data Units Bits: 8<br/>
+Security memory: 0x07 0x00 0x00 0x00<br/>
+Remaining attempts: 3 (0x7)<br/>
+<br/>
+</BrowserWindow>
+
+```sle4442``` and ```sle4442 init``` reset the card and decodes the Answer To Reset (ATR) response.
+
+#### Dump SLE4442 card memory
+<BrowserWindow>
+<span className="bp-prompt">2WIRE></span> sle4442 dump<br/>
+--SLE44xx decoder--<br/>
+ATR: 0xa2 0x13 0x10 0x91<br/>
+Protocol Type: S 10<br/>
+Structure Identifier: General Purpose (Structure 1)<br/>
+Read: Read to end<br/>
+Data Units: 256<br/>
+Data Units Bits: 8<br/>
+Security memory: 0x07 0x00 0x00 0x00<br/>
+Remaining attempts: 3 (0x7)<br/>
+Protection memory: 0xff 0xff 0xff 0xff<br/>
+Memory:<br/>
+0xa2 0x13 0x10 0x91 0xff 0xff 0x81 0x15 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xd2 0x76 0x00 0x00 0x04 0x00 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 0xff 
+</BrowserWindow>
+
+```sle4442 dump``` reads and displays the main, security and protection memory areas.
+
+#### Unlock SLE4442 card with passcode
+
+<BrowserWindow>
+<span className="bp-prompt">2WIRE></span> sle4442 unlock -p 0x123456<br/>
+--SLE44xx decoder--<br/>
+ATR: 0xa2 0x13 0x10 0x91<br/>
+Protocol Type: S 10<br/>
+Structure Identifier: General Purpose (Structure 1)<br/>
+Read: Read to end<br/>
+Data Units: 256<br/>
+Data Units Bits: 8<br/>
+Security memory: 0x07 0x12 0x34 0x56<br/>
+Remaining attempts: 3 (0x7)<br/>
+Unlocking with PSC: 0x123456<br/>
+Using free security bit: 0x03<br/>
+Card unlocked, security bits reset<br/>
+Security memory: 0x07 0x12 0x34 0x56<br/>
+Remaining attempts: 3 (0x7)<br/>
+<br/>
+</BrowserWindow>
+
+```sle4442 unlock``` unlocks the card using the Programmable Security Code (PSC). Use the ```-p``` flag to specify the PSC. 
+
+:::tip
+New cards usually have a default PSC of 0xffffff.
+:::
+
+#### Write data to SLE4442 card
+
+<BrowserWindow>
+<span className="bp-prompt">2WIRE></span> sle4442 write -a 0xff -v 0x88<br/>
+--SLE44xx decoder--<br/>
+ATR: 0xa2 0x13 0x10 0x91<br/>
+Protocol Type: S 10<br/>
+Structure Identifier: General Purpose (Structure 1)<br/>
+Read: Read to end<br/>
+Data Units: 256<br/>
+Data Units Bits: 8<br/>
+Security memory: 0x07 0x12 0x34 0x56<br/>
+Remaining attempts: 3 (0x7)<br/>
+Writing 0x88 to 0xff<br/>
+<br/>
+</BrowserWindow>
+
+```sle4442 write``` writes a single byte of data to the card. Specify the address with the ```-a``` flag and the data value with the ```-v``` flag.
+
+:::caution
+The card must be unlocked before writing data.
+:::
+
+#### Change SLE4442 passcode/PSC
+
+<BrowserWindow>
+<span className="bp-prompt">2WIRE></span> sle4442 psc -p 0x123456 -n 0xffffff<br/>
+--SLE44xx decoder--<br/>
+ATR: 0xa2 0x13 0x10 0x91<br/>
+Protocol Type: S 10<br/>
+Structure Identifier: General Purpose (Structure 1)<br/>
+Read: Read to end<br/>
+Data Units: 256<br/>
+Data Units Bits: 8<br/>
+Security memory: 0x07 0x12 0x34 0x56<br/>
+Remaining attempts: 3 (0x7)<br/>
+Unlocking with PSC: 0x123456<br/>
+Using free security bit: 0x03<br/>
+Card unlocked, security bits reset<br/>
+Security memory: 0x07 0x12 0x34 0x56<br/>
+Remaining attempts: 3 (0x7)<br/>
+Updating with PSC: 0xFFFFFF<br/>
+PSC updated to: 0xFFFFFF<br/>
+Security memory: 0x07 0xff 0xff 0xff<br/>
+Remaining attempts: 3 (0x7)<br/>
+<br/>
+</BrowserWindow>
+
+```sle4442 psc``` changes the Programmable Security Code (PSC). Use the ```-p``` flag to specify the current PSC and the ```-n``` flag to specify the new PSC.
