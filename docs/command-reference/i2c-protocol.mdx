@@ -64,31 +64,57 @@ Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
 | ```space```| Value delimiter. Use a space to separate numbers. No delimiter is required between non-number values: {0xa6 0 0 16 5 0b111 0xaF rrrr}. |
 | \(#\)   | Run macro, (0) for macro list. |
 
-## Macro
+## Commands
 
-|Number| Description                                                                 |
-|-----|-----------------|
-| 0   | Macro menu                                                      |
-| 1   | 7bit address search. Find all connected devices by brute force. |
+Bus Pirate 5 has global commands available everywhere, and mode commands specific to the currently selected mode. Type ```help``` to see all commands in every mode, or ```help mode``` for the currently available mode commands.
 
-### I2C address search scanner macro
+### I2C address search scan
+
+The ```scan``` command in the Bus Pirate I2C mode scans the for device addresses.
+
+#### Help
 
 <BrowserWindow>
-<span className="bp-prompt">I2C></span> (1)
-<span className="bp-info"><br/>
-I2C Bus Scan<br/>
-   0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F<br/>
-00 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
-10 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
-20 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
-30 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
-40 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
-50 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
-60 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
-70 .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .<br/>
-Done.<br/>
-</span><br/>
-<span className="bp-prompt">I2C></span><br/>
+<span className="bp-prompt">I2C></span> scan -h<br/>
+usage:<br/>
+<span className="bp-info">scan	[-v(erbose)] [-h(elp)]</span><br/>
+<span className="bp-info">Scan I2C address space: scan</span><br/>
+<span className="bp-info">Scan, list possible part numbers: scan -v</span><br/>
+<br/>
+<span className="bp-info">scan I2C addresses, with optional part number</span><br/>
+<span className="bp-prompt">-v</span>	<span className="bp-info">Verbose mode, print potential part numbers</span><br/>
+<span className="bp-prompt">-h</span>	<span className="bp-info">Get additional help</span><br/>
+<br/>
+</BrowserWindow>
+
+:::tip
+Use ```scan -h``` to see the latest options and features.
+:::
+
+#### Options and Flags 
+
+|Flag|Description|
+|----|-----------|
+| -v | Verbose mode, print potential part numbers. |    
+|-h | Get additional help. |
+
+#### Scans for I2C Devices
+
+<BrowserWindow>
+<span className="bp-prompt">I2C></span> scan<br/>
+I2C address search:<br/>
+0x50 (0xA0 W) (0xA1 R)<br/>
+0x51 (0xA2 W) (0xA3 R)<br/>
+0x52 (0xA4 W) (0xA5 R)<br/>
+0x53 (0xA6 W) (0xA7 R)<br/>
+0x54 (0xA8 W) (0xA9 R)<br/>
+0x55 (0xAA W) (0xAB R)<br/>
+0x56 (0xAC W) (0xAD R)<br/>
+0x57 (0xAE W) (0xAF R)<br/>
+<br/>
+Found 16 addresses, 8 W/R pairs.<br/>
+<br/>
+<span className="bp-prompt">I2C></span> <br/>
 </BrowserWindow>
 
 You can find the [I2C](http://en.wikipedia.org/wiki/I%C2%B2C) address
@@ -107,7 +133,7 @@ the chip (1).
 
 #### Scanner details
 
-Macro 1 in I2C mode runs the address scanner.
+The ```scan``` command in I2C mode runs the address scanner.
 
 -   For I2C write addresses: the BP sends a start, the write address,
     looks for an ACK, then sends a stop.
