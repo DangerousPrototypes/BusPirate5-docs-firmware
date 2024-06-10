@@ -5,7 +5,7 @@ sidebar_label: 'SPI Flash Adapters'
 
 # SPI Flash Adapters
 
-![](./img/flash-all.jpg)   
+![](./img/flash-adapter-all.jpg)   
 
 Bus Pirate 5 has a "flash" command to read and write 8 pin SPI flash chips. Soldering chips on breakouts for testing got a bit wasteful, so we whipped up some simple socket adapters that fit the Bus Pirate header.
 
@@ -70,6 +70,16 @@ Removing a chip:
 - Pull up the lever to open the socket.
 - Gently lift the chip out of the socket.
 - Push the lever down to lock the socket.
+
+## Power and Ground Selection
+
+| Switch | Normal | IO pin | Description |
+|--------|-----|-----|-------------|
+| VCC   | VOUT | IO0 | Connect VCC pin of the socket to VOUT or IO0|
+| GND   | GND | IO1 | Connect GND pin of the socket to GND or IO1|
+
+
+SW1 and SW2 along the side of the adapter select the power (VCC) and ground (GND) connection to the chip socket. For normal use select VCC:VOUT and GND:GND. If a chip has a non-standard pinout it is possible to connect the VCC and GND pins of the socket to Bus Pirate pins IO0 and IO1. 
 
 ## Resources
 
