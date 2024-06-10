@@ -75,11 +75,27 @@ Removing a chip:
 
 | Switch | Normal | IO pin | Description |
 |--------|-----|-----|-------------|
-| VCC   | VOUT | IO0 | Connect VCC pin of the socket to VOUT or IO0|
-| GND   | GND | IO1 | Connect GND pin of the socket to GND or IO1|
+| VCC   | VOUT | IO0 | Connect VCC pin (8) of the socket to VOUT or IO0|
+| GND   | GND | IO1 | Connect GND pin (4) of the socket to GND or IO1|
 
 
 SW1 and SW2 along the side of the adapter select the power (VCC) and ground (GND) connection to the chip socket. For normal use select VCC:VOUT and GND:GND. If a chip has a non-standard pinout it is possible to connect the VCC and GND pins of the socket to Bus Pirate pins IO0 and IO1. 
+
+## Pin Connections
+
+|Bus Pirate|DIP/WSON/SOP8|SPI Flash Adapter|Description|
+|-|-|-|-|
+|Vout|8|VCC|Bus Pirate power supply to socket VCC|
+|IO0|8|VCC| Pin IO0 to socket VCC|
+|IO1|4| GND| Pin IO1 to socket GND|
+|IO2|7| HOLD| Hold pin|
+|IO3|3| WP| Write protect pin|
+|IO4|2| MISO| Master In Sub Out|
+|IO5|1|CS|Chip Select|
+|IO6|6|CLK|Clock|
+|IO7|5| MOSI|Master Out Sub In|
+|GND|4|GND|Bus Pirate ground to socket ground|
+
 
 ## Resources
 
