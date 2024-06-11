@@ -17,9 +17,8 @@ import FooterCart from '/_common/_footer/_footer-cart.md'
 
 <FooterCart/>
 
+![](./img/sim-iccard-all.jpg)
 ## mini, micro, and nano SIM cards
-
-![](./img/sim-iccard-front.jpg)   
 
 The top of the adapter has sockets for mini, micro, and nano SIM cards. Most mobile phone SIM cards use a half-duplex serial UART interface, such as the Bus Pirate HDPLXUART mode. 
 
@@ -33,8 +32,6 @@ We looked at a lot of sockets and decided these were the best bet. Complex socke
 
 
 ## Smart IC cards
-
-![](./img/sim-iccard-back.jpg)
 
 A KF-011C socket on the reverse accepts most ISO 7816-3 smart cards:
 - [SLE4442 IC cards](/devices/sle4442) with passcode protection, supported by [2-Wire protocol mode](/command-reference/2wire-protocol)
@@ -71,7 +68,7 @@ SW1 and SW2 along the side of the adapter select the power (VCC) and ground (GND
 
 - IC Card and SIM adapter [schematic and PCB](https://github.com/DangerousPrototypes/BusPirate5-hardware/tree/main/)
 - [How to interface SLE4442 IC cards](/devices/sle4442)
-- [How to interface 24C02 EEPROM cards] **(/devices/24c02)**
+- [How to interface 24C02 EEPROM cards] _coming soon_ 
 - [How to interface SIM and bank cards] _coming soon_
 - [HDPLXUART mode documentation] _coming soon_
 - [2-Wire mode documentation](/command-reference/2wire-protocol)

@@ -6,9 +6,11 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 
 # SLE4442 Smart IC Card
 
-[sd card, pinout]
+![](./img/sle4442-adapter.jpg)
 
-SLE4442 is a smart chip card with 256 bytes of memory and a write protect "passcode" feature. These have been around for quite some time, and were commonly used as stored value cards for copy machines and laundry machines. A three byte passcode is needed to write to the card. After three incorrect passcode attempts the card is permanently locked to prevent brute force guessing the code. Data can be read without a passcode, the code is only necessary to write to the card (e.g. add more money for copy or laundry machines).
+SLE4442 is a smart chip card with 256 bytes of memory and a write protect "passcode" feature. These have been around for quite some time, and were commonly used as stored value cards for copy machines and laundry machines. A three byte passcode protects the card from unauthorized writes. 
+
+After three incorrect passcode attempts the card is permanently locked to prevent brute force guessing the code. Data can be read without a passcode, the code is only necessary to write to the card (e.g. add more money for copy or laundry machines).
 
 This insecure system should be avoided in new designs. Anyone with access to the machine that updates the card value can use a logic analyzer to capture the passcode. The passcode is sent in the clear, and can be easily captured and replayed.
 
@@ -34,9 +36,9 @@ Connect the Bus Pirate to the smart card as shown in the table above.
 
 ### Smart IC Card and SIM card adapter
 
-![](../overview/img/sim-iccard-back.jpg)
+![](../overview/img/sim-iccard-all.jpg) 
 
-It's possible to gently solder wires into each pad of the chip, but a KF-011C (or similar) smart card socket is useful if you don't want to destroy the card.
+It's possible to gently solder wires onto each pad of the chip, but a KF-011C (or similar) smart card socket is useful if you don't want to destroy the card.
 
 :::tip
 A [smart IC card and SIM card adapter](/overview/sim-iccard-adapter) is available for Bus Pirate 5 with the correct connections already set. The adapter accepts most ISO 7816-3 smart cards and mini/micro/nano SIM cards. 
@@ -60,6 +62,14 @@ A [smart IC card and SIM card adapter](/overview/sim-iccard-adapter) is availabl
 <span className="bp-prompt">kHz (</span>400kHz*<span className="bp-prompt">) ></span> 20<br/>
 <span className="bp-info">Mode:</span> 2WIRE<br/>
 <span className="bp-prompt">2WIRE></span> <br/>
+</BrowserWindow>
+
+Bus Pirate [2-WIRE mode](/command-reference/2wire-protocol) has a bi-directional data line and a clock line, it will play well with the SLE4442. SLE4442 (clones) generally have a maximum speed of 50kHz, but some are much happier at lower speeds so let's use 20kHz. 
+
+- Use the ```m``` mode command and select **2-WIRE**
+- Configure 2-WIRE for **20kHz**
+
+<BrowserWindow>
 <span className="bp-prompt">2WIRE></span> W 5<br/>
 <span className="bp-float">5.00</span>V<span className="bp-info"> requested, closest value: <span className="bp-float">5.00</span></span>V<br/>
 <span className="bp-info">Current limit:</span>Disabled<br/>
@@ -70,12 +80,8 @@ A [smart IC card and SIM card adapter](/overview/sim-iccard-adapter) is availabl
 <span className="bp-prompt">2WIRE></span> <br/>
 </BrowserWindow>
 
-The Bus Pirate [2-WIRE mode](/command-reference/2wire-protocol) has a bi-directional data line and a clock line, it will play well with the SLE4442. SLE4442 (clones) generally have a maximum speed of 50kHz, but some are much happier at lower speeds so let's use 20kHz. This is old tech - it needs a 5volt power supply.
-
-- Use the ```m``` mode command and select **2-WIRE**
-- Configure 2-WIRE for **20kHz**
-- Enable the onboard power supply with the ```W``` command, and configure it for **5.0volts** output. 
-- Select a current limit of at least **50mA**, or hit ```enter``` for no limit.
+This is old tech - it needs a 5volt power supply.
+- Enable the onboard power supply at 5volts with the ```W 5``` command
 
 <BrowserWindow>
 <span className="bp-prompt">2WIRE></span> P<br/>
@@ -100,7 +106,7 @@ SLE4442 commands and output are in the less-used Least Signification Bit (LSB) b
 - ```L``` - Set the bit order to LSB first
 
 :::caution 
-The SLE4442 uses Least Significant Bit first, but the Bus Pirate defaults to Most Significant Bit first. Be sure to set the bit order to LSB first with the ```L``` command.
+The SLE4442 uses Least Significant Bit first data format, but the Bus Pirate defaults to Most Significant Bit first. Be sure to set the bit order to LSB first with the ```L``` command.
 :::
 
 ## Answer To Reset (ATR)
@@ -121,7 +127,11 @@ RST LOW<br/>
 - ```{``` - RST high to begin the ATR 
 - ```^``` - One clock tick on the CLK/clock line 
 - ```}``` - RST low completes the reset sequence
-- ```[r:4]``` - Read the four byte 'answer' to the reset sequence
+- ```r:4``` - Read the four byte 'answer' to the reset sequence
+
+![](./img/atr-sle4442.png)
+
+In the logic analyzer capture above, flag 0 marks after RESET is high and just before the single clock tick. RESET then goes low, and at flag 1 we clock out four bytes of data from the card on DIO.
 
 The correct reply for the SLE4442 is 0xa2 0x13 0x10 0x91. This indicates the card is an SLE44xx series card, with 256 data units of 8 bits each (256 bytes). 
 
@@ -144,7 +154,7 @@ Remaining attempts: 3 (0x7)<br/>
 <span className="bp-prompt">2WIRE></span> <br/>
 </BrowserWindow>
 
-The sle4442 command automates the ATR command and parses the output. If you want to know the gritty details of the ATR response, check ```sle44xx_atr_struct``` and ```sle4442_atr_decode``` in the file sle4442.c of the Bus Pirate source, or page 25 of the [datasheet](https://www.digikey.com.au/htmldatasheets/production/433077/0/0/1/sle-4442-m3-2.html).
+The [sle4442](/command-reference/2wire-protocol#sle4442) command automates the ATR command and parses the output. If you want to know the gritty details of the ATR response, check ```sle44xx_atr_struct``` and ```sle4442_atr_decode``` in the file sle4442.c of the Bus Pirate source, or page 25 of the [datasheet](https://www.digikey.com.au/htmldatasheets/production/433077/0/0/1/sle-4442-m3-2.html).
 
 ## Read card memory
 
@@ -174,7 +184,7 @@ I2C STOP<br/>
 
 Now that the card is reset, we can interface it with an I2C-like protocol that has START and STOP bits. The Bus Pirate 2-WIRE mode sends START and STOP bits using the ```[```/```]``` commands.
 
-SLE4442 has 256 byte of memory that can be read using the 0x30 command. The entire 256 byte contents of the card must be read before the card will accept another command. 
+SLE4442 has 256 bytes of memory that can be read using the 0x30 command. The entire 256 byte contents of the card must be read before the card will accept another command. 
 - ```[``` - I2C style START bit
 - ```0x30``` - Read memory command 
 - ```0x00``` - Start reading from address 0x00
@@ -210,7 +220,7 @@ I2C STOP<br/>
 <span className="bp-prompt">2WIRE></span> <br/>
 </BrowserWindow>
 
-A four byte security memory area contains the remaining unlock attempts, and the three byte passcode. The three passcode bytes will always read 0x00 when the card it locked. Read the security memory using the 0x31 command.
+A four byte security memory area contains the remaining unlock attempts, and the three byte passcode. The three passcode bytes will always read 0x00 when the card is locked. Read the security memory using the 0x31 command.
 - ```[``` - I2C style START bit
 - ```0x31``` - Read security memory command
 - ```0x00``` - Start reading from address 0x00
@@ -252,7 +262,7 @@ I2C STOP<br/>
 The first byte in the security memory is 0x07 (0b111). This means that three passcode attempts remain. We need to choose a '1' bit to use for the next passcode attempt. If we enter the wrong passcode, this bit will be set to 0 and two attempts will remain.
 
 - ```[``` - I2C style START bit
-- ```0x39``` - Choose a passcode attempt bit command
+- ```0x39``` - Update security memory command
 - ```0x00``` - Security memory address to write
 - ```0b110``` - Choose a remaining passcode attempt bit, we're using bit 0 (0b110), but any bit with a '1' will work (0b011, 0b101)
 - ```]``` - I2C style STOP bit
@@ -356,7 +366,7 @@ I2C STOP<br/>
 <span className="bp-prompt">2WIRE></span> <br/>
 </BrowserWindow>
 
-The SLE4442 has 256 bytes of memory that can be written to with the ```0x38``` command. Only one byte of data can be written per command at the location indicated by the address byte. 
+The SLE4442 has 256 bytes of memory that can be written with the ```0x38``` command. Only one byte of data can be written per command at the location indicated by the address byte. 
 
 :::tip
 It's best to avoid writing to the first 32 bytes of memory, as this area contains the ATR data and other information about the card. Overwriting the ATR data can cause the card to stop working.
@@ -374,7 +384,7 @@ Card must be unlocked or writes will fail.
 :::
 
 <BrowserWindow>
-<span className="bp-prompt">2WIRE></span> [0x30 0 0] r:245  56<br/>
+<span className="bp-prompt">2WIRE></span> [0x30 0 0] r:256<br/>
 <br/>
 I2C START<br/>
 <span className="bp-info">TX:</span> 0x<span className="bp-float">30</span> <br/>
