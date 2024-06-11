@@ -34,6 +34,12 @@ Common IC cards usually follow the [ISO 7816-3 standard](https://en.wikipedia.or
 
 Connect the Bus Pirate to the smart card as shown in the table above. 
 
+### Card Identification
+
+![](./img/sle4442-24c02.jpg)
+
+The card on the left with the smaller 6 pin contact area is a SLE4442. The card on the right with the larger 8 pin contact area is a 24C02 EEPROM card. 
+
 ### Smart IC Card and SIM card adapter
 
 ![](../overview/img/sim-iccard-all.jpg) 
@@ -463,6 +469,12 @@ The passcode is now 0x12 0x34 0x56. Let's verify the passcode was updated by rea
 - ```[0x31 0 0] r:4``` - Read the security memory
 
 Three passcode attempts remain (0x07), and the passcode is now 0x12 0x34 0x56.
+
+## Variants
+
+SLE4428 is similar to the SLE4442, but with a few notable differences. SLE4428 is a 1024 byte EEPROM card, and it does not have the passcode write protection feature of the SLE4442. If you're looking for a bigger card for a new project, check out [24Cxx EEPROM cards](/devices/24c02). 24Cxx cards come in larger sizes up to 64K, and have a standard I2C interface.
+
+If you can't help but deal with an SLE4428 card, it should work similar to the SLE4442 with a 2 byte address field. 
 
 ## sle4442 command
 

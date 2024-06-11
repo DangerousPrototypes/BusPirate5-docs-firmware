@@ -6,12 +6,12 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 
 # 24C02 Smart IC Card
 
-[sd card, pinout]
+![](./img/24c02-adapter.jpg)
 
 24C02 is a simple EEPROM IC card with 256 bytes of memory and an I2C interface. It functions the same as a 24C02 EEPROM chip, but in a smart card form factor. There is no read or write protection or other security, the entire memory can be accessed without a password.
 
 :::tip
-24C04, 24C08, and 24C16 IC cards are also available. These have 512, 1024, and 2048 bytes of memory respectively.
+24C04 (512 bytes), 24C08 (1024 bytes), and 24C16 (2048 bytes) IC cards are also common. Capacities up to 64K are available, but not as common.
 :::
 
 import FooterCart from '/_common/_footer/_footer-cart.md'
@@ -22,7 +22,7 @@ import FooterCart from '/_common/_footer/_footer-cart.md'
 
 ![](./img/ic-card-pinout.png)
 
-Common IC cards usually follow the [ISO 7816-3 standard](https://en.wikipedia.org/wiki/ISO/IEC_7816) and have the same pinout and contact shape. [Source](https://commons.wikimedia.org/wiki/File:SmartCardPinout.svg).
+Common IC cards usually follow the [ISO 7816-3 standard](https://en.wikipedia.org/wiki/ISO/IEC_7816) and have the same pinout and contact shape. [Image source](https://commons.wikimedia.org/wiki/File:SmartCardPinout.svg).
 
 |Bus Pirate|24C02|Description|
 |-|-|-|
@@ -33,11 +33,17 @@ Common IC cards usually follow the [ISO 7816-3 standard](https://en.wikipedia.or
 
 Connect the Bus Pirate to the smart card as shown in the table above. 
 
+### Card Identification
+
+![](./img/sle4442-24c02.jpg)
+
+The card on the left with the smaller 6 pin contact area is a SLE4442. The card on the right with the larger 8 pin contact area is a 24C02 EEPROM card. 
+
 ### Smart IC Card and SIM card adapter
 
 ![](../overview/img/sim-iccard-all.jpg)
 
-It's possible to gently solder wires into each pad of the chip, but a KF-011C (or similar) smart card socket is useful if you don't want to destroy the card.
+It's possible to gently solder wires on to each pad of the chip, but a KF-011C (or similar) smart card socket is useful if you don't want to destroy the card.
 
 :::tip
 A [smart IC card and SIM card adapter](/overview/sim-iccard-adapter) is available for Bus Pirate 5 with the correct connections already set. The adapter accepts most ISO 7816-3 smart cards and mini/micro/nano SIM cards. 
@@ -64,9 +70,9 @@ A [smart IC card and SIM card adapter](/overview/sim-iccard-adapter) is availabl
 <span className="bp-prompt">I2C></span> <br/>
 </BrowserWindow>
 
-24C02 IC cards use the common [I2C interface](/command-reference/i2c-protocol). Speeds under 100kHz should work with most cards. 
+24C02 IC cards use the common and friendly [I2C interface](/command-reference/i2c-protocol). Speeds under 100kHz should work with most cards, though speed demons might try up to 400kHz.
 
-- Use the ```m``` mode command and select **I2C**
+-Use the ```m``` command and and select **I2C** mode
 - Configure I2C for **100kHz**
 
 <BrowserWindow>
@@ -80,7 +86,8 @@ A [smart IC card and SIM card adapter](/overview/sim-iccard-adapter) is availabl
 <span className="bp-prompt">I2C></span> <br/>
 </BrowserWindow>
 
-This is old tech - it needs a 5volt power supply.
+This is old tech - it needs a 5 volt power supply.
+
 - Enable the onboard power supply at 5volts with the ```W 5``` command
 
 <BrowserWindow>
@@ -89,7 +96,7 @@ This is old tech - it needs a 5volt power supply.
 <span className="bp-prompt">I2C></span> <br/>
 </BrowserWindow>
 
-I2C is an open collector output bus, the Bus Pirate and the 24C02 can only pull the line low to 0/ground. A pull-up resistor is needed to pull the line high to 1/5volts. The Bus Pirate has built-in pull-up resistors that can be enabled with the ```P``` command.
+I2C is an open collector output bus, the Bus Pirate and the 24C02 can only pull the line low to 0 (ground). A pull-up resistor is needed to pull the line high to 1 (5 volts). The Bus Pirate has built-in pull-up resistors that can be enabled with the ```P``` command.
 - ```P``` - Enable the onboard pull-up resistors.
 
 :::caution 
@@ -113,7 +120,13 @@ Let's see if we can find the card I2C address. We could look in the datasheet, o
 
 The scanner found an I2C device at address 0x50 (0xA0 write, 0xA1 read). That's the 24C02 EEPROM.
 
+:::tip 
+If the scanner doesn't find the device, ensure the power supply is enabled ```W 5``` and the pull-up resistors are enabled ```P```. Also check that slide switches SW1 and SW2 select VOUT and GND respectively.
+:::
+
 ## Write & Read Bytes
+
+24C02 EEPROMs can read and write single bytes of data anywhere in the memory range. This may seem like a simple and obvious feature, but some EEPROMs can only write multiple byte _pages_.
 
 ### Write Byte
 <BrowserWindow>
@@ -125,7 +138,18 @@ I2C STOP<br/>
 <span className="bp-prompt">I2C></span> 
 </BrowserWindow>
 
+First, let's write a byte to the EEPROM. ```0xa0``` is the I2C write address, and let's put our data at address ```0x09``` inside the EEPROM. Address 0x09 (9) is the 10th byte inside the EEPROM because the first byte is at address 0. You can write any data value between 0x00 and 0xFF (0-255), but we'll use ```0x12``` (18) for the demo.
+- ```[``` - I2C START bit
+- ```0xa0``` - I2C address and write bit
+- ```0x09``` - EEPROM address pointer, address 9
+- ```0x12``` - Data to write
+- ```]``` - I2C STOP bit
+
 ### Read Byte
+
+Reading a byte is a two step process. 
+- First, set the address pointer to the location we want to read. 
+- Then, read data from that location using a second I2C transaction.
 
 #### Set address pointer
 <BrowserWindow>
@@ -137,10 +161,18 @@ I2C STOP<br/>
 <span className="bp-prompt">I2C></span>
 </BrowserWindow>
 
+A ```0xa0``` write command is used to set the address pointer back to ```0x09```. This time we won't include any data. The address pointer will be updated, but nothing is written to the EEPROM.
+- ```[``` - I2C START bit
+- ```0xa0``` - I2C address and write bit
+- ```0x09``` - EEPROM address pointer, address 9
+- ```]``` - I2C STOP bit
+
+The address pointer has been set to 0x09, the location of the data we want to read. This command didn't include a data byte, so nothing was written to the EEPROM. 
+
 #### Read Byte From EEPROM
 
 <BrowserWindow>
-<span className="bp-prompt">I2C></span> [0xa1 r:1]<br/>
+<span className="bp-prompt">I2C></span> [0xa1 r]<br/>
 <br/>
 I2C START<br/>
 <span className="bp-info">TX:</span> 0x<span className="bp-float">A1</span> ACK <br/>
@@ -149,10 +181,44 @@ I2C STOP<br/>
 <span className="bp-prompt">I2C></span> <br/>
 </BrowserWindow>
 
+Now that the address pointer is set to 0x09, we can read the data at that location using the I2C read address ```0xa1```.
+- ```[``` - I2C START bit
+- ```0xa1``` - I2C address and read bit
+- ```r``` - Read 1 byte
+- ```]``` - I2C STOP bit
+
+The data read from the EEPROM (RX:) is ```0x12```, the same value we wrote earlier.
+
 ## Write & Read Page
 
-01,02 = 8 bytes per page, > 16hbytes. 
-Page writes must be aligned to the page boundary. 0-7, 8-15, 16-23, etc. If writing in middle of page, it will roll over to the beginning. If too much data is sent it will roll over and overwrite.
+|Page|0|1|2|3|4|5|6|7|
+|-|-|-|-|-|-|-|-|-|
+|0|0x00|0x01|0x02|0x03|0x04|0x05|0x06|0x07|
+|1|0x08|0x09|0x0a|0x0b|0x0c|0x0d|0x0e|0x0f|
+|2|0x10|0x11|0x12|0x13|0x14|0x15|0x16|0x17|
+|...|...|...|...|...|...|...|...|...|
+|31|0xf8|0xf9|0xfa|0xfb|0xfc|0xfd|0xfe|0xff|
+
+Memory inside the 24C02 EEPROM is organized into 8 byte pages. We can write 8 bytes to the EEPROM with a single command, but the write must be _aligned to the page boundary_. This means 8 bytes can be written to addresses 0x00-0x07, 0x08-0x0F, 0x10-0x17, etc, but can never cross two pages.
+
+:::caution 
+If we write 8 bytes to an address in the middle of a page (0x03), the address pointer will roll over at the end of the page (0x07) and continue at the beginning of the page (0x00).
+
+If more than 8 bytes of data are sent, the address pointer will roll over and overwrite previously sent data bytes.
+:::
+
+### Page Write Size
+
+|Card|Write Page Size|
+|-|-|
+|24C01, 24C02|8 bytes|
+|24C04, 24C08, 24C16 |16 bytes|
+
+24C02 has 32 pages of 8 bytes. 24C04 and larger EEPROMs use a 16 byte page, so more data can be written with a single command.
+
+:::info 
+Always check the page size in the datasheet to avoid write errors.
+:::
 
 ### Write Page
 <BrowserWindow>
@@ -165,15 +231,17 @@ I2C STOP<br/>
 <span className="bp-prompt">I2C></span>
 </BrowserWindow>
 
-Single bit write, or page write, the 24C02 EEPROM can write 8 bytes at a time.
-8 byte pages on 24C01/24C02 EEPROMs. 16 byte pages on 24C04/24C08/24C16 EEPROMs.
+Let's write 8 bytes to the first page of memory (0x00) that starts at 0x00 and ends at 0x07.
 
-[0xa0 0 0x12 0x34 0x56 0x78 0x9a 0xbc 0xde 0xf0] 
 - ```[``` - I2C START bit 
 - ```0xa0``` - I2C address and write bit
-- ```0``` - EEPROM address pointer, address 0, beginning of memory
+- ```0``` - EEPROM address pointer, address 0, beginning of page 0
 - ```0x12 0x34 0x56 0x78 0x9a 0xbc 0xde 0xf0``` - Data to write
 - ```]``` - I2C STOP bit
+
+:::tip 
+Remember, page writes must be aligned to the page boundary. If you write to an address in the middle of a page, the address pointer will roll over to the beginning of the page.
+:::
 
 ### Read Page
 
@@ -187,6 +255,12 @@ I2C STOP<br/>
 <span className="bp-prompt">I2C></span>
 </BrowserWindow>
 
+Set the address pointer to the beginning of page 0, address 0x00.
+- ```[``` - I2C START bit
+- ```0xa0``` - I2C address and write bit
+- ```0x00``` - EEPROM address pointer, address 0, beginning of page 0
+- ```]``` - I2C STOP bit
+
 #### Read Page From EEPROM
 <BrowserWindow>
 <span className="bp-prompt">I2C></span> [0xa1 r:8]<br/>
@@ -199,9 +273,15 @@ I2C STOP<br/>
 <span className="bp-prompt">I2C></span> <br/>
 </BrowserWindow>
 
+Read the 8 byte page and verify the data was written.
+- ```[``` - I2C START bit
+- ```0xa1``` - I2C address and read bit
+- ```r:8``` - Read 8 bytes
+- ```]``` - I2C STOP bit
+
 ## Continuous Read
 
-The full EEPROM can be read in a single operation with a continuous read. After 256 bytes it will roll over and start reading from the beginning of the current address.
+The full EEPROM can be read in a single operation with a continuous read. After 256 bytes it will roll over and start reading from the beginning again.
 
 ### Set address pointer
 <BrowserWindow>
@@ -213,7 +293,11 @@ I2C STOP<br/>
 <span className="bp-prompt">I2C></span>
 </BrowserWindow>
 
-Set address pointer to the beginning, address 0x00.
+Set the address pointer to the beginning of the EEPROM, address 0x00.
+- ```[``` - I2C START bit
+- ```0xa0``` - I2C address and write bit
+- ```0x00``` - EEPROM address pointer, address 0
+- ```]``` - I2C STOP bit
 
 ### Read Complete EEPROM
 <BrowserWindow>
@@ -229,11 +313,15 @@ I2C STOP<br/>
 <span className="bp-prompt">I2C></span> <br/>
 </BrowserWindow>
 
-
+Now we can read the entire EEPROM in a single operation.
+- ```[``` - I2C START bit
+- ```0xa1``` - I2C address and read bit
+- ```r:256``` - Read 256 bytes
+- ```]``` - I2C STOP bit
 
 ## Other card sizes
 
-|Card|Bytes per address|Write Page Size|Size|
+|Card|Organization|Write Page Size|Size|
 |-|-|-|-|
 |24C01|1 * 128 bytes|8 bytes|128 bytes|
 |24C02|1 * 256 bytes|8 bytes|256 bytes|
@@ -241,7 +329,7 @@ I2C STOP<br/>
 |24C08|4 * 256 bytes|16 bytes|1024 bytes|
 |24C16|8 * 256 bytes|16 bytes| 2048 bytes|
 
-I2C EEPROM cards are available in several common sizes. 
+I2C EEPROM cards are available in several common sizes. Less common sizes up to 64K are available (24C512) from a few suppliers.
 
 <BrowserWindow>
 <span className="bp-prompt">I2C></span> scan<br/>
