@@ -136,7 +136,7 @@ In the logic analyzer capture above, flag 0 marks after RESET is high and just b
 The correct reply for the SLE4442 is 0xa2 0x13 0x10 0x91. This indicates the card is an SLE44xx series card, with 256 data units of 8 bits each (256 bytes). 
 
 :::tip
-If the response is 0x45 0xC8 0x08 0x89, then the bitmode is incorrect. The Bus Pirate is in MSB mode, but the SLE4442 uses LSB mode. Use the ```L``` command to set the Bus Pirate to LSB mode.
+If the response is 0x45 0xC8 0x08 0x89, then the bitorder is incorrect. The Bus Pirate is in MSB mode, but the SLE4442 uses LSB mode. Use the ```L``` command to set the Bus Pirate to LSB mode.
 :::
 
 <BrowserWindow>
@@ -166,7 +166,7 @@ The [sle4442](/command-reference/2wire-protocol#sle4442) command automates the A
 
 <BrowserWindow>
 
-<span className="bp-prompt">2WIRE></span> [ 0x30 0 0  x00 0x00 ] r:256<br/>
+<span className="bp-prompt">2WIRE></span> [ 0x30 0x00 0x00 ] r:256<br/>
 <br/>
 I2C START<br/>
 <span className="bp-info">TX:</span> 0x<span className="bp-float">30</span> 0x<span className="bp-float">00</span> 0x<span className="bp-float">00</span> <br/>
