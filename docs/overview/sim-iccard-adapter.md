@@ -20,7 +20,7 @@ import FooterCart from '/_common/_footer/_footer-cart.md'
 ![](./img/sim-iccard-all.jpg)
 ## mini, micro, and nano SIM cards
 
-The top of the adapter has sockets for mini, micro, and nano SIM cards. Most mobile phone SIM cards use a half-duplex serial UART interface, such as the Bus Pirate HDPLXUART mode. 
+The top of the adapter has sockets for mini, micro, and nano SIM cards. Most [mobile phone SIM cards](/devices/sim-bank-ic-cards) use a half-duplex serial UART interface, such as the Bus Pirate HDPLXUART mode. 
 
 | Socket | Description |
 |--------|-------------|
@@ -36,7 +36,7 @@ We looked at a lot of sockets and decided these were the best bet. Complex socke
 A KF-011C socket on the reverse accepts most ISO 7816-3 smart cards:
 - [SLE4442 IC cards](/devices/sle4442) with passcode protection, supported by [2-Wire protocol mode](/command-reference/2wire-protocol)
 - [24C02/24C04/24C08/24C16 EEPROM cards](/devices/24c02), supported by [I2C protocol mode](/command-reference/i2c-protocol)
-- Bank cards, ID cards, and other smart cards, supported by HDPLXUART mode
+- [Bank cards, ID cards, and other smart cards](/devices/sim-bank-ic-cards), supported by HDPLXUART mode
 
 A card detect switch is connected to an LED on the top of the board. _CARD LED_ will light when a card is inserted.
 
@@ -69,7 +69,7 @@ SW1 and SW2 along the side of the adapter select the power (VCC) and ground (GND
 - IC Card and SIM adapter [schematic and PCB](https://github.com/DangerousPrototypes/BusPirate5-hardware/tree/main/)
 - [How to interface SLE4442 IC cards](/devices/sle4442)
 - [How to interface 24C02 EEPROM cards](/devices/24c02) 
-- [How to interface SIM and bank cards] _coming soon_
+- [How to interface SIM and bank cards](/devices/sim-bank-ic-cards)
 - [HDPLXUART mode documentation] _coming soon_
 - [2-Wire mode documentation](/command-reference/2wire-protocol)
 - [I2C mode documentation](/command-reference/i2c-protocol)
