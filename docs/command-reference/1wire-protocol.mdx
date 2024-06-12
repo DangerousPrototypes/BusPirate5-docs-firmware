@@ -37,6 +37,13 @@ Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
 - Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
 :::
 
+## Connections
+
+| Bus Pirate | Direction                     | Circuit | Description   |
+|------------|--------------------------|---------|---------------|
+| OWD       | <font size="+2">↔</font> | OWD     | 1-Wire Data   |
+| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |
+
 ## Syntax
 
 |Command|Description|
@@ -49,18 +56,36 @@ Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
 | ```space```| Value delimiter. Use a space to separate numbers. No delimiter is required between non-number values: {0xa6 0 0 16 5 0b111 0xaF rrrr}. |
 | \(#\)   | Run macro, (0) for macro list. |
 
-## Macro
 
-|Number| Description                                                                 |
-|-----|-----------------|
-| 0   | Macro menu                                                      |
-| 1   | 1-Wire ROM search. Find all connected device IDs. |
-| 2   | Read temperature from a single 18B20 sensor.|
+## Commands
 
-### 1-Wire ROM search macro
+Bus Pirate 5 has global commands available everywhere, and mode commands specific to the currently selected mode. Type ```help``` to see all commands in every mode, or ```help mode``` for the currently available mode commands.
+
+:::tip
+Most Bus Pirate commands have help. Add the ```-h``` flag to any command to see the latest available options and usage examples. 
+:::
+
+### scan
+
+```scan``` performs a 1-Wire ROM search. Find all connected device IDs.
+
+#### help
 
 <BrowserWindow>
-<span className="bp-prompt">1-WIRE></span> (1)
+<span className="bp-prompt">1-WIRE></span> scan -h<br/>
+usage:<br/>
+<span className="bp-info">scan	[-h(elp)]</span><br/>
+<span className="bp-info">Scan 1-Wire address space: scan</span><br/>
+<br/>
+<span className="bp-info">scan for 1-Wire devices</span><br/>
+<span className="bp-prompt">-h</span>	<span className="bp-info">Get additional help</span><br/>
+<br/>
+<span className="bp-prompt">1-WIRE></span> <br/>
+</BrowserWindow>
+
+#### use
+<BrowserWindow>
+<span className="bp-prompt">1-WIRE></span> scan
 <span className="bp-info"><br/>
 1-Wire ROM search:<br/>
 1: 28 5c aa 13 0a 00 00 19
@@ -68,12 +93,30 @@ Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
 <span className="bp-prompt">1-WIRE></span><br/>
 </BrowserWindow>
 
-Macro ```(1)``` performs a 1-Wire ROM search to detect the ID of every connected 1-Wire device. They type of device is shown if the family ID is known.
+```scan``` performs a 1-Wire ROM search to detect the ID of every connected 1-Wire device. They type of device is shown if the family ID is known.
 
-### Read 18B20 temperature
+### ds18b20    
+
+```ds18b20``` reads the temperature from a single 18B20 sensor.
+
+#### help
 
 <BrowserWindow>
-<span className="bp-prompt">1-WIRE></span> (2)
+<span className="bp-prompt">1-WIRE></span> ds18b20 -h<br/>
+usage:<br/>
+<span className="bp-info">ds18b20	[-h(elp)]</span><br/>
+<span className="bp-info">measure temperature (single sensor bus only): ds18b20</span><br/>
+<br/>
+<span className="bp-info">Query DS18B20 temperature sensor</span><br/>
+<span className="bp-prompt">-h</span>	<span className="bp-info">Get additional help</span><br/>
+<br/>
+<span className="bp-prompt">1-WIRE></span> <br/>
+</BrowserWindow>
+
+#### use
+
+<BrowserWindow>
+<span className="bp-prompt">1-WIRE></span> ds18b20
 <span className="bp-info"><br/>
 RX: 1a 01 00 00 7f ff 06 10 12
 Temperature: 17.625
@@ -81,11 +124,4 @@ Temperature: 17.625
 <span className="bp-prompt">1-WIRE></span><br/>
 </BrowserWindow>
 
-Macro ```(2)``` reads the temperature from a single 18B20 temperature sensor. The macro uses the skip ROM command, so it will only work when the DS18B20 is the only device connected.
-
-## Connections
-
-| Bus Pirate | Direction                     | Circuit | Description   |
-|------------|--------------------------|---------|---------------|
-| OWD       | <font size="+2">↔</font> | OWD     | 1-Wire Data   |
-| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |
+Macro ```ds18b20``` reads the temperature from a single 18B20 temperature sensor. The macro uses the skip ROM command, so it will only work with a single DS18B20 device connected.

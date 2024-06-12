@@ -22,6 +22,17 @@ operates at full RS232 voltage levels (-13volts to +13volts) though,
 which are not compatible with the Bus Pirate.
 :::
 
+## Connections
+| Bus Pirate | Direction                     | Circuit | Description   |
+|------------|--------------------------|---------|---------------|
+| TX       | <font size="+2">→</font> | RX    | Bus Pirate Transmit   |
+| RX        | <font size="+2">←</font> | TX     | Bus Pirate Receive  |
+| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |
+
+Connect the Bus Pirate transmit pin (TX) to the UART device receive
+pin (RX). Connect the Bus Pirate receive pin (RX) to the UART
+device transmit pin (TX).
+
 ## Configuration options
 
 <BrowserWindow>
@@ -63,25 +74,61 @@ which are not compatible with the Bus Pirate.
 | ```space```| Value delimiter. Use a space to separate numbers. No delimiter is required between non-number values: {0xa6 0 0 16 5 0b111 0xaF rrrr}. |
 | \(#\)   | Run macro, (0) for macro list. |
 
-## Macros
 
-### Macro list
+## Commands
 
-|Number|Description|
-|-----|---------------------------------|
-| 0   | Macro menu                                                   |
-| 1   | Transparent UART bridge. Press the Bus Pirate button to exit.|       
-| 2   | GPS NMEA sentence decoder. Press any key to exit. |
+Bus Pirate 5 has global commands available everywhere, and mode commands specific to the currently selected mode. Type ```help``` to see all commands in every mode, or ```help mode``` for the currently available mode commands.
 
-### Transparent UART bridge
+:::tip
+Most Bus Pirate commands have help. Add the ```-h``` flag to any command to see the latest available options and usage examples. 
+:::
 
-UART mode macro ```(1)``` opens a simple serial->USB bridge.
-To exit, press the button on the Bus Pirate.
+### bridge
 
-### GPS NMEA sentence decoder
+Transparent UART ```bridge```. Bidirectional UART pass-through to interact with other serial devices from inside the Bus Pirate terminal. Press the Bus Pirate button to exit.
 
-Most GPS modules output [NMEA sentences](https://gpsd.gitlab.io/gpsd/NMEA.html) through a serial UART. Macro ```(2)``` decodes common sentences using [minmea](https://github.com/kosma/minmea). The raw data and decoded data are printed in the terminal. Press any key to exit.
+#### Help
 
+<BrowserWindow>
+<span className="bp-prompt">UART></span> bridge -h<br/>
+usage:<br/>
+<span className="bp-info">bridge	[-h(elp)] [-t(oolbar)]</span><br/>
+<span className="bp-info">Transparent UART bridge: bridge</span><br/>
+<span className="bp-info">Exit: press Bus Pirate button</span><br/>
+<br/>
+<span className="bp-info">open UART with raw data IO, usb to serial bridge mode</span><br/>
+<span className="bp-prompt">-t</span>	<span className="bp-info">ENABLE toolbar while bridge is active (default: disabled)</span><br/>
+<span className="bp-prompt">-h</span>	<span className="bp-info">Get additional help</span><br/>
+<br/>
+<span className="bp-prompt">UART></span> <br/>
+</BrowserWindow> 
+ 
+
+:::tip
+Use ```bridge -h``` to see the latest options and features.
+:::
+
+### gps 
+Most GPS modules output [NMEA sentences](https://gpsd.gitlab.io/gpsd/NMEA.html) through a serial UART. The ```gps``` command decodes common sentences using [minmea](https://github.com/kosma/minmea). The raw data and decoded data are printed in the terminal. Press any key to exit.
+
+#### Help
+
+<BrowserWindow>
+<span className="bp-prompt">UART></span> gps -h<br/>
+usage:<br/>
+<span className="bp-info">gps	[-h(elp)]</span><br/>
+<span className="bp-info">Decode GPS NMEA packets: gps</span><br/>
+<span className="bp-info">Exit: press any key</span><br/>
+<br/>
+<span className="bp-info">parse NMEA GPS data</span><br/>
+<span className="bp-prompt">-h</span>	<span className="bp-info">Get additional help</span><br/>
+<br/>
+<span className="bp-prompt">UART></span> <br/>
+</BrowserWindow>
+
+:::tip
+Use ```gps -h``` to see the latest options and features.
+:::
 
 <!--
 
@@ -117,16 +164,7 @@ signaling). An adapter is required: [example
 1](http://www.compuphase.com/electronics/midi_rs232.htm), [example
 2](http://www.midi.org/techspecs/electrispec.php).
 
-## Connections
-| Bus Pirate | Direction                     | Circuit | Description   |
-|------------|--------------------------|---------|---------------|
-| TX       | <font size="+2">→</font> | RX    | Bus Pirate Transmit   |
-| RX        | <font size="+2">←</font> | TX     | Bus Pirate Receive  |
-| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |
 
-Connect the Bus Pirate transmit pin (TX) to the UART device receive
-pin (RX). Connect the Bus Pirate receive pin (RX) to the UART
-device transmit pin (TX).
 
 <!--
 

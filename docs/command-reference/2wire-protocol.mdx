@@ -17,6 +17,15 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 
 2-wire is a generic 8bit protocol mode with a bidirectional data line (SDA) and a clock line (SCL). 2-wire can be used to interface with SLE4442 smart cards, half-duple SPI devices and other 2 wire busses that don't use a full I2C implementation.
 
+## Connections
+
+| Bus Pirate | Direction                     | Circuit | Description   |
+|------------|--------------------------|---------|---------------|
+| SDA       | <font size="+2">↔</font> | SDA     | Serial Data   |
+| SCL        | <font size="+2">→</font> | SCL     | Serial Clock  |
+| RST        | <font size="+2">→</font> | RST     | Reset signal for some devices  |
+| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |
+
 ## Configuration options
 
 <BrowserWindow>
@@ -58,14 +67,7 @@ Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
 | ```space```| Value delimiter. Use a space to separate numbers. No delimiter is required between non-number values: {0xa6 0 0 16 5 0b111 0xaF rrrr}. |
 
 
-## Connections
 
-| Bus Pirate | Direction                     | Circuit | Description   |
-|------------|--------------------------|---------|---------------|
-| SDA       | <font size="+2">↔</font> | SDA     | Serial Data   |
-| SCL        | <font size="+2">→</font> | SCL     | Serial Clock  |
-| RST        | <font size="+2">→</font> | RST     | Reset signal for some devices  |
-| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |
 
 
 ## Commands

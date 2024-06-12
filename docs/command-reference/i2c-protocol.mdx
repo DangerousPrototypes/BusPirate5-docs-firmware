@@ -51,6 +51,14 @@ Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
 - Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
 :::
 
+## Connections
+
+| Bus Pirate | Direction                     | Circuit | Description   |
+|------------|--------------------------|---------|---------------|
+| SDA       | <font size="+2">↔</font> | SDA     | Serial Data   |
+| SCL        | <font size="+2">→</font> | SCL     | Serial Clock  |
+| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |
+
 ## Syntax
 
 |Command|Description|
@@ -212,10 +220,4 @@ pending until the next command.
 The final command is STOP (]). The Bus Pirate ends the read with a NACK
 and then sends the stop condition.
 -->
-## Connections
 
-| Bus Pirate | Direction                     | Circuit | Description   |
-|------------|--------------------------|---------|---------------|
-| SDA       | <font size="+2">↔</font> | SDA     | Serial Data   |
-| SCL        | <font size="+2">→</font> | SCL     | Serial Clock  |
-| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |

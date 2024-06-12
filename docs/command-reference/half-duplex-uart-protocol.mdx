@@ -1,0 +1,123 @@
+---
+sidebar_position: 13
+sidebar_label: 'Half-Duplex UART'
+---
+import DiscourseComments from '@site/src/components/DiscourseComments';
+import BrowserWindow from '@site/src/components/BrowserWindow';
+
+# Half-Duplex UART Protocol Commands
+
+## Overview
+
+-   **Bus:** Half-duplex [UART](http://en.wikipedia.org/wiki/Serial_uart),
+    [MIDI](http://en.wikipedia.org/wiki/Musical_Instrument_Digital_Interface)
+    (universal asynchronous receiver transmitter), RX and TX on the same wire
+-   **Connections:** one data pin (RXTX) and ground
+-   **Output type:** open collector - pull-up resistors required
+-   **Maximum Voltage:** 5volts
+
+:::info
+Half-duplex UART is a common serial UART, but receive and transmit share a single data line. This is used to interface mobile phone SIM cards and bank IC cards.
+:::
+
+
+## Connections
+| Bus Pirate | Direction                     | Circuit | Description   |
+|------------|--------------------------|---------|---------------|
+| RXTX       | <font size="+2">←→</font> | RXTX    | Bus Pirate Transmit and Receive   |
+| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |
+
+## Configuration options
+
+<BrowserWindow>
+<span className="bp-info">UART speed</span><br/>
+ 1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200 etc<br/>
+ x. <span className="bp-info">Exit</span><br/>
+<span className="bp-prompt">Baud (</span>115200*<span className="bp-prompt">) ></span> <br/>
+<span className="bp-info">Data bits</span><br/>
+ 5 to 8 bits<br/>
+ x. <span className="bp-info">Exit</span><br/>
+<span className="bp-prompt">Bits (</span>8*<span className="bp-prompt">) ></span> <br/>
+<span className="bp-info">Parity</span><br/>
+ 1. <span className="bp-info">None*</span><br/>
+ 2. <span className="bp-info">Even</span><br/>
+ 3. <span className="bp-info">Odd</span><br/>
+ x. <span className="bp-info">Exit</span><br/>
+<span className="bp-prompt">Parity (</span>1<span className="bp-prompt">) ></span> <br/>
+<span className="bp-info">Stop bits</span><br/>
+ 1. <span className="bp-info">1*</span><br/>
+ 2. <span className="bp-info">2</span><br/>
+ x. <span className="bp-info">Exit</span><br/>
+<span className="bp-prompt">Bits (</span>1<span className="bp-prompt">) ></span> <br/>
+<span className="bp-info">Mode:</span> HDPLXUART<br/>
+<span className="bp-prompt">HDPLXUART></span> 
+</BrowserWindow>
+
+**Pull-up resistors**
+
+Half-duplex UART is an open-collector bus, it requires pull-up resistors to hold the data line high to create the data '1'. The Bus Pirate doesn't
+output high, it only pulls low. Without pull-up resistors there can
+never be a '1'. 
+
+Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
+
+:::tip
+- Half-duplex UART requires pull-up resistors to hold the data line high.
+- Without pull-up resistors there can never be a '1'. 
+- Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
+:::
+
+## Syntax
+
+|Command| Description  |
+|---------|-------|
+| [      | Open UART, use ```r``` to read bytes. |
+| {       | Open UART, display data as it arrives asynchronously. |
+| \] or } | Close UART.  |
+| r       | Check UART for byte, or fail if empty. (r:1…255 for bulk reads) |
+| 0b      | Write this binary value. Format is 0b00000000 for a byte, but partial bytes are also fine: 0b1001.|
+| 0x      | Write this HEX value. Format is 0x01. Partial bytes are fine: 0xA. A-F can be lower-case or capital letters. |
+| 0-255   | Write this decimal value. Any number not preceded by 0x or 0b is interpreted as a decimal value. |
+| ```space```| Value delimiter. Use a space to separate numbers. No delimiter is required between non-number values: {0xa6 0 0 16 5 0b111 0xaF rrrr}. |
+| \(#\)   | Run macro, (0) for macro list. |
+
+
+## Commands
+
+Bus Pirate 5 has global commands available everywhere, and mode commands specific to the currently selected mode. Type ```help``` to see all commands in every mode, or ```help mode``` for the currently available mode commands.
+
+:::tip
+Most Bus Pirate commands have help. Add the ```-h``` flag to any command to see the latest available options and usage examples. 
+:::
+
+### bridge
+
+Transparent UART ```bridge```. Bidirectional UART pass-through to interact with other serial devices from inside the Bus Pirate terminal. Press the Bus Pirate button to exit.
+
+#### Help
+
+<BrowserWindow>
+<span className="bp-prompt">HDPLXUART></span> bridge -h<br/>
+usage:<br/>
+<span className="bp-info">bridge	[-h(elp)]</span><br/>
+<span className="bp-info">Transparent UART bridge: bridge</span><br/>
+<span className="bp-info">Exit: press Bus Pirate button</span><br/>
+<br/>
+<span className="bp-info">open UART with raw data IO, usb to serial bridge mode</span><br/>
+<span className="bp-prompt">-t</span>	<span className="bp-info">ENABLE toolbar while bridge is active (default: disabled)</span><br/>
+<span className="bp-prompt">-s</span>	<span className="bp-info">Suppress local echo, don't echo back sent data</span><br/>
+<span className="bp-prompt">-h</span>	<span className="bp-info">Get additional help</span><br/>
+<br/>
+<span className="bp-prompt">HDPLXUART></span> <br/>
+</BrowserWindow> 
+ 
+
+:::tip
+Use ```bridge -h``` to see the latest options and features.
+:::
+
+
+
+
+
+

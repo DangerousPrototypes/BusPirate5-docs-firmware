@@ -18,6 +18,23 @@ WS2812/SK6812 and APA102/SK9822 are common RGB LEDs with a one and two wire inte
 
 LEDs are power hungry, up to 60mA each at full brightness. The programmable power supply is rated for 400mA maximum. The LEDs will need an external power supply when driving more than a few in a strip.
 
+## Connections
+
+### WS2812/SK6812/'NeoPixel'
+
+| Bus Pirate | Direction       | Circuit | Description   |
+|------------|--------------------------|---------|---------------|
+| SDO       | <font size="+2">→</font> | DIN     | Serial Data Out   |
+| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |
+
+### APA102/SK9822
+
+| Bus Pirate | Direction                     | Circuit | Description   |
+|------------|--------------------------|---------|---------------|
+| SDO       | <font size="+2">→</font> | SDI     | Serial Data Out   |
+| SCL        | <font size="+2">→</font> | CKI     | Serial Clock  |
+| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |
+
 ## Configuration options
 
 <BrowserWindow>
@@ -47,25 +64,11 @@ LEDs are power hungry, up to 60mA each at full brightness. The programmable powe
 | ```space```| Value delimiter. Use a space to separate numbers. No delimiter is required between non-number values: {0xa6 0 0 16 5 0b111 0xaF rrrr}. |
 | \(#\)   | Run macro, (0) for macro list. |
 
-## Macro
+## Commands
 
-| Number  |Description  |
-|-----|-----------------|
-| 0   | Macro menu      |
+Bus Pirate 5 has global commands available everywhere, and mode commands specific to the currently selected mode. Type ```help``` to see all commands in every mode, or ```help mode``` for the currently available mode commands.
 
-## Connections
+:::tip
+Most Bus Pirate commands have help. Add the ```-h``` flag to any command to see the latest available options and usage examples. 
+:::
 
-### WS2812/SK6812/'NeoPixel'
-
-| Bus Pirate | Direction       | Circuit | Description   |
-|------------|--------------------------|---------|---------------|
-| SDO       | <font size="+2">→</font> | DIN     | Serial Data Out   |
-| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |
-
-### APA102/SK9822
-
-| Bus Pirate | Direction                     | Circuit | Description   |
-|------------|--------------------------|---------|---------------|
-| SDO       | <font size="+2">→</font> | SDI     | Serial Data Out   |
-| SCL        | <font size="+2">→</font> | CKI     | Serial Clock  |
-| GND        | <font size="+2">⏚</font> | GND     | Signal Ground |

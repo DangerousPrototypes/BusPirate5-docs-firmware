@@ -16,6 +16,16 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 
 SPI is a common 4 wire full duplex protocol. Separate connections for data-in and data-out allow communication to and from the controller at the same time. Multiple sub devices can share the bus, but each will need an individual Chip Select (CS) connection. Chip Select is generally active when low.
 
+## Connections
+
+| Bus Pirate | Direction                    | Circuit | Description          |
+|------------|--------------------------|---------|----------------------|
+| MOSI       | <font size="+2">→</font> | MOSI    | Master Out Sub In |
+| MISO       | <font size="+2">←</font> | MISO    | Master In Sub Out |
+| CS         | <font size="+2">→</font> | CS      | Chip Select          |
+| CLK        | <font size="+2">→</font> | CLK     | Clock signal         |
+| GND        | <font size="+2">⏚</font> | GND     | Signal Ground        |
+
 ## Configuration options
 
 <BrowserWindow>
@@ -169,15 +179,7 @@ SPI>
 
 -->
 
-## Connections
 
-| Bus Pirate | Direction                    | Circuit | Description          |
-|------------|--------------------------|---------|----------------------|
-| MOSI       | <font size="+2">→</font> | MOSI    | Master Out Sub In |
-| MISO       | <font size="+2">←</font> | MISO    | Master In Sub Out |
-| CS         | <font size="+2">→</font> | CS      | Chip Select          |
-| CLK        | <font size="+2">→</font> | CLK     | Clock signal         |
-| GND        | <font size="+2">⏚</font> | GND     | Signal Ground        |
 
 ## Commands
 
