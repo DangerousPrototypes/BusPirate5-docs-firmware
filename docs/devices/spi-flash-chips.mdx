@@ -22,8 +22,8 @@ import FooterCart from '/_common/_footer/_footer-cart.md'
 |MISO/IO4|DO|MISO Controller Data In|
 |MOSI/IO7|DI|MOSI Controller Data Out|
 |CLK/IO6|CLK|SPI Clock|
-|WP/IO3|WP|Write Protect|
-|HOLD/IO2|HOLD|Hold|
+|WP/IO3|WP|Write Protect, HIGH to disable|
+|HOLD/IO2|HOLD|Hold, HIGH to disable|
 |Vout|VCC|3.3volt power supply|
 |GND|GND|Ground|
 
@@ -105,15 +105,23 @@ Vreg output: <span className="bp-float">3.3</span></span>V<span className="bp-in
 - Enable the onboard power supply with the ```W``` command, and configure it for **3.3volts** output. 
 - Select a current limit of at least **50mA**.
 
+### WP and HOLD pins
+
 <BrowserWindow>
 <span className="bp-prompt">SPI></span> P<br/>
 <span className="bp-info">Pull-up resistors:</span> Enabled (10K ohms @ <span className="bp-float">3.3</span>V)<br/>
 <span className="bp-prompt">SPI></span> <br/>
 </BrowserWindow>
 
+Most SPI flash chips have a write protect pin (WP) that prevents accidental writes, and a hold pin (HOLD) that pauses the chip. The HOLD pin must be held high or the chip won't respond. WP must be held high or the chip will be read only. Often the chip will not respond if is WP is left floating, so be sure to hold it high (write enabled) or low (write disabled).
+
 Two ways to correctly hold the WP and HOLD pins high for normal chip operation:
 - ```P``` - Enable pull-up resistors to hold the pins high 
 - ```A 2; A 3``` - Use Auxiliary pin control to set IO2 and IO3 high 
+
+:::caution
+Ensure WP and HOLD pins are held high or the chip may not respond.
+:::
 
 ## Identify the chip
 
