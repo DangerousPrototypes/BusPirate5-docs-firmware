@@ -35,6 +35,30 @@ Removing a chip:
 - Gently lift the chip out of the socket with tweezers **or** turn the socket over and let the chip fall into your hand.
 - Release the socket, the spring fingers will close.
 
+### SOP8 LOTES Socket Version
+
+![](./img/flash-sop8-lotes-closed.jpg) 
+
+This board also supports 150mil and 208mil SOP8 SPI flash chips using a socket made by LOTES. We like the previous socket better, but these are low profile, easier to carry and more convenient to store. However, they are also more expensive and prone to breaking. There are a limited number of these available if you'd like to compare the sockets yourself.
+ 
+![](./img/flash-sop8-lotes-open.jpg)
+
+Inserting a chip:
+- Gently lift the top flap of the lid. The is the flap closest to the white circle that marks pin 1 on the PCB.
+- Gently lift the lower flap.
+- Place or drop the chip into the socket with the chip pin 1 marker (dot, stripe, etc) aligned with the socket pin 1 marker. You may have to align the chip and press down a bit to seat it fully.
+- Close the lower flap and then gently close the top flap, pressing it to lock the chip in place.
+
+Removing a chip:
+- Gently lift the top flap of the lid. The is the flap closest to the white circle that marks pin 1 on the PCB.
+- Gently lift the lower flap.
+- Now this is why we don't like the LOTES sockets: the chip is hard to remove. We've had the best success holding the socket upside down and picking the chip out with tweezers. 
+- Close the lower flap and then gently close the top flap.
+
+:::caution
+The lid flaps are delicate and really prone to snapping off. Be especially careful with opening the socket and removing the chip. We broke more than a few while testing and definitely prefer using the other SOP8 socket.
+:::
+
 ## WSON8 SPI Flash Adapter
 
 ![](./img/flash-wson8.jpg)
@@ -100,6 +124,7 @@ SW1 and SW2 along the side of the adapter select the power (VCC) and ground (GND
 ## Resources
 
 - SOP8 SPI Flash Adapter [schematic and PCB](https://github.com/DangerousPrototypes/BusPirate5-hardware/tree/main/flash-sop-rev3)
+- LOTES SOP8 SPI Flash adapter [schematic and PCB](https://github.com/DangerousPrototypes/BusPirate5-hardware/tree/main/flash-sop-lotes-rev3) 
 - WSON8 SPI Flash Adapter [schematic and PCB](https://github.com/DangerousPrototypes/BusPirate5-hardware/tree/main/flash-wson-rev3)
 - DIP8 SPI Flash Adapter [schematic and PCB](https://github.com/DangerousPrototypes/BusPirate5-hardware/tree/main/flash-dip-rev3)
 - [flash command documentation](command-reference/spi-protocol#flash)
