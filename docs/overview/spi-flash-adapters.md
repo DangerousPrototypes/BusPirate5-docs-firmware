@@ -39,7 +39,7 @@ Removing a chip:
 
 ![](./img/flash-sop8-lotes-closed.jpg) 
 
-This board also supports 150mil and 208mil SOP8 SPI flash chips using a socket made by LOTES. We like the previous socket better, but these are low profile, easier to carry and more convenient to store. However, they are also more expensive and prone to breaking. There are a limited number of these available if you'd like to compare the sockets yourself.
+This board also supports 150mil and 208mil SOP8 SPI flash chips using a socket made by LOTES. We like the previous socket better, but these are low profile, easier to carry and more convenient to store. However, they are also more expensive and prone to breaking. There are a [limited number of these available](https://dirtypcbs.com/store/designer/details/ian/6663/sop8-spi-flash-adapter-for-bus-pirate-5) if you'd like to compare the sockets yourself.
  
 ![](./img/flash-sop8-lotes-open.jpg)
 
