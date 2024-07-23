@@ -1,6 +1,6 @@
 ---
 sidebar_position: 43
-sidebar_label: 'IC Card and SIM adapter'
+sidebar_label: 'IC Card and SIM Adapter'
 ---
 
 # IC Card and SIM adapter
