@@ -1,0 +1,8 @@
+{
+  "label": "Logic Analyzer",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Logic Analyzing with the Bus Pirate"
+  }
+}

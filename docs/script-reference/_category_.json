@@ -1,8 +1,8 @@
 {
-  "label": "Scripting Reference",
+  "label": "Binary Modes",
   "position": 17,
   "link": {
     "type": "generated-index",
-    "description": "Bus Pirate Scripting Interface"
+    "description": "Control the Bus Pirate from a PC"
   }
 }

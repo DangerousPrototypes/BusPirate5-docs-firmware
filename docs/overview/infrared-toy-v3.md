@@ -5,7 +5,7 @@ sidebar_label: 'Infrared RX/TX Toy'
 
 # Infrared RX/TX Toy
 
-![](./img/irtoy3-cover-temp.jpg) 
+![](./img/plank-irtoy.jpg) 
 
 Use a remote control with your computer, view infrared signals on a logic analyzer, or capture and replay remote control buttons. Infrared Toy v3 brings new life to an [old favorite](http://dangerousprototypes.com/docs/USB_IR_Toy_v2) with much more powerful transmitter LEDs, and a full array of receivers to cover most common, and uncommon, infrared protocols.
 
@@ -19,6 +19,9 @@ import FooterCart from '/_common/_footer/_footer-cart.md'
 
 
 ## Transmitters
+![](./img/plank-irtoy-sensors.jpg)
+
+
 |LED|Angle|Output|Current|Brand|Part|
 |-|-|-|-|-|-|
 |Narrow angle|+/-10 degrees|940nm infrared|100mA-1.5A*| Vishay|TSAL6100|
