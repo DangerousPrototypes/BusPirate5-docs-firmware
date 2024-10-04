@@ -10,9 +10,9 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 ![](./img/logic-system.png)
 
 The Bus Pirate can be used as a logic analyzer in multiple ways:
-- [Sigrok/PulseView and the SUMP interface](/logic-analyzer/sump)
+- [PulseView and the SUMP interface](/logic-analyzer/pulseview-sump)
+- [PulseView With the "follow along logic analyzer" interface](/logic-analyzer/pulseview-fala)
 - [Directly in the terminal with the ```logic``` command](/logic-analyzer/logic-command)
-- [With the "follow along logic analyzer" interface](/logic-analyzer/faladata)
 
 ## Capabilities
 
@@ -36,7 +36,14 @@ All Bus Pirate hardware supports follow along logic analyzer, however only Bus P
 ![](./img/sigrok-capture.png)
 
 Sigrok/PulseView is a popular and mature open source logic analyzer GUI that runs on Windows, Linux, and Mac. 
-- [Learn how to use Sigrok/PulseView with the Bus Pirate](/logic-analyzer/sump)
+- [Learn how to use Sigrok/PulseView with the Bus Pirate](/logic-analyzer/pulseview-sump)
+
+## Follow Along Interface
+
+![](./img/fala1.png)
+
+A binary mode on the second UART that announces each follow along logic capture and dumps samples to host software.
+- [Sigrok/PulseView with the follow along interface](/logic-analyzer/pulseview-fala)
 
 ## ```logic``` Command
 
@@ -44,23 +51,3 @@ Sigrok/PulseView is a popular and mature open source logic analyzer GUI that run
 
 The ```logic``` command configures the logic analyzer core, and can display logic capture graphs directly in the terminal.
 - [Learn more about the ```logic``` command](/logic-analyzer/logic-command)
-
-## Follow Along Interface
-
-<BrowserWindow>
-<span className="bp-prompt">HiZ></span> binmode<br/>
-<br/>
-<span className="bp-info">Select binary mode</span><br/>
- 1. SUMP logic analyzer<br/>
- 2. Binmode test framework<br/>
- 3. Arduino CH32V003 SWIO<br/>
- 4. Follow along logic analyzer<br/>
- x. <span className="bp-info">Exit</span><br/>
-<span className="bp-prompt"> ></span> 4<br/>
-<span className="bp-info">Binmode selected:</span> Follow along logic analyzer<br/>
-<br/>
-<span className="bp-prompt">HiZ></span> <br/>
-</BrowserWindow>
-
-A binary mode on the second UART that announces each follow along logic capture and dumps samples to host software.
-- [Learn more about the follow along interface](/logic-analyzer/faladata)

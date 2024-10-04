@@ -1,5 +1,5 @@
 ---
-sidebar_position: 30
+sidebar_position: 6
 sidebar_label: 'FALA Logic Analyzer'
 ---
 import DiscourseComments from '@site/src/components/DiscourseComments';
@@ -89,9 +89,6 @@ Every time you send data to the bus, the logic analyzer will capture samples. Th
 
 ## Protocol
 
-:::caution
-There is currently no software support for FALA. The protocol is a work in progress. The GusmanB logic analyzer software has come a long way, and it supports asynchronous capture notifications. The current protocol may change to use the GusmanB protocol.
-:::
 
 ### Asynchronous Capture Notification
 
@@ -130,7 +127,7 @@ Returns the most recent capture notification. Can be used to retrieve missed cap
 ![](./img/logic-system.png)
 
 :::info
-The ```logic``` command and the [follow along binmode interface](/logic-analyzer/faladata) can be run at the same time. However, the capture buffer is shared with [SUMP logic analyzer mode](/logic-analyzer/sump). SUMP and follow along logic analyzer modes cannot be used at the same time and will result in a memory error warning.
+The ```logic``` command and the [follow along binmode interface](/logic-analyzer/pulseview-fala) can be run at the same time. However, the capture buffer is shared with [SUMP logic analyzer mode](/logic-analyzer/pulseview-sump). SUMP and follow along logic analyzer modes cannot be used at the same time and will result in a memory error warning.
 :::
 
 
