@@ -1,0 +1,132 @@
+---
+sidebar_position: 101
+sidebar_label: 'AVR Arduino Leonardo'
+---
+import BrowserWindow from '@site/src/components/BrowserWindow';
+
+# AVR Arduino Leonardo
+
+![](./img/leonardo-icsp-bp-connected.png)
+
+The Bus Pirate can serve as a programmer and dumper for AVR chips, using the command-line utility AVRDUDE. 
+
+This makes it possible to program the ATmega32U4 chip found on the Arduino Leonardo through the ICSP header. 
+
+For those who prefer a graphical user interface, AVRDUDESS offers a user-friendly front-end for AVRDUDE. Both tools together provide a powerful setup for working with AVR chips.
+
+- Download AVRDUDE from: https://github.com/avrdudes/avrdude
+- Download AVRDUDESS from: https://github.com/ZakKemble/AVRDUDESS
+
+## Connections
+
+![](./img/leonardo-icsp-pinout.png)
+
+The Bus Pirate can be connected to the ICSP header using the following connections:
+
+|Bus Pirate|Arduino Leonardo|Description|
+|-|-|-|
+|MISO|ICSP-1|Master In Slave Out|
+|5V|ICSP-2|Power Supply|
+|CLK|ICSP-3|Clock|
+|MOSI|ICSP-4|Master Out Slave In|
+|CS|ICSP-5(RST/RESET)|Chip Select|
+|GND|ICSP-6|Ground|
+
+:::tip
+RESET is connected to the CS pin on the Bus Pirate. The CS pin is used to reset the AVR chip.
+:::
+
+:::caution 
+Arduino Leonardo runs at 5V. Make sure the Bus Pirate is set to 5V mode.
+:::
+
+## Setup
+
+Enter to binmode and select "Legacy Binary Mode for Flashrom and AVRdude (EXPERIMENTAL)"
+
+:::caution 
+This mode is experimental, use at your own risk.
+:::
+
+<BrowserWindow>
+<span className="bp-prompt">HiZ></span> binmode<br/>
+<br/>
+<span className="bp-info">Select binary mode</span><br/>
+ 1. SUMP logic analyzer<br/>
+ 2. Binmode test framework<br/>
+ 3. Arduino CH32V003 SWIO<br/>
+ 4. Follow along logic analyzer<br/>
+ 5. Legacy Binary Mode for Flashrom and AVRdude (EXPERIMENTAL)<br/>
+ x. Exit<br/>
+<span className="bp-prompt"> ></span> 5<br/>
+<span className="bp-info">Binmode selected: </span>
+ Legacy Binary Mode for Flashrom and AVRdude (EXPERIMENTAL)<br/><br/>
+<span className="bp-info">Binmode active. Terminal locked</span><br/>
+</BrowserWindow>
+
+When entering this mode, it asks for the power supply voltage. Select 5V 
+
+<BrowserWindow>
+<span className="bp-info">Power supply<br/>
+Volts (0.80V-5.00V)</span><br/>
+<span className="bp-prompt">x to exit (3.30) ></span> 5<br/>
+<span className="bp-float">5.00</span>V<span className="bp-info"> requested, closest value: <span className="bp-float">5.00</span></span>V<br/>
+Set current limit?<br/>
+y<br/>
+<br/>
+<span className="bp-info">Maximum current (0mA-500mA)</span><br/>
+<span className="bp-prompt">x to exit (100.00) ></span> 150<br/>
+<span className="bp-float">150.0</span>mA<span className="bp-info"> requested, closest value: <span className="bp-float">150.0</span></span>mA<br/>
+<br/>
+<span className="bp-info">Power supply:</span>Enabled<br/>
+<span className="bp-info"><br/>
+Vreg output: <span className="bp-float">4.9</span></span>V<span className="bp-info">, Vref/Vout pin: <span className="bp-float">4.9</span></span>V<span className="bp-info">, Current sense: <span className="bp-float">9.2</span></span>mA<span className="bp-info"><br/>
+</span><br/>
+</BrowserWindow>
+
+150 ma is a good value for the current limit. 
+
+## Dumping flash memory
+
+It's necessary to use the binmode COM port (which is not the same as the one used to enter binmode).
+
+To dump the flash memory of the ATmega32U4, use the following command:
+
+```bash
+avrdude -c buspirate -P COM5 -p m32u4 -U flash:r:dump.bin:r
+```
+
+:::tip
+For Linux, the COM port is usually a `/dev/ttyUSB`.
+:::
+
+This command reads the flash memory of the ATmega32U4 and saves it to a file named `dump.bin`.
+
+```bash
+attempting to initiate BusPirate binary mode ...
+avrdude: paged flash write enabled
+avrdude: AVR device initialized and ready to accept instructions
+avrdude: device signature = 0x1e9587 (probably m32u4)
+
+avrdude: processing -U flash:r:dump.bin:r
+avrdude: reading flash memory ...
+Reading | ################################################## | 100% 42.14 s
+avrdude: writing output file dump.bin
+
+avrdude done.  Thank you.
+```
+
+Using AVRDUDESS is easy and straightforward. Just select:
+
+- "The Bus Pirate" as the programmer
+- ATmega32U4 as the target (MCU)
+- Port COM (the port where the Bus Pirate binmode is connected)
+- Baud rate: 115200
+
+:::caution 
+Never select "The Bus Pirate bitbang interface, supports TPI" as the programmer. It will not work.
+:::
+
+Select "Read" and click "Go" button to dump the flash memory.
+
+![](./img/avrdudess.png)
