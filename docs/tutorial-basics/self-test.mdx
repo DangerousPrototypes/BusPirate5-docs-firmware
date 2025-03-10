@@ -111,7 +111,7 @@ BIO7 FLOAT: 0/0.04V OK<br/></span>
 </BrowserWindow>
 
 - **BIOx FLOAT** - The buffered IO pins are set as floating inputs. 
-- The 1M ohm pull-down resistors should hold the pins close to ground (logic value 0, <0.2volts). 
+- The 1M ohm pull-down resistors should hold the pins close to ground (logic value 0, \<0.2volts). 
 - Tests the RP2040, IO buffers, pull-down resistors, and the analog connection to the IO pins. 
 - If two adjacent pins are stuck, for example by a solder bridge, the self-test will attempt to determine which pins are effected.
 
@@ -149,7 +149,7 @@ BIO7 LOW: 0.03V OK<br/></span>
 </BrowserWindow>
 
 - **BIOx LOW** - The buffered IO pins are set as low outputs. 
-- The voltage should be close to ground (logic value 0, <0.2volts). 
+- The voltage should be close to ground (logic value 0, \<0.2volts). 
 - Tests the RP2040, IO buffers and the analog connection to the IO pins.
 - If two adjacent pins are stuck, for example by a solder bridge, the self-test will attempt to determine which pins are effected.
 
@@ -187,7 +187,7 @@ BIO7 PU-LOW: 0.14V OK<br/></span>
 </BrowserWindow>
 
 - **BIOx PU-LOW** - The pull-up resistors are enabled and the buffered IO pins are set to output/ground. 
-- The voltage should be close to ground (logic value 0, <0.5volts). 
+- The voltage should be close to ground (logic value 0, \<0.5volts). 
 - Tests the RP2040, pull-up resistors, 4066, IO buffers and the analog connection to the IO pins.
 - If two adjacent pins are stuck, for example by a solder bridge, the self-test will attempt to determine which pins are effected.
 

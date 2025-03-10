@@ -58,13 +58,13 @@ Enable the Bus Pirate onboard pull-up resistors with the ```P``` command.
 |-------|-----------|
 | [ | Issue I2C-style start condition. Some devices don't follow the I2C standard, but still use a similar START condition. |
 | ] | Issue I2C-style stop condition. Some devices don't follow the I2C standard, but still use a similar STOP condition.|
-| { | RST/reset pin **high** |
+| \{ | RST/reset pin **high** |
 | } | RST/reset pin **low** |
 | r       | Read one byte, send ACK. (r:1…255 for bulk reads)|
 | 0b      | Write this binary value, check ACK. Format is 0b00000000 for a byte, but partial bytes are also fine: 0b1001.|
 | 0x      | Write this HEX value, check ACK. Format is 0x01. Partial bytes are fine: 0xA. A-F can be lower-case or capital letters. |
 | 0-255   | Write this decimal value, check ACK. Any number not preceded by 0x or 0b is interpreted as a decimal value. |
-| ```space```| Value delimiter. Use a space to separate numbers. No delimiter is required between non-number values: {0xa6 0 0 16 5 0b111 0xaF rrrr}. |
+| ```space```| Value delimiter. Use a space to separate numbers. No delimiter is required between non-number values: \{0xa6 0 0 16 5 0b111 0xaF rrrr}. |
 
 
 

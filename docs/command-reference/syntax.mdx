@@ -30,8 +30,8 @@ It's always best to use the latest firmware, especially in these early days of a
 :::
 
 ## Execute syntax
-Start a line with ```[```, ```{```, or ```>``` to tell the Bus Pirate to send data to an attached device.
-### **[ or {** Execute syntax with start
+Start a line with ```[```, ```\{```, or ```>``` to tell the Bus Pirate to send data to an attached device.
+### **[ or \{** Execute syntax with start
 
 <BrowserWindow>
 <span className="bp-prompt">SPI></span> [ 0x03 0 r:5]<br/>
@@ -68,7 +68,7 @@ Syntax has the same general function in each bus mode, such as
 ```r``` to read a byte of data. See the individual bus mode guides for
 each protocol.
 
-### **{ or [** Bus start condition
+### **\{ or [** Bus start condition
 
 <BrowserWindow>
 <span className="bp-prompt">SPI></span> [<br/>

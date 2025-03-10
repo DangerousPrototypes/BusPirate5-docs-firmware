@@ -286,13 +286,13 @@ LUX is calculated by finding the ratio of the two channels, then using the ratio
 
 | Ratio Range | Calculation |
 |-------------|-----------------------|
-| <= 0.125    | Lux/(Chan0\*16) = 0.0304 - 0.0272*(ratio) |
-| <= 0.250    | Lux/(Chan0\*16) = 0.0325 - 0.0440*(ratio) |
-| <= 0.375    | Lux/(Chan0\*16) = 0.0351 - 0.0544*(ratio) |
-| <= 0.50     | Lux/(Chan0\*16) = 0.0381 - 0.0624*(ratio) |
-| <= 0.61     | Lux/(Chan0\*16) = 0.0224 - 0.031*(ratio) |
-| <= 0.80     | Lux/(Chan0\*16) = 0.0128 - 0.0153*(ratio) |
-| <= 1.30     | Lux/(Chan0\*16) = 0.00146 - 0.00112*(ratio) |
+| \<= 0.125    | Lux/(Chan0\*16) = 0.0304 - 0.0272*(ratio) |
+| \<= 0.250    | Lux/(Chan0\*16) = 0.0325 - 0.0440*(ratio) |
+| \<= 0.375    | Lux/(Chan0\*16) = 0.0351 - 0.0544*(ratio) |
+| \<= 0.50     | Lux/(Chan0\*16) = 0.0381 - 0.0624*(ratio) |
+| \<= 0.61     | Lux/(Chan0\*16) = 0.0224 - 0.031*(ratio) |
+| \<= 0.80     | Lux/(Chan0\*16) = 0.0128 - 0.0153*(ratio) |
+| \<= 1.30     | Lux/(Chan0\*16) = 0.00146 - 0.00112*(ratio) |
 | > 1.30      | Lux/(Chan0\*16) = 0 |
 
 Our ratio is greater than 0.125 and less than 0.250, so we'll use the second formula.

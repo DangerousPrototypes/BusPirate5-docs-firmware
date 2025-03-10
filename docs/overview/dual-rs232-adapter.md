@@ -88,15 +88,15 @@ Also called a null modem cable. Connects two male (usually PC/terminal/DTE) port
 
 |Signal 0| Pin 0|Direction| Pin 1|Signal 1|
 |-|-|-|-|-|
-|DCD|1|<->|1|DCD|
-|RX|2|<-|3|TX|
+|DCD|1|\<->|1|DCD|
+|RX|2|\<-|3|TX|
 |TX|3|->|2|RX|
 |DTR|4|->|6|DSR|
 |GND|5|-|5|GND|
-|DSR|6|<-|4|DTR|
+|DSR|6|\<-|4|DTR|
 |RTS|7|->|8|CTS|
-|CTS|8|<-|7|RTS|
-|RI|9|<->|9|RI|
+|CTS|8|\<-|7|RTS|
+|RI|9|\<->|9|RI|
 
 RX/TX, CTS/RTS, DTR/DSR are swapped so that two normally master devices can communicate. 
 
@@ -114,13 +114,13 @@ Turns a common straight through cable into a null modem cable that connects two 
 
 |Signal 0| Pin 0|Direction| Pin 1|Signal 1|
 |-|-|-|-|-|
-|RX|2|<-|3|TX|
+|RX|2|\<-|3|TX|
 |TX|3|->|2|RX|
 |DTR|4|->|6&1|DSR/DCD|
 |GND|5|-|5|GND|
-|DSR/DCD|6&1|<-|4|DTR|
+|DSR/DCD|6&1|\<-|4|DTR|
 |RTS|7|->|8|CTS|
-|CTS|8|<-|7|RTS|
+|CTS|8|\<-|7|RTS|
 |RI|9|removed|9|RI|
 
 RX/TX, CTS/RTS and DSR/DTR are swapped. Swapped, but in this case DSR and DCD are connected together. This is a common hack for old equipment that ....
