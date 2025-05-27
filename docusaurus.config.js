@@ -67,33 +67,27 @@ const config = {
         items: [
           {
             to: 'https://buspirate.com',
-            label: 'Bus Pirate v5',
+            label: 'Bus Pirate',
             position: 'left',
           },
           {
-            to: 'https://hardware.buspirate.com',
-            //type: 'docSidebar',
-            //sidebarId: 'tutorialSidebar',
+            to: 'https://buspirate.com/get',
+            label: 'Get',
             position: 'left',
-            label: 'Hardware',
-          },		            
+          },            
           {
-            to: 'https://firmware.buspirate.com',
+            to: 'https://docs.buspirate.com',
             //type: 'docSidebar',
             //sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Firmware',
-          }, 
+            label: '*New Docs*',
+          },		            
           {
             to: 'https://forum.buspirate.com',
             label: 'Forum',
             position: 'left',
           },     
-          {
-            to: 'https://buspirate.com/get',
-            label: 'Get',
-            position: 'left',
-          },   
+ 
           {
             to: 'https://buspirate.com/contact',
             label: 'Contact',
@@ -107,6 +101,14 @@ const config = {
           },
         ],
       },
+      announcementBar: {
+        id: 'old_site',
+        content:
+          '<a href="https://docs.buspirate.com">Read the current docs</a>!<br/><br/>The documentation have been updated and moded to a new site. Please check out the latest version.',
+        backgroundColor: '#fafbfc',
+        textColor: '#091E42',
+        isCloseable: false,
+      },      
       colorMode: {
         defaultMode: 'dark',
         disableSwitch: false,
