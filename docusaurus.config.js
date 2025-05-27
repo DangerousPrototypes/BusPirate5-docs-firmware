@@ -56,6 +56,14 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      announcementBar: {
+        id: 'old_site',
+        content:
+          '<b>This site is no loner maintained. <a href="https://docs.buspirate.com">Visit the new Bus Pirate docs site</a>.</b>',
+        backgroundColor: '#000000',
+        textColor: '#ec2a35',
+        isCloseable: false,
+      }, 
       // Replace with your project's social card
       image: 'img/danger.png',
       navbar: {
@@ -100,15 +108,7 @@ const config = {
             position: 'right',
           },
         ],
-      },
-      announcementBar: {
-        id: 'old_site',
-        content:
-          '<a href="https://docs.buspirate.com">Read the current docs</a>!<br/><br/>The documentation have been updated and moded to a new site. Please check out the latest version.',
-        backgroundColor: '#fafbfc',
-        textColor: '#091E42',
-        isCloseable: false,
-      },      
+      },   
       colorMode: {
         defaultMode: 'dark',
         disableSwitch: false,
