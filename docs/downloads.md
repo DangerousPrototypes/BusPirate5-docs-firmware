@@ -4,6 +4,15 @@ sidebar_label: 'Downloads'
 ---
  
 # Downloads
+
+
+
+import OldSiteWarning from '/old-site-warning.md'
+
+<OldSiteWarning/>
+
+
+
 import FooterFiles from '/_common/_footer/_footer-files.md'
 
 :::tip

@@ -5,6 +5,15 @@ sidebar_label: 'Quick Connectors'
 
 # KF141 Quick Connect Adapter
 
+
+
+import OldSiteWarning from '/old-site-warning.md'
+
+<OldSiteWarning/>
+
+
+
+
 ![](./img/kf141r-render.png)![](./img/kf141r-pcb-2.jpg)   
 
 Sometimes you just need to connect some wires and dig into a project. Quick connector boards get you working right away.

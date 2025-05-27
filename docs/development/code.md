@@ -5,6 +5,15 @@ sidebar_label: 'Firmware'
 
 # Firmware Development
 
+
+
+import OldSiteWarning from '/old-site-warning.md'
+
+<OldSiteWarning/>
+
+
+
+
 ![](./img/vscode.jpg)
 
 Bus Pirate 5 is based on the Raspberry Pi RP2040 and uses the Pico C language SDK. It's a really wonderful toolchain and usually 'just works' on most operating systems.

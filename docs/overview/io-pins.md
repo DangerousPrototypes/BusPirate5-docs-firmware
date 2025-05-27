@@ -5,6 +5,15 @@ sidebar_label: 'IO Pin Descriptions'
 
 # IO Pin Descriptions
 
+
+
+import OldSiteWarning from '/old-site-warning.md'
+
+<OldSiteWarning/>
+
+
+
+
 ![](./img/bp5-promo-12.jpg)
 
 ## Main connector pinout

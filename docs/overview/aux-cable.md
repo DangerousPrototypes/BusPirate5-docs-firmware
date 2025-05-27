@@ -4,6 +4,15 @@ sidebar_label: 'Auxiliary Cable Kit'
 ---
 # Auxiliary Cable Kit
 
+
+
+import OldSiteWarning from '/old-site-warning.md'
+
+<OldSiteWarning/>
+
+
+
+
 ![](./img/bp5-promo-13.jpg)
 
 A collection of auxiliary cables made from premium soft and flexible silicone coated wire.

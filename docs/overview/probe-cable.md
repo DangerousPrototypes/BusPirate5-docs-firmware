@@ -4,6 +4,15 @@ sidebar_label: 'Probe Cable Kit'
 ---
 # Probe Cable Set
 
+
+
+import OldSiteWarning from '/old-site-warning.md'
+
+<OldSiteWarning/>
+
+
+
+
 ![](./img/bp5-promo-11.jpg) 
 
 - 1 [Premium Probe Cable](https://hardware.buspirate.com/cables/#probe-cable)

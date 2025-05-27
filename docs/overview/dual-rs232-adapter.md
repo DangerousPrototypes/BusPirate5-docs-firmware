@@ -5,6 +5,15 @@ sidebar_label: 'Dual RS-232 Adapter'
 
 # Dual RS-232 Adapter
 
+
+
+import OldSiteWarning from '/old-site-warning.md'
+
+<OldSiteWarning/>
+
+
+
+
 ![](./img/rs232-full.jpg)
 
 Serial ports are old tech, but old tech is meant to be hacked. Here's an adapter that handy to have around if you work with vintage hardware or industrial equipment. We'll also sift through some common serial port accessories that can save the day when you're in a pinch.

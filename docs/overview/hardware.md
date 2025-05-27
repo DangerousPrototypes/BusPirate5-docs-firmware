@@ -6,6 +6,15 @@ slug: /
 
 # Bus Pirate 5 Firmware Guide
 
+
+
+import OldSiteWarning from '/old-site-warning.md'
+
+<OldSiteWarning/>
+
+
+
+
 ![](./img/bp5rev10-cover-angle.jpg)
 
 Bus Pirate 5 is the latest edition of the universal serial interface trusted by hackers since 2008.

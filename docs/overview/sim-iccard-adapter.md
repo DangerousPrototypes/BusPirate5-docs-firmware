@@ -5,6 +5,15 @@ sidebar_label: 'IC Card and SIM Adapter'
 
 # IC Card and SIM adapter
 
+
+
+import OldSiteWarning from '/old-site-warning.md'
+
+<OldSiteWarning/>
+
+
+
+
 ![](../devices/img/sle4442-adapter.jpg)
 
 The IC card and SIM adapter for Bus Pirate 5 has sockets for mini, micro and nano SIM cards. Everything is connected and ready to go - get started right away.

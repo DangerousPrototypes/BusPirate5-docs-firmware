@@ -7,6 +7,15 @@ import LicenseCCBYSA from '/_common/_license/_cc-by-sa.md'
 
 # Licenses
 
+
+
+import OldSiteWarning from '/old-site-warning.md'
+
+<OldSiteWarning/>
+
+
+
+
 Bus Pirate 5 is an open source/open hardware project.
 
 ## Firmware

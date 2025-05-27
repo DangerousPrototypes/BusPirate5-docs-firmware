@@ -5,6 +5,15 @@ sidebar_label: 'Probe Hooks'
 
 # Probes and Hooks
 
+
+
+import OldSiteWarning from '/old-site-warning.md'
+
+<OldSiteWarning/>
+
+
+
+
 There’s a bunch of ingenious ways to tap signals in an electronic circuit. Probe hooks have small wire claws that grab onto a chip leg, and a spring that retracts to hold it into place. The right hook depends on what you’ll be connecting, and how much space you have available.
 
 :::tip
