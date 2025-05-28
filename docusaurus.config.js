@@ -129,6 +129,10 @@ const config = {
                 label: 'Get Bus Pirate',
                 to: 'https://buspirate.com/get',
               },
+              {
+                label: 'All Bus Pirate hardware',
+                to: 'https://dirtypcbs.com/store/designer/browse/ian',
+              },              
             ],
           },
           {
