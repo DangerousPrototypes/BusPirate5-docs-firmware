@@ -121,8 +121,8 @@ const config = {
             title: 'Distributors',
             items: [
               {
-                label: 'Dirty PCBs',
-                to: 'https://dirtypcbs.com/store/browse/bus-pirate',
+                label: 'Get Bus Pirate',
+                to: 'https://buspirate.com/get',
               },
             ],
           },
@@ -130,13 +130,9 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Hardware',
-                to: 'https://hardware.buspirate.com',
-              },
-              {
-                label: 'Firmware',
-                to: 'https://firmware.buspirate.com',
-              },
+                label: '*New Docs*',
+                to: 'https://docs.buspirate.com',
+              },	
             ],
           },
           {
