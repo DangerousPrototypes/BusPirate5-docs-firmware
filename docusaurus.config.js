@@ -82,7 +82,12 @@ const config = {
             to: 'https://buspirate.com/get',
             label: 'Get',
             position: 'left',
-          },            
+          },     
+          {
+            to: 'https://docs.buspirate.com/docs/downloads/',
+            label: 'Downloads',
+            position: 'left',
+          },                     
           {
             to: 'https://docs.buspirate.com',
             //type: 'docSidebar',
@@ -133,6 +138,10 @@ const config = {
                 label: '*New Docs*',
                 to: 'https://docs.buspirate.com',
               },	
+              {
+                to: 'https://docs.buspirate.com/docs/downloads/',
+                label: 'Downloads',
+              },                
             ],
           },
           {
@@ -167,6 +176,10 @@ const config = {
                 label: 'Blog',
                 to: 'https://buspirate.com',
               },
+              {
+                label: 'Contact',
+                to: 'https://buspirate.com/contact',
+              },               
               {
                 label: 'GitHub',
                 to: 'https://github.com/DangerousPrototypes',
