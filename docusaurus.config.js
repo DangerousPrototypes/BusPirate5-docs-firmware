@@ -123,10 +123,10 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Distributors',
+            title: 'Get a Bus Pirate',
             items: [
               {
-                label: 'Get Bus Pirate',
+                label: 'Find a Distributor',
                 to: 'https://buspirate.com/get',
               },
               {
